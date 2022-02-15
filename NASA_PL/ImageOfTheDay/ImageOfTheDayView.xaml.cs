@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NASA_PL
+namespace NASA_PL.ImageOfTheDay
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ImageOfTheDayView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ImageOfTheDayView : Window
     {
-        public MainWindow()
+        public ImageOfTheDayView()
         {
             InitializeComponent();
         }

@@ -128,20 +128,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageOfTheDay\ImageOfTheDayModel.cs" />
+    <Compile Include="ImageOfTheDay\ImageOfTheDayView.xaml.cs">
+      <DependentUpon>ImageOfTheDayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageOfTheDay\ImageOfTheDayViewModel.cs" />
+    <Compile Include="MainWindow\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,9 +169,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+    <Folder Include="login\" />
+    <Folder Include="SearchMediaForStar\" />
+    <Folder Include="SolarSystemStars\" />
+    <Folder Include="StarQueries\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NASA_BE\NASA_BE.csproj">
@@ -182,6 +183,16 @@
       <Project>{5dbdc366-7cea-4ddc-b579-2d4ff49a1d29}</Project>
       <Name>NASA_BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ImageOfTheDay\ImageOfTheDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.4.0-ci74\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.4.0-ci74\build\MaterialDesignThemes.targets')" />
