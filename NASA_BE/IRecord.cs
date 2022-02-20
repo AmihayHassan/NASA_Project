@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NASA_BE
 {
-    public class Class1
+    public interface IRecord
     {
+        int Id { get; set; }
     }
 }
