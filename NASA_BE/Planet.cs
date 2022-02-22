@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace NASA_BE
 {
     public class Planet : IAstronomicalObject
     {
+        [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
         public double AverageDistanceFromTheSun { get; set; }
         public double Aphelion { get; set; } // max distance from sun
@@ -22,7 +23,7 @@ namespace NASA_BE
         public double RotationPeriod { get; set; }
         public int MoonNumber { get; set; }
         public double AtmosphericPressure { get; set; }
-        public List<string> MaterialsList { get; set; }
-
+        public Dictionary<string, double> MaterialsDict { get; set; }
+        public string ImageURL { get; set; }
     }
 }

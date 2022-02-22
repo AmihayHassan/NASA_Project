@@ -11,11 +11,11 @@ using NASA_BE;
 
 namespace NASA_DAL
 {
-    public class NasaContext : DbContext
+    public class NasaDB : DbContext
     {
-        public NasaContext() : base("NasaContext")
+        public NasaDB() : base("NasaContext")
         {
-            Database.SetInitializer<NasaContext>(new DropCreateDatabaseIfModelChanges<NasaContext>());
+            Database.SetInitializer<NasaDB>(new DropCreateDatabaseIfModelChanges<NasaDB>());
 
         }
 

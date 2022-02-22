@@ -17,9 +17,9 @@ namespace NASA_DAL
     /// To reset the db. Avoid mistakes when changing the model
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NasaDBlInitializer<T> : DropCreateDatabaseAlways<NasaContext>
+    public class NasaDBlInitializer<T> : DropCreateDatabaseAlways<NasaDB>
     {
-        public override void InitializeDatabase(NasaContext context)
+        public override void InitializeDatabase(NasaDB context)
         {
             context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction
                 , string.Format("ALTER DATABASE [{0}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", context.Database.Connection.Database));
@@ -27,7 +27,7 @@ namespace NASA_DAL
             base.InitializeDatabase(context);
         }
 
-        protected override void Seed(NasaContext context)
+        protected override void Seed(NasaDB context)
         {
             base.Seed(context);
         }
