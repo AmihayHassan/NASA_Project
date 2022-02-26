@@ -24,7 +24,7 @@ namespace NASA_PL.MainWindow
         {
             InitializeComponent();
             Dal my_dal = new Dal();
-            var x = my_dal.GetSolarSystem();
+            var imageOfTheDay = Task.Run(() => my_dal.GetAPODFromNASAApi()).Result;
             int y = 4;
         }
     }

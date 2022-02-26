@@ -9,15 +9,20 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using RestSharp;
+
 
 namespace NASA_DAL
 {
     public class Dal
     {
-        public Dal()
+        const string NasaApiKey = "7cJzNeeVHfpkbfQoRP1107Dfmo2kOFd5jktUCVc1";
+
+        public Dal() 
         {
             using (var dbcontext = new NasaDB())
             {
+                //TODO: add all planets, create Initialize function
                 if (dbcontext.Planets.ToList().Count == 0)
                 {
                     dbcontext.Planets.Add(new Planet()
@@ -62,21 +67,52 @@ namespace NASA_DAL
             }
         }
 
-        /*
-        const string APIKEY = "js4BJax4nac2gMLpPtK0IUEOHg5uDyPsLT5dcFGh";
-        public async Task<ImageOfTheDay> GetImageOfTheDayFromNASAApi()
+        public async Task<APOD> GetAPODFromNASAApi()
         {
-            string request = $"https://api.nasa.gov/planetary/apod?api_key={APIKEY}";
-            var res = await PerformHttpRequest<ImageOfTheDay>(request);
-            return res;
+            var url = "https://api.nasa.gov/planetary/apod?api_key=" + NasaApiKey;
+
+            return await GetFromApi<APOD>(url);
         }
-        public List<Planet> GetSolarSystem()
+
+        public async Task<T> GetFromApi<T>(string url)
         {
-            using (var ctx = new NasaDB())
+            // make http GET request with the url
+            var request = WebRequest.Create(url);
+            request.Method = "GET";
+
+            try
             {
-                return ctx.Planets.ToList();
+                // get the response from the request as json
+                var response = request.GetResponse();
+
+                // read the response as a stream
+                var stream = response.GetResponseStream();
+
+                // create a stream reader to read the stream
+                var reader = new StreamReader(stream);
+
+                // read the stream as a string
+                var json = reader.ReadToEnd();
+
+                // close the reader
+                reader.Close();
+
+                // convert the response to json object
+                var responseObject = JsonConvert.DeserializeObject<T>(json);
+
+                return responseObject;
             }
+            catch (HttpRequestException e)
+            {
+                throw new HttpRequestException();
+                //TODO: throw right exception
+            }
+
         }
+
+
+        /*
+ 
         public async Task<Dictionary<string, string>> GetSearchResult(string search)
         {
             string request = $"https://images-api.nasa.gov/search?q={search}";
@@ -112,40 +148,11 @@ namespace NASA_DAL
         }
         public async Task<NearEarthObjects> GetNearEarthObject(string start, string end)
         {
-            string link = $"https://api.nasa.gov/neo/rest/v1/feed?start_date={start}&end_date={end}&api_key={APIKEY}";
+            string link = $"https://api.nasa.gov/neo/rest/v1/feed?start_date={start}&end_date={end}&api_key={NasaApiKey}";
             var r = await PerformHttpRequest<NearEarthObjects>(link);
             return r;
         }
-        private async Task<T> PerformHttpRequest<T>(String requestLink)
-        {
-            T searchResult = default(T);
 
-            // Create a New HttpClient object.
-            HttpClient client = new HttpClient();
-
-            // Call asynchronous network methods in a try/catch block to handle exceptions
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(requestLink);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                // Above three lines can be replaced with new helper method below
-                // string responseBody = await client.GetStringAsync(uri);
-
-                searchResult = JsonConvert.DeserializeObject<T>(responseBody);
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-            }
-
-            // Need to call dispose on the HttpClient object
-            // when done using it, so the app doesn't leak resources
-            client.Dispose();
-
-            return searchResult;
-        }
 
 
         */

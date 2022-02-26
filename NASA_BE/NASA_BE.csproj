@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APOD.cs" />
     <Compile Include="Asteroid.cs" />
     <Compile Include="IAstronomicalObject.cs" />
     <Compile Include="Comet.cs" />
