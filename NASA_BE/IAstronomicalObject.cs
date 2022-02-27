@@ -15,6 +15,6 @@ namespace NASA_BE
         double Perihelion { get; set; } // min distance from sun
         double OrbitalPeriod { get; set; }
         double AverageSpeed { get; set; }
-        Dictionary<string, double> MaterialsDict { get; set; }
+        //Dictionary<string, double> MaterialsDict { get; set; }
     }
 }
