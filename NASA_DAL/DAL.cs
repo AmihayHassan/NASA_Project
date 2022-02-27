@@ -215,30 +215,47 @@ namespace NASA_DAL
 
             try
             {
-                // get the response from the request as json
-                var response = request.GetResponse();
+                // get response from the request asynchronously
+                using (var response = await request.GetResponseAsync())
+                {
+                    // get the response stream
+                    using (var stream = response.GetResponseStream())
+                    {
+                        // create a stream reader to read the stream
+                        var reader = new StreamReader(stream);
 
-                // read the response as a stream
-                var stream = response.GetResponseStream();
+                        // read the response asynchronously
+                        var content = await reader.ReadToEndAsync();
 
-                // create a stream reader to read the stream
-                var reader = new StreamReader(stream);
+                        // deserialize the response to the specified type
+                        return JsonConvert.DeserializeObject<T>(content);
+                    }
+                }
+                //// get the response from the request as json
+                //var response = await request.GetResponseAsync();
 
-                // read the stream as a string
-                var json = reader.ReadToEnd();
+                //// read the response as a stream
+                //var stream = response.GetResponseStream();
 
-                // close the reader
-                reader.Close();
+                //// create a stream reader to read the stream
+                //var reader = new StreamReader(stream);
 
-                // convert the response to json object
-                var responseObject = JsonConvert.DeserializeObject<T>(json);
+                //// read the stream as a string
+                //var json = reader.ReadToEnd();
 
-                return responseObject;
+                //// close the reader
+                //reader.Close();
+
+                //// convert the response to json object
+                //var responseObject = JsonConvert.DeserializeObject<T>(json);
+
+                //return responseObject;
             }
             catch (HttpRequestException e)
             {
+                
                 throw new HttpRequestException();
-                //TODO: throw right exception
+                //TODO: throw proper exception
             }
 
         }
