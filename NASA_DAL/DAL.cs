@@ -222,13 +222,14 @@ namespace NASA_DAL
                     using (var stream = response.GetResponseStream())
                     {
                         // create a stream reader to read the stream
-                        var reader = new StreamReader(stream);
+                        using (var reader = new StreamReader(stream))
+                        {
+                            // read the response asynchronously
+                            var content = await reader.ReadToEndAsync();
 
-                        // read the response asynchronously
-                        var content = await reader.ReadToEndAsync();
-
-                        // deserialize the response to the specified type
-                        return JsonConvert.DeserializeObject<T>(content);
+                            // deserialize the response to the specified type
+                            return JsonConvert.DeserializeObject<T>(content);
+                        }
                     }
                 }
                 //// get the response from the request as json
@@ -253,7 +254,7 @@ namespace NASA_DAL
             }
             catch (HttpRequestException e)
             {
-                
+
                 throw new HttpRequestException();
                 //TODO: throw proper exception
             }
