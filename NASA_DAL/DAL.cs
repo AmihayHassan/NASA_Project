@@ -10,6 +10,9 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Firebase.Storage.Client;
+using Microsoft.CSharp.RuntimeBinder;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 
@@ -208,7 +211,7 @@ namespace NASA_DAL
 
         public async Task<APOD> GetApodFromNasaApi()
         {
-            var url = "https://api.nasa.gov/planetary/apod?api_key=" + NasaApiKey;
+            var url = $"https://api.nasa.gov/planetary/apod?api_key={NasaApiKey}";
             return await GetFromApi<APOD>(url);
         }
 
@@ -248,6 +251,7 @@ namespace NASA_DAL
         }
 
         #region Imagga
+        // TODO: convert "ImaggaTag" to "dynamic"
         public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
         {
             string apiKey = "acc_1d83319fb42c913";
@@ -271,47 +275,60 @@ namespace NASA_DAL
         #endregion
 
         #region get images and media for planets
-
         public async Task<Dictionary<string, string>> GetSearchResult(string query)
         {
             string request = $"https://images-api.nasa.gov/search?q={query}";
-            var res = await GetFromApi<searchResultDict>(request);
-            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
-            foreach (Item i in res.collection.items)
-            {
-                if (i.links != null)
-                {
-                    valuePairs.Add(i.links.FirstOrDefault().href, i.data[0].description);
-                }
-            }
-            return valuePairs;
-        }
+            var resultsList = await GetFromApi<dynamic>(request);
 
+            //TODO: check if it's OK to use <link:description> as <key:value>
+            //TODO: move parsing to BL
+            Dictionary<string, string> linkAndDescriptionDictionary = new Dictionary<string, string>();
+
+            foreach (var item in resultsList.collection.items)
+            {
+                if (item.links != null)
+                {
+                    //try
+                    //{
+                    string href = (string)item.links[0].href;
+                    string description = (string)item.data[0].description;
+                    linkAndDescriptionDictionary.Add(href, description);
+                    //}
+                    //catch (Exception e)
+                    //{
+                    //    Console.WriteLine(e);
+                    //}
+                }
+
+            }
+            return linkAndDescriptionDictionary;
+        }
         #endregion
 
-        /*
-        public async Task<Dictionary<string, string>> GetSearchResult(string search)
+        #region near earth object
+        public async Task<dynamic> GetNearEarthObject(string startDate, string endDate)
         {
-            string request = $"https://images-api.nasa.gov/search?q={search}";
-            var res = await PerformHttpRequest<SearchResult>(request);
-            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
-            foreach (Item i in res.collection.items)
-            {
-                if (i.links != null)
-                {
-                    valuePairs.Add(i.links.FirstOrDefault().href, i.data[0].description);
-                }
-            }
-            return valuePairs;
-        }
-
-        public async Task<NearEarthObjects> GetNearEarthObject(string start, string end)
-        {
-            string link = $"https://api.nasa.gov/neo/rest/v1/feed?start_date={start}&end_date={end}&api_key={NasaApiKey}";
-            var r = await PerformHttpRequest<NearEarthObjects>(link);
+            string link =
+                $"https://api.nasa.gov/neo/rest/v1/feed?start_date={startDate}&end_date={endDate}&api_key={NasaApiKey}";
+            var r = await GetFromApi<dynamic>(link);
             return r;
         }
-        */
+        #endregion
+
+
+
+        public async Task stam()
+        {
+            var stream = File.Open(@"C:\Users\yossi\Desktop\STAM.jpg", FileMode.Open);
+            var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
+                .Child("STAM2.jpg")
+                .PutAsync(stream);
+            // Track progress of the upload
+            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
+            // Await the task to wait until upload is completed and get the download url
+            var downloadUrl = await task;
+            Console.WriteLine(downloadUrl);
+        }
     }
 }
 
