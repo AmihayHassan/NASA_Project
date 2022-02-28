@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,7 +25,10 @@ namespace NASA_PL.MainWindow
         {
             InitializeComponent();
             Dal my_dal = new Dal();
-            var imageOfTheDay = Task.Run(() => my_dal.GetAPODFromNASAApi()).Result;
+            var imageOfTheDay = Task.Run(() => my_dal.GetApodFromNasaApi()).Result;
+            var results = Task.Run(() => my_dal.GetImageTagsFromImagga("https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg")).Result;
+            var sr = Task.Run(() => my_dal.GetSearchResult("earth")).Result;
+            Console.WriteLine(sr);
             int y = 4;
         }
     }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,9 +23,13 @@ namespace NASA_DAL
         {
             using (var dbcontext = new NasaDB())
             {
-                //TODO: add all planets, create Initialize function
                 if (dbcontext.Planets.ToList().Count == 0)
                 {
+                    #region add planets
+
+
+
+                    //TODO: add all planets, create Initialize function
                     dbcontext.Planets.Add(new Planet()
                     {
                         Id = 1,
@@ -187,6 +192,7 @@ namespace NASA_DAL
                         ImageURL = " "
                     });
 
+                    #endregion
                     dbcontext.SaveChanges();
                 }
             }
@@ -200,12 +206,13 @@ namespace NASA_DAL
             }
         }
 
-        public async Task<APOD> GetAPODFromNASAApi()
+        public async Task<APOD> GetApodFromNasaApi()
         {
             var url = "https://api.nasa.gov/planetary/apod?api_key=" + NasaApiKey;
-
             return await GetFromApi<APOD>(url);
         }
+
+        //public async Task
 
         public async Task<T> GetFromApi<T>(string url)
         {
@@ -232,38 +239,57 @@ namespace NASA_DAL
                         }
                     }
                 }
-                //// get the response from the request as json
-                //var response = await request.GetResponseAsync();
-
-                //// read the response as a stream
-                //var stream = response.GetResponseStream();
-
-                //// create a stream reader to read the stream
-                //var reader = new StreamReader(stream);
-
-                //// read the stream as a string
-                //var json = reader.ReadToEnd();
-
-                //// close the reader
-                //reader.Close();
-
-                //// convert the response to json object
-                //var responseObject = JsonConvert.DeserializeObject<T>(json);
-
-                //return responseObject;
             }
             catch (HttpRequestException e)
             {
-
-                throw new HttpRequestException();
                 //TODO: throw proper exception
+                throw new HttpRequestException();
             }
-
         }
 
+        #region Imagga
+        public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
+        {
+            string apiKey = "acc_1d83319fb42c913";
+            string apiSecret = "0eac00d57006acce575e22fe58ab27cf";
+
+            string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
+
+            var client = new RestClient("https://api.imagga.com/v2/tags");
+            client.Timeout = -1;
+
+            var request = new RestRequest(Method.GET);
+            request.AddParameter("image_url", imageUrl);
+            request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+
+            ImaggaTag imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
+
+            return imageTags;
+        }
+        #endregion
+
+        #region get images and media for planets
+
+        public async Task<Dictionary<string, string>> GetSearchResult(string query)
+        {
+            string request = $"https://images-api.nasa.gov/search?q={query}";
+            var res = await GetFromApi<searchResultDict>(request);
+            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
+            foreach (Item i in res.collection.items)
+            {
+                if (i.links != null)
+                {
+                    valuePairs.Add(i.links.FirstOrDefault().href, i.data[0].description);
+                }
+            }
+            return valuePairs;
+        }
+
+        #endregion
 
         /*
- 
         public async Task<Dictionary<string, string>> GetSearchResult(string search)
         {
             string request = $"https://images-api.nasa.gov/search?q={search}";
@@ -278,34 +304,13 @@ namespace NASA_DAL
             }
             return valuePairs;
         }
-        public TagResult TagImage(string urlImage)
-        {
-            string apiKey = "acc_0fd8b9ede9c47e9";
-            string apiSecret = "f4fde1a58c92ace9e4d9dca1b91e5744";
 
-            string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
-
-            var client = new RestClient(String.Format("https://api.imagga.com/v2/tags"));
-            client.Timeout = -1;
-
-            var request = new RestRequest(Method.GET);
-            request.AddParameter("image_url", urlImage);
-            request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
-
-            IRestResponse response = client.Execute(request);
-            var tagResult = JsonConvert.DeserializeObject<TagResult>(response.Content);
-
-            return tagResult;
-        }
         public async Task<NearEarthObjects> GetNearEarthObject(string start, string end)
         {
             string link = $"https://api.nasa.gov/neo/rest/v1/feed?start_date={start}&end_date={end}&api_key={NasaApiKey}";
             var r = await PerformHttpRequest<NearEarthObjects>(link);
             return r;
         }
-
-
-
         */
     }
 }

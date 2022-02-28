@@ -58,10 +58,12 @@
     <Compile Include="Asteroid.cs" />
     <Compile Include="IAstronomicalObject.cs" />
     <Compile Include="Comet.cs" />
+    <Compile Include="ImaggaTag.cs" />
     <Compile Include="IRecord.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="searchResultDict.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
