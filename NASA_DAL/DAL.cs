@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -206,8 +207,8 @@ namespace NASA_DAL
             {
                 return ctx.Planets.ToList();
             }
-        }        
-        
+        }
+
         public async Task<T> GetFromApi<T>(string url)
         {
             // make http GET request with the url
@@ -337,19 +338,20 @@ namespace NASA_DAL
         //    // Points to "images"
         //    StorageReference imagesRef = spaceRef.Parent;
         //}
-        
-        //public async Task stam()
-        //{
-        //    var stream = File.Open(@"C:\Users\yossi\Desktop\STAM.jpg", FileMode.Open);
-        //    var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
-        //        .Child("STAM2.jpg")
-        //        .PutAsync(stream);
-        //    // Track progress of the upload
-        //    task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
-        //    // Await the task to wait until upload is completed and get the download url
-        //    var downloadUrl = await task;
-        //    Console.WriteLine(downloadUrl);
-        //}
+
+        public async Task UploadToFbTask(string src, string fbs, string dst)
+        {
+            var stream = File.Open(src, FileMode.Open);
+            var task = new FirebaseStorage(fbs)
+                .Child(dst)
+                .PutAsync(stream);
+            // Track progress of the upload
+            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
+            // Await the task to wait until upload is completed and get the download url
+            var downloadUrl = await task;
+            Trace.WriteLine("downloadUrl");
+            Trace.WriteLine(downloadUrl);
+        }
     }
 }
 
