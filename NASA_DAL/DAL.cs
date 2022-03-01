@@ -10,11 +10,9 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Firebase.Storage.Client;
-using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json.Linq;
+using Firebase.Storage;
 using RestSharp;
-
+using Firebase.Storage.FirebaseStorage;
 
 namespace NASA_DAL
 {
@@ -207,16 +205,8 @@ namespace NASA_DAL
             {
                 return ctx.Planets.ToList();
             }
-        }
-
-        public async Task<APOD> GetApodFromNasaApi()
-        {
-            var url = $"https://api.nasa.gov/planetary/apod?api_key={NasaApiKey}";
-            return await GetFromApi<APOD>(url);
-        }
-
-        //public async Task
-
+        }        
+        
         public async Task<T> GetFromApi<T>(string url)
         {
             // make http GET request with the url
@@ -248,6 +238,12 @@ namespace NASA_DAL
                 //TODO: throw proper exception
                 throw new HttpRequestException();
             }
+        }
+
+        public async Task<APOD> GetApodFromNasaApi()
+        {
+            var url = $"https://api.nasa.gov/planetary/apod?api_key={NasaApiKey}";
+            return await GetFromApi<APOD>(url);
         }
 
         #region Imagga
@@ -315,8 +311,32 @@ namespace NASA_DAL
         }
         #endregion
 
+        public void FireBaseGetPicture()
+        {
+            FirebaseStorage storage = FirebaseStorage.DefaultInstance;
 
+            // Points to the root reference
+            StorageReference storageRef =
+                storage.GetReferenceFromUrl("gs://<your-bucket-name>");
 
+            // Points to "images"
+            StorageReference imagesRef = storageRef.Child("images");
+
+            // Points to "images/space.jpg"
+            // Note that you can use variables to create child values
+            string filename = "space.jpg";
+            StorageReference spaceRef = imagesRef.Child(filename);
+
+            // File path is "images/space.jpg"
+            string path = spaceRef.Path;
+
+            // File name is "space.jpg"
+            string name = spaceRef.Name;
+
+            // Points to "images"
+            StorageReference imagesRef = spaceRef.Parent;
+        }
+        
         public async Task stam()
         {
             var stream = File.Open(@"C:\Users\yossi\Desktop\STAM.jpg", FileMode.Open);
