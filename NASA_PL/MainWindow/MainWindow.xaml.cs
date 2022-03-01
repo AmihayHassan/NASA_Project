@@ -28,10 +28,9 @@ namespace NASA_PL.MainWindow
             //var imageOfTheDay = Task.Run(() => my_dal.GetApodFromNasaApi()).Result;
             //var results = Task.Run(() => my_dal.GetImageTagsFromImagga("https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg")).Result;
             //var sr = Task.Run(() => my_dal.GetSearchResult("earth")).Result;
-            //var Neos = Task.Run(() => my_dal.GetNearEarthObject("2022-02-28", "2022-03-01")).Result;
-
-            //int y = 4;
-            my_dal.FireBaseGetPicture();
+            var Neos = Task.Run(() => my_dal.GetNearEarthObject("2022-02-28", "2022-03-01")).Result;
+            
+            int y = 4;
 
 
         }

@@ -12,7 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Firebase.Storage;
 using RestSharp;
-using Firebase.Storage.FirebaseStorage;
+using Google.Cloud.Firestore;
+
 
 namespace NASA_DAL
 {
@@ -311,44 +312,44 @@ namespace NASA_DAL
         }
         #endregion
 
-        public void FireBaseGetPicture()
-        {
-            FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+        //public void FireBaseGetPicture()
+        //{
+        //    FirebaseStorage storage = FirebaseStorage.DefaultInstance;
 
-            // Points to the root reference
-            StorageReference storageRef =
-                storage.GetReferenceFromUrl("gs://<your-bucket-name>");
+        //    // Points to the root reference
+        //    StorageReference storageRef =
+        //        storage.GetReferenceFromUrl("gs://<your-bucket-name>");
 
-            // Points to "images"
-            StorageReference imagesRef = storageRef.Child("images");
+        //    // Points to "images"
+        //    StorageReference imagesRef = storageRef.Child("images");
 
-            // Points to "images/space.jpg"
-            // Note that you can use variables to create child values
-            string filename = "space.jpg";
-            StorageReference spaceRef = imagesRef.Child(filename);
+        //    // Points to "images/space.jpg"
+        //    // Note that you can use variables to create child values
+        //    string filename = "space.jpg";
+        //    StorageReference spaceRef = imagesRef.Child(filename);
 
-            // File path is "images/space.jpg"
-            string path = spaceRef.Path;
+        //    // File path is "images/space.jpg"
+        //    string path = spaceRef.Path;
 
-            // File name is "space.jpg"
-            string name = spaceRef.Name;
+        //    // File name is "space.jpg"
+        //    string name = spaceRef.Name;
 
-            // Points to "images"
-            StorageReference imagesRef = spaceRef.Parent;
-        }
+        //    // Points to "images"
+        //    StorageReference imagesRef = spaceRef.Parent;
+        //}
         
-        public async Task stam()
-        {
-            var stream = File.Open(@"C:\Users\yossi\Desktop\STAM.jpg", FileMode.Open);
-            var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
-                .Child("STAM2.jpg")
-                .PutAsync(stream);
-            // Track progress of the upload
-            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
-            // Await the task to wait until upload is completed and get the download url
-            var downloadUrl = await task;
-            Console.WriteLine(downloadUrl);
-        }
+        //public async Task stam()
+        //{
+        //    var stream = File.Open(@"C:\Users\yossi\Desktop\STAM.jpg", FileMode.Open);
+        //    var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
+        //        .Child("STAM2.jpg")
+        //        .PutAsync(stream);
+        //    // Track progress of the upload
+        //    task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
+        //    // Await the task to wait until upload is completed and get the download url
+        //    var downloadUrl = await task;
+        //    Console.WriteLine(downloadUrl);
+        //}
     }
 }
 
