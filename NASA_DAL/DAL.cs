@@ -10,9 +10,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Firebase.Storage;
 using RestSharp;
-using Google.Cloud.Firestore;
 
 
 namespace NASA_DAL
@@ -23,7 +21,7 @@ namespace NASA_DAL
 
         public Dal()
         {
-            using (var dbcontext = new NasaDB())
+            using (NasaDB dbcontext = new NasaDB())
             {
                 if (dbcontext.Planets.ToList().Count == 0)
                 {
