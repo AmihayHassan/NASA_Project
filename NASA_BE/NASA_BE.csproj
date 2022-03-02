@@ -60,7 +60,7 @@
     <Compile Include="Comet.cs" />
     <Compile Include="ImaggaTag.cs" />
     <Compile Include="IRecord.cs" />
-    <Compile Include="NasaNearEarthObject.cs" />
+    <Compile Include="NearEarthObject.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

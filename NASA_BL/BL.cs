@@ -10,27 +10,51 @@ namespace NASA_BL
 {
     public class BL
     {
-        private readonly Dal _dal = new Dal();
-
-        public async Task<APOD> GetApodFromNasaApi()
+        Dal dal = new Dal();
+        public async Task<APOD> GetAPOD()
         {
-            return null;
+            return await dal.GetApodFromNasaApi();
         }
-
-        public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
+        public async Task<List<NearEarthObject>> GetNearEarthObject(string start, string end)
         {
-            return null;
+            NearEarthObjects nearEarthObject = await dal.GetNearEarthObject(start, end);
+            var result = from s in nearEarthObject.near_earth_objects.Values
+                         from q in s
+                         select new NearEarthObject()
+                         {
+                             Id = q.id.ToString(),
+                             Name = q.name,
+                             Hazardous = q.is_potentially_hazardous_asteroid,
+                             Diameter = q.estimated_diameter.meters.estimated_diameter_min,
+                             Velocety = q.close_approach_data[0].relative_velocity.kilometers_per_hour,
+                             MissDistance = q.close_approach_data[0].miss_distance.kilometers,
+                             CloseApproach = q.close_approach_data[0].close_approach_date
+                         };
+            return result.ToList();
         }
-
-        public async Task<Dictionary<string, string>> GetSearchResult(string query)
+        public async Task<Dictionary<string, string>> GetSearchResult(string search, bool debug = true)
         {
-            return null;
-        }
 
-        public async Task<dynamic> GetNearEarthObject(string startDate, string endDate)
+            Dictionary<string, string> listImagesAndDescription = await dal.GetSearchResult(search);
+            Dictionary<string, string> res = new Dictionary<string, string>();
+            Parallel.ForEach(listImagesAndDescription.Keys, async image =>
+            {
+                ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
+                if (tag.result != null)
+                {
+                    if (tag.result.tags.Any((x) => x.confidence > 90.0 && x.tag.en == "planet"))
+                    {
+                        res.Add(image, listImagesAndDescription[image]);
+                    }
+                }
+            });
+
+            return res;
+        }
+        public List<Planet> GetSolarSystem()
         {
-            return null;
+            return dal.GetSolarSystem();
         }
-
     }
+
 }

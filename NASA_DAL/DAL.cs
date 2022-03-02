@@ -13,7 +13,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
 
-
 namespace NASA_DAL
 {
     public class Dal
@@ -302,54 +301,15 @@ namespace NASA_DAL
         #endregion
 
         #region near earth object
-        public async Task<dynamic> GetNearEarthObject(string startDate, string endDate)
+        public async Task<NearEarthObjects> GetNearEarthObject(string startDate, string endDate)
         {
             string link =
                 $"https://api.nasa.gov/neo/rest/v1/feed?start_date={startDate}&end_date={endDate}&api_key={NasaApiKey}";
-            var r = await GetFromApi<dynamic>(link);
+            var r = await GetFromApi<NearEarthObjects>(link);
             return r;
         }
         #endregion
 
-        //public void FireBaseGetPicture()
-        //{
-        //    FirebaseStorage storage = FirebaseStorage.DefaultInstance;
-
-        //    // Points to the root reference
-        //    StorageReference storageRef =
-        //        storage.GetReferenceFromUrl("gs://<your-bucket-name>");
-
-        //    // Points to "images"
-        //    StorageReference imagesRef = storageRef.Child("images");
-
-        //    // Points to "images/space.jpg"
-        //    // Note that you can use variables to create child values
-        //    string filename = "space.jpg";
-        //    StorageReference spaceRef = imagesRef.Child(filename);
-
-        //    // File path is "images/space.jpg"
-        //    string path = spaceRef.Path;
-
-        //    // File name is "space.jpg"
-        //    string name = spaceRef.Name;
-
-        //    // Points to "images"
-        //    StorageReference imagesRef = spaceRef.Parent;
-        //}
-
-        public async Task UploadToFbTask(string src, string fbs, string dst)
-        {
-            var stream = File.Open(src, FileMode.Open);
-            var task = new FirebaseStorage(fbs)
-                .Child(dst)
-                .PutAsync(stream);
-            // Track progress of the upload
-            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress:{ e.Percentage} % ");
-            // Await the task to wait until upload is completed and get the download url
-            var downloadUrl = await task;
-            Trace.WriteLine("downloadUrl");
-            Trace.WriteLine(downloadUrl);
-        }
     }
 }
 

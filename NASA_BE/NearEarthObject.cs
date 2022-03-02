@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NASA_BE
 {
+    #region auto generated classes   
     public class Links
     {
         public string next { get; set; }
@@ -94,8 +95,9 @@ namespace NASA_BE
         public int element_count { get; set; }
         public Dictionary<string, List<Date>> near_earth_objects { get; set; }
     }
+    #endregion
 
-    public class NasaNearEarthObject
+    public class NearEarthObject
     {
         public string Name { get; set; }
         public string Id { get; set; }
@@ -103,7 +105,9 @@ namespace NASA_BE
         public string Velocety { get; set; }
         public bool Hazardous { get; set; }
         public string CloseApproach { get; set; }
-
         public string MissDistance { get; set; }
+
+
     }
+
 }
