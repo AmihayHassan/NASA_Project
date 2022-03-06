@@ -27,10 +27,12 @@ namespace NASA_PL.MainWindow
         {
             InitializeComponent();
             BL myBl = new BL();
+            var db = myBl.GetSolarSystem();
             var imageOfTheDay = Task.Run(() => myBl.GetAPOD()).Result;
             //var results = Task.Run(() => myBl.GetImageTagsFromImagga("https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg")).Result;
             var sr = myBl.GetSearchResult("earth");
-            var result = Task.Run(() => myBl.GetNearEarthObject("2022-03-01", "2022-02-25")).Result;
+            var result = Task.Run(() => myBl.GetNearEarthObject("2022-03-01", "2022-02-25"));
+            Task t = Task.WhenAll(result);
 
 
             int y = 4;

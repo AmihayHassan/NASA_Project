@@ -13,9 +13,11 @@ namespace NASA_DAL
 {
     public class NasaDB : DbContext
     {
-        public NasaDB() : base("NasaContext")
+        //public NasaDB() : base("NasaContext")
+        public NasaDB() : base()
+
         {
-            Database.SetInitializer<NasaDB>(new DropCreateDatabaseIfModelChanges<NasaDB>());
+            //Database.SetInitializer<NasaDB>(new DropCreateDatabaseIfModelChanges<NasaDB>());
 
         }
 
@@ -26,9 +28,9 @@ namespace NASA_DAL
 
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //}
     }
 }
