@@ -234,6 +234,7 @@ namespace NASA_DAL
             }
             catch (HttpRequestException e)
             {
+                Trace.WriteLine(e.Message);
                 //TODO: throw proper exception
                 throw new HttpRequestException();
             }
@@ -261,9 +262,11 @@ namespace NASA_DAL
             request.AddParameter("image_url", imageUrl);
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
-            IRestResponse response = await client.ExecuteAsync(request);
+            IRestResponse response = client.Execute(request);
 
             ImaggaTag imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
+
+            //Trace.WriteLine(imageUrl);
 
             return imageTags;
         }

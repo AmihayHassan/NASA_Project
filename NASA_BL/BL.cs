@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using NASA_BE;
 using NASA_DAL;
@@ -11,10 +9,12 @@ namespace NASA_BL
     public class BL
     {
         Dal dal = new Dal();
+
         public async Task<APOD> GetAPOD()
         {
             return await dal.GetApodFromNasaApi();
         }
+
         public async Task<List<NearEarthObject>> GetNearEarthObject(string start, string end)
         {
             NearEarthObjects nearEarthObject = await dal.GetNearEarthObject(start, end);
@@ -32,25 +32,25 @@ namespace NASA_BL
                          };
             return result.ToList();
         }
-        public async Task<Dictionary<string, string>> GetSearchResult(string search, bool debug = true)
-        {
 
-            Dictionary<string, string> listImagesAndDescription = await dal.GetSearchResult(search);
-            Dictionary<string, string> res = new Dictionary<string, string>();
-            Parallel.ForEach(listImagesAndDescription.Keys, async image =>
+
+        public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, bool debug = false)
+        {
+            var tasks = new List<Task<Dictionary<string, string>>>();
+            var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            var res = new Dictionary<string, string>();
+            Parallel.ForEach(imagesAndDescription.Keys, async image =>
             {
                 ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
-                if (tag.result != null)
+                if (tag.result == null) return;
+                if (tag.result.tags.Any((x) => x.confidence > 85 && x.tag.en == "planet"))
                 {
-                    if (tag.result.tags.Any((x) => x.confidence > 90.0 && x.tag.en == "planet"))
-                    {
-                        res.Add(image, listImagesAndDescription[image]);
-                    }
+                    res.Add(image, imagesAndDescription[image]);
                 }
             });
-
             return res;
         }
+
         public List<Planet> GetSolarSystem()
         {
             return dal.GetSolarSystem();
