@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NASA_PL.ImageOfTheDay
+namespace NASA_PL.ViewModels
 {
-    internal class ImageOfTheDayModel
+    internal class MainWindowViewModel
     {
     }
 }

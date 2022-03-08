@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NASA_BL;
 
-namespace NASA_PL.MainWindow
+namespace NASA_PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

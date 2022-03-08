@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace NASA_BE
 {
+    //TODO: not critic, move to Planet class
+
     public interface IAstronomicalObject : IRecord// TODO check if better as abstract class
     {
         string Name { get; set; }

@@ -13,11 +13,9 @@ namespace NASA_DAL
 {
     public class NasaDB : DbContext
     {
-        //public NasaDB() : base("NasaContext")
         public NasaDB() : base()
 
         {
-            //Database.SetInitializer<NasaDB>(new DropCreateDatabaseIfModelChanges<NasaDB>());
 
         }
 
@@ -26,11 +24,5 @@ namespace NASA_DAL
         public DbSet<Comet> Comets { get; set; }
         public DbSet<Asteroid> Asteroids { get; set; }
 
-
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //}
     }
 }

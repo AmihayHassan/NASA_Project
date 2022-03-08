@@ -107,7 +107,6 @@ namespace NASA_BE
         public string CloseApproach { get; set; }
         public string MissDistance { get; set; }
 
-
     }
 
 }

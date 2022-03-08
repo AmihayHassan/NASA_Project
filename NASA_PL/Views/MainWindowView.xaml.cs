@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace NASA_PL.ImageOfTheDay
+namespace NASA_PL.Views
 {
     /// <summary>
-    /// Interaction logic for ImageOfTheDayView.xaml
+    /// Interaction logic for MainWindowView.xaml
     /// </summary>
-    public partial class ImageOfTheDayView : Window
+    public partial class MainWindowView : Window
     {
-        public ImageOfTheDayView()
+        public MainWindowView()
         {
             InitializeComponent();
         }

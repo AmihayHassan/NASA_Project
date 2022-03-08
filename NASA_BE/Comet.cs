@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NASA_BE
 {
+    //TODO: not in use, need to delete
+
     public class Comet : IAstronomicalObject
     {
         [Key]

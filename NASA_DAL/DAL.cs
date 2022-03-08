@@ -313,6 +313,11 @@ namespace NASA_DAL
         }
         #endregion
 
+        
+        
+        
+        
+        //TODO: include function that upload images to firebase
     }
 }
 
