@@ -36,5 +36,13 @@ namespace NASA_PL
             Console.ReadKey();
             Trace.WriteLine("finished");
         }
+
+        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
     }
 }
