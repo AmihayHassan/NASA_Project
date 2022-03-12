@@ -17,6 +17,7 @@
             <Label>
                 test
             </Label>
+            <Label Content="Label"/>
 
         </StackPanel>
 
