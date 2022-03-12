@@ -90,21 +90,44 @@
         </Style.Triggers>
     </Style>
 
-    
+
     <Style x:Key="PagesButton" TargetType="Button">
         <Setter Property="Height" Value="120" />
-        <Setter Property="Background" Value="#FF0064A6" />
+        <Setter Property="Background" Value="#3d1865" />
         <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
-    <Style x:Key="PagesButtonStackPanel" TargetType="StackPanel">
-        <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="Height" Value="120" />
-        <Setter Property="Height" Value="120" />
-        <Setter Property="Height" Value="120" />
-        <Setter Property="Height" Value="120" />
 
 
-    </Style>
+
+
+    <!-- create resouce for button, the button contains StackPanel, the stack panel contains TextBlock and Image -->
+    <!--TODO: understand how to bind inner properties (text and icon) -->
+    <!--<Style x:Key="PagesButtonStyle" TargetType="Button">
+        <Setter Property="Height" Value="120" />
+        <Setter Property="Background" Value="#3d1865" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Image Source="{Binding Icon}" Width="40" Height="40" Margin="10" />
+                            <TextBlock Text="{Binding Name}" FontSize="20" Margin="10" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+
+
+
+
     <!--
     <StackPanel Orientation="Horizontal">
 

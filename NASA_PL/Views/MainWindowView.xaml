@@ -78,7 +78,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Grid.Row="0"
-            Background="#4DA1E3"
+            Background="#532782"
             Height="50"
             VerticalAlignment="Top"
             MouseDown="UIElement_OnMouseDown">
@@ -126,7 +126,7 @@
             Grid.Row="0"
             Grid.RowSpan="2"
             x:Name="SideBar"
-            Background="#FF0064A6"
+            Background="#3d1865"
             Width="300"
             HorizontalAlignment="Left"
             >
@@ -183,32 +183,27 @@
             </Button>
 
             <Button
-                Name="BusesSidePanel"
+                Name="HomeSidePanel"
                 Grid.Row="1"
                 Style="{StaticResource PagesButton}"
-                MouseEnter="BusesSidePanel_OnMouseEnter"
-                MouseLeave="BusesSidePanel_OnMouseLeave"
-                Click="BusesSidePanel_OnClick"
                 >
 
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock
-                        Name="Buses"
-                        Text="Buses"
+                        Name="Home"
+                        Text="Home"
                         FontSize="30"
                         Foreground="White"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Margin="5,0,0,0"/>
+                        />
 
                     <materialDesign:PackIcon
                         Foreground="White"
-                        Kind="BusMultiple"
+                        Kind="Home"
                         ToolTip="Buses"
                         Height="50"
                         Width="50"
-                        Margin="125,0,0,0"
                         />
 
                 </StackPanel>
@@ -216,30 +211,26 @@
             </Button>
 
             <Button
-                Name="StationsSidePanel"
+                Name="APODSidePanel"
                 Grid.Row="2"
                 Style="{StaticResource PagesButton}"
-                MouseEnter="StationsSidePanel_OnMouseEnter"
-                MouseLeave="StationsSidePanel_OnMouseLeave"
-                Click="StationsSidePanel_OnClick">
+                >
 
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock
-                        Name="Stations"
-                        Text="Stations"
+                        Name="APOD"
+                        Text="APOD"
                         FontSize="30"
                         Foreground="White"
-                        HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Margin="5,0,0,0"/>
+                        />
 
                     <materialDesign:PackIcon
                         Foreground="White"
-                        Kind="BusStop"
+                        Kind="Image"
                         Height="50"
                         Width="50"
-                        Margin="85,0,0,0"
                     />
 
                 </StackPanel>
@@ -247,30 +238,25 @@
             </Button>
 
             <Button
-                Name="LinesSidePanel"
+                Name="SearchImagesSidePanel"
                 Grid.Row="3"
                 Style="{StaticResource PagesButton}"
-                MouseEnter="LinesSidePanel_OnMouseEnter"
-                MouseLeave="LinesSidePanel_OnMouseLeave"
-                Click="LinesSidePanel_OnClick">
+                >
 
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock
-                        Name="Lines"
-                        Text="Lines"
+                        Name="SearchImages"
+                        Text="Search Images"
                         FontSize="30"
                         Foreground="White"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Margin="5,0,0,0"/>
+                        />
 
                     <materialDesign:PackIcon
                         Foreground="White"
-                        Kind="Routes"
+                        Kind="SearchGlobe"
                         Height="50"
                         Width="50"
-                        Margin="130,0,0,0"
                     />
 
                 </StackPanel>
@@ -278,12 +264,9 @@
             </Button>
 
             <Button
-                Name="ConsecutiveStationsSidePanel"
+                Name="NeosSidePanel"
                 Grid.Row="4"
-                Style="{StaticResource PagesButton}"
-                MouseEnter="ConsecutiveStationsSidePanel_OnMouseEnter"
-                MouseLeave="ConsecutiveStationsSidePanel_OnMouseLeave"
-                Click="ConsecutiveStationsSidePanel_OnClick">
+                Style="{StaticResource PagesButton}">
 
                 <StackPanel Orientation="Horizontal">
 
@@ -291,56 +274,19 @@
                         x:Name="ConsecutiveStations"
                         FontSize="30"
                         Foreground="White"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Width="175"
-                        Margin="5,0,0,0"><Run Text="Consecutive"/><LineBreak/><Run Text="Stations"/></TextBlock>
+                        Text="NEOs"/>
 
                     <materialDesign:PackIcon
                         Foreground="White"
-                        Kind="MapMarkerDistance"
+                        Kind="StarShooting"
                         Height="50"
                         Width="50"
-                        Margin="30,10,0,0"
                     />
 
                 </StackPanel>
 
             </Button>
 
-            <Button
-                Name="SimulatorSidePanel"
-                Grid.Row="5"
-                Style="{StaticResource PagesButton}"
-                MouseEnter="SimulatorSidePanel_OnMouseEnter"
-                MouseLeave="SimulatorSidePanel_OnMouseLeave"
-                Click="SimulatorSidePanel_OnClick">
-
-                <StackPanel Orientation="Horizontal">
-
-                    <TextBlock
-                        x:Name="Simulator"
-                        FontSize="30"
-                        Foreground="White"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Width="175"
-                        Margin="5,0,0,0"
-                        Text="Simulator">
-
-                    </TextBlock>
-
-                    <materialDesign:PackIcon
-                        Foreground="White"
-                        Kind="PlayCircle"
-                        Height="60"
-                        Width="60"
-                        Margin="30,10,0,0"
-                    />
-
-                </StackPanel>
-
-            </Button>
 
         </Grid>
 

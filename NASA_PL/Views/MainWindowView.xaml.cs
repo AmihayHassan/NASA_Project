@@ -93,7 +93,7 @@ namespace NASA_PL.Views
         private void BusesSidePanel_OnMouseLeave(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
-            BusesSidePanel.Background = (Brush)bc.ConvertFrom("#FF0064A6");
+            BusesSidePanel.Background = (Brush)bc.ConvertFrom("#3d1865");
         }
         private void BusesSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
@@ -133,7 +133,7 @@ namespace NASA_PL.Views
         private void StationsSidePanel_OnMouseLeave(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
-            StationsSidePanel.Background = (Brush)bc.ConvertFrom("#FF0064A6");
+            StationsSidePanel.Background = (Brush)bc.ConvertFrom("#3d1865");
         }
 
         #endregion
@@ -155,7 +155,7 @@ namespace NASA_PL.Views
         private void LinesSidePanel_OnMouseLeave(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
-            LinesSidePanel.Background = (Brush)bc.ConvertFrom("#FF0064A6");
+            LinesSidePanel.Background = (Brush)bc.ConvertFrom("#3d1865");
         }
         private void LinesSidePanel_OnMouseEnter(object sender, MouseEventArgs e)
         {
@@ -186,7 +186,7 @@ namespace NASA_PL.Views
         private void ConsecutiveStationsSidePanel_OnMouseLeave(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
-            ConsecutiveStationsSidePanel.Background = (Brush)bc.ConvertFrom("#FF0064A6");
+            ConsecutiveStationsSidePanel.Background = (Brush)bc.ConvertFrom("#3d1865");
         }
         #endregion
 
@@ -199,7 +199,7 @@ namespace NASA_PL.Views
         private void SimulatorSidePanel_OnMouseLeave(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
-            SimulatorSidePanel.Background = (Brush)bc.ConvertFrom("#FF0064A6");
+            SimulatorSidePanel.Background = (Brush)bc.ConvertFrom("#3d1865");
         }
         private void SimulatorSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
