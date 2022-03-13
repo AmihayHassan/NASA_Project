@@ -20,9 +20,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-
->
+        FontFamily="{DynamicResource MaterialDesignFont}">
 
 
     <Window.Resources>
@@ -185,7 +183,7 @@
             <Button
                 Name="HomeSidePanel"
                 Grid.Row="1"
-                Style="{StaticResource PagesButton}"
+                Style="{StaticResource SidePanelButton}"
                 >
 
                 <StackPanel Orientation="Horizontal">
@@ -213,7 +211,7 @@
             <Button
                 Name="APODSidePanel"
                 Grid.Row="2"
-                Style="{StaticResource PagesButton}"
+                Style="{StaticResource SidePanelButton}"
                 >
 
                 <StackPanel Orientation="Horizontal">
@@ -240,7 +238,7 @@
             <Button
                 Name="SearchImagesSidePanel"
                 Grid.Row="3"
-                Style="{StaticResource PagesButton}"
+                Style="{StaticResource SidePanelButton}"
                 >
 
                 <StackPanel Orientation="Horizontal">
@@ -266,24 +264,30 @@
             <Button
                 Name="NeosSidePanel"
                 Grid.Row="4"
-                Style="{StaticResource PagesButton}">
+                Style="{StaticResource SidePanelButton}"
+                >
+                <DockPanel
+                    Background="Blue">
 
-                <StackPanel Orientation="Horizontal">
+                    <StackPanel 
+                        Background="Red"
+                        Orientation="Horizontal">
 
-                    <TextBlock
+                        <TextBlock
                         x:Name="ConsecutiveStations"
                         FontSize="30"
                         Foreground="White"
                         Text="NEOs"/>
 
-                    <materialDesign:PackIcon
+                        <materialDesign:PackIcon
                         Foreground="White"
                         Kind="StarShooting"
                         Height="50"
                         Width="50"
                     />
 
-                </StackPanel>
+                    </StackPanel>
+                </DockPanel>
 
             </Button>
 
