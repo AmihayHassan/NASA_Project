@@ -50,12 +50,9 @@ namespace NASA_PL.Views
         {
             Close();
         }
-
-
         #endregion
 
         #region open close menu and drag window
-
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (_hidden)
@@ -81,7 +78,6 @@ namespace NASA_PL.Views
                 DragMove();
             }
         }
-
         #endregion
 
 
@@ -92,6 +88,7 @@ namespace NASA_PL.Views
             //info.ShowDialog();
         }
 
+        #region Restore Button
         private void Restore_OnMouseEnter(object sender, MouseEventArgs e)
         {
             BrushConverter bc = new BrushConverter();
@@ -116,7 +113,9 @@ namespace NASA_PL.Views
                     break;
             }
         }
+        #endregion
 
+        #region Minimize Button
         private void Minimize_OnMouseEnter(object sender, MouseEventArgs e)
         {
             BrushConverter bc = new BrushConverter();
@@ -133,6 +132,7 @@ namespace NASA_PL.Views
         {
             WindowState = WindowState.Minimized;
         }
+        #endregion
 
         private void HomeSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
@@ -150,7 +150,6 @@ namespace NASA_PL.Views
             }
 
         }
-
 
         private void SearchImagesSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
