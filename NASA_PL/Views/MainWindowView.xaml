@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NASA_PL"
         mc:Ignorable="d"
-        Title="AstroWatch" 
+        Title="NasaProject" 
         WindowStyle="None"
         Height="750"
         Width="1200"
@@ -262,7 +262,7 @@
                         ToolTip="Buses"
                         Height="50"
                         Width="50"
-                        Margin="115 0 0 0"
+                        Margin="125 0 0 0"
                     />
 
                 </StackPanel>
@@ -293,16 +293,49 @@
                         Kind="Image"
                         Height="50"
                         Width="50"
-                        Margin="120 0 0 0"
+                        Margin="125 0 0 0"
                     />
 
                 </StackPanel>
 
             </Button>
 
+
+            <Button
+                Name="PlanetProfileSidePanel"
+                Grid.Row="3"
+                Style="{StaticResource SidePanelButton}"
+                ToolTip="Planet Profile"
+                Click="PlanetProfileSidePanel_OnClick"
+            >
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock
+                        Name="PlanetProfile"
+                        Text="Planets"
+                        FontSize="30"
+                        Foreground="White"
+                        Margin="5 5 0 5"
+                    />
+
+                    <materialDesign:PackIcon
+                        Foreground="White"
+                        Kind="Planet"
+                        Height="50"
+                        Width="50"
+                        Margin="105 0 0 0"
+
+                    />
+
+                </StackPanel>
+
+            </Button>
+
+
             <Button
                 Name="SearchImagesSidePanel"
-                Grid.Row="3"
+                Grid.Row="4"
                 Style="{StaticResource SidePanelButton}"
                 ToolTip="Search Images"
                 Click="SearchImagesSidePanel_OnClick"
@@ -333,7 +366,7 @@
 
             <Button
                 Name="NeosSidePanel"
-                Grid.Row="4"
+                Grid.Row="5"
                 Style="{StaticResource SidePanelButton}"
                 Click="NeosSidePanel_OnClick"
             >

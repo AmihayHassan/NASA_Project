@@ -69,6 +69,7 @@ namespace NASA_PL.Views
                 _hidden = true;
                 OpenCloseButtonIcon.Kind = PackIconKind.Menu;
             }
+
         }
 
         private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -140,14 +141,18 @@ namespace NASA_PL.Views
             {
                 ButtonBase_OnClick(sender, e);
             }
+
+            DataDisplay.Content = null;
         }
 
         private void APODSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_hidden)
             {
-                ButtonBase_OnClick(sender, e);
+                 ButtonBase_OnClick(sender, e);
             }
+
+            DataDisplay.Content = new APODView();
 
         }
 
@@ -160,6 +165,14 @@ namespace NASA_PL.Views
         }
 
         private void NeosSidePanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
+        }
+
+        private void PlanetProfileSidePanel_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_hidden)
             {

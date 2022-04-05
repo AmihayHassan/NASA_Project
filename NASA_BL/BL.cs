@@ -8,8 +8,8 @@ namespace NASA_BL
 {
     public class BL
     {
-        Dal dal = new Dal();
-
+        private Dal dal = new Dal();
+        
         public async Task<APOD> GetAPOD()
         {
             return await dal.GetApodFromNasaApi();
