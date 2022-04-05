@@ -32,7 +32,7 @@
         <Storyboard x:Key="OpenMenu">
 
             <ThicknessAnimation
-                Storyboard.TargetProperty="Margin" 
+                Storyboard.TargetProperty="Margin"
                 From="-210,0,0,0" 
                 To="0,0,0,0" 
                 DecelerationRatio="0.9" 

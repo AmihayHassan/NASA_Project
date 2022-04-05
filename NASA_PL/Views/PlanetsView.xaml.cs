@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Syncfusion.Windows.Shared;
 
 namespace NASA_PL.Views
 {
@@ -17,6 +20,11 @@ namespace NASA_PL.Views
             DataContext = viewModel;
 
 
+        }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("OK");
         }
     }
 }
