@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NASA_PL"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="AstroWatch" 
         WindowStyle="None"
         Height="750"
         Width="1200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
+
+        Icon="../Media/StarIcon.png"
+        MinHeight="550"
+        MinWidth="750"
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -88,13 +92,65 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    />
-
         </Border>
 
-        <!--Exit button-->
-        <Border
+        <StackPanel
             Grid.Column="1"
             Grid.Row="0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            >
+
+            <!--Minimize button-->
+            <Border
+                Name="Minimize"
+                Width="70"
+                Height="50"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                MouseEnter="Minimize_OnMouseEnter"
+                MouseLeave="Minimize_OnMouseLeave"
+                MouseDown="Minimize_OnMouseDown"
+            >
+
+                <materialDesign:PackIcon
+                    Kind="WindowMinimize"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Height="40"
+                    Width="40"
+                />
+            </Border>
+
+            <!--Restore button-->
+            <Border
+            Name="Restore"
+            Width="70"
+            Height="50"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            MouseEnter="Restore_OnMouseEnter"
+            MouseLeave="Restore_OnMouseLeave"
+            MouseDown="Restore_OnMouseDown"
+            >
+
+                <materialDesign:PackIcon
+                      Kind="WindowRestore"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="White"
+                      Height="40"
+                      Width="40"
+                      />
+            </Border>
+
+            <!--Exit button-->
+            <Border
             Name="Exit"
             Width="70"
             Height="50"
@@ -106,16 +162,18 @@
             MouseLeave="Exit_OnMouseLeave"
             MouseDown="Exit_OnMouseDown">
 
-            <materialDesign:PackIcon
-                Kind="Close"
+                <materialDesign:PackIcon
+                Kind="WindowClose"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="White"
                 Height="40"
                 Width="40"
-                />
+            />
 
-        </Border>
+            </Border>
+
+        </StackPanel>
 
         <!--Side panel-->
         <Grid
@@ -184,6 +242,8 @@
                 Name="HomeSidePanel"
                 Grid.Row="1"
                 Style="{StaticResource SidePanelButton}"
+                ToolTip="Home"
+                Click="HomeSidePanel_OnClick"
                 >
 
                 <StackPanel Orientation="Horizontal">
@@ -193,8 +253,8 @@
                         Text="Home"
                         FontSize="30"
                         Foreground="White"
-                        HorizontalAlignment="Left"
-                        />
+                        Margin="5 5 0 5"
+                    />
 
                     <materialDesign:PackIcon
                         Foreground="White"
@@ -202,7 +262,8 @@
                         ToolTip="Buses"
                         Height="50"
                         Width="50"
-                        />
+                        Margin="115 0 0 0"
+                    />
 
                 </StackPanel>
 
@@ -212,7 +273,9 @@
                 Name="APODSidePanel"
                 Grid.Row="2"
                 Style="{StaticResource SidePanelButton}"
-                >
+                ToolTip="Astronomy Picture Of the Day"
+                Click="APODSidePanel_OnClick"
+            >
 
                 <StackPanel Orientation="Horizontal">
 
@@ -222,13 +285,15 @@
                         FontSize="30"
                         Foreground="White"
                         VerticalAlignment="Center"
-                        />
+                        Margin="5 5 0 5"
+                    />
 
                     <materialDesign:PackIcon
                         Foreground="White"
                         Kind="Image"
                         Height="50"
                         Width="50"
+                        Margin="120 0 0 0"
                     />
 
                 </StackPanel>
@@ -239,22 +304,27 @@
                 Name="SearchImagesSidePanel"
                 Grid.Row="3"
                 Style="{StaticResource SidePanelButton}"
-                >
+                ToolTip="Search Images"
+                Click="SearchImagesSidePanel_OnClick"
+            >
 
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock
                         Name="SearchImages"
-                        Text="Search Images"
+                        Text="Search"
                         FontSize="30"
                         Foreground="White"
-                        />
+                        Margin="5 5 0 5"
+                    />
 
                     <materialDesign:PackIcon
                         Foreground="White"
                         Kind="SearchGlobe"
                         Height="50"
                         Width="50"
+                        Margin="115 0 0 0"
+
                     />
 
                 </StackPanel>
@@ -265,29 +335,37 @@
                 Name="NeosSidePanel"
                 Grid.Row="4"
                 Style="{StaticResource SidePanelButton}"
-                >
-                <DockPanel
-                    Background="Blue">
+                Click="NeosSidePanel_OnClick"
+            >
 
-                    <StackPanel 
-                        Background="Red"
+                <Button.ToolTip>
+                    <ToolTip>
+                        Near Earth Objects
+                    </ToolTip>
+                </Button.ToolTip>
+
+
+                <StackPanel 
                         Orientation="Horizontal">
 
-                        <TextBlock
+                    <TextBlock
                         x:Name="ConsecutiveStations"
                         FontSize="30"
                         Foreground="White"
-                        Text="NEOs"/>
+                        Text="NEOs"
+                        Margin="5 5 0 5"
+                        />
 
-                        <materialDesign:PackIcon
+
+                    <materialDesign:PackIcon
                         Foreground="White"
                         Kind="StarShooting"
                         Height="50"
                         Width="50"
+                        Margin="130 0 0 0"
                     />
 
-                    </StackPanel>
-                </DockPanel>
+                </StackPanel>
 
             </Button>
 

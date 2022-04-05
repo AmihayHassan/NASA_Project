@@ -12,7 +12,6 @@
     <Grid>
         <StackPanel
             MouseDown="UIElement_OnMouseDown"
-            Background="Red"
             >
             <Label>
                 test

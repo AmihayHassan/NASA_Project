@@ -31,6 +31,8 @@ namespace NASA_PL.Views
         public MainWindowView()
         {
             InitializeComponent();
+
+
         }
 
         #region mouse effects and functionality for exit button
@@ -84,73 +86,86 @@ namespace NASA_PL.Views
 
 
 
-
-        #region Stations button
-        private void StationsSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            //if (!(DataDisplay.Content is StationsViewPage))
-            //{
-            //    DataDisplay.Content = new StationsViewPage(_bl, _simulationPage);
-            //}
-        }
-        #endregion
-
-        #region Lines button
-        private void LinesSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            //if (!(DataDisplay.Content is LinesViewPage))
-            //{
-            //    DataDisplay.Content = new LinesViewPage(_bl);
-            //}
-        }
-        #endregion
-
-        #region  Consecutive stations
-        private void ConsecutiveStationsSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            //if (!(DataDisplay.Content is ConStatViewPage))
-            //{
-            //    DataDisplay.Content = new ConStatViewPage(_bl);
-            //}
-
-        }
-        #endregion
-
-        #region Simulator
-        private void SimulatorSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            //if (!(DataDisplay.Content is SimulationPage))
-            //{
-            //    DataDisplay.Content = _simulationPage;
-            //}
-        }
-
-        #endregion
-
         private void InfoButton_OnClick(object sender, RoutedEventArgs e)
         {
             //var info = new InfoWindow();
             //info.ShowDialog();
+        }
+
+        private void Restore_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            BrushConverter bc = new BrushConverter();
+            Restore.Background = (Brush)bc.ConvertFrom("#572e85");
+        }
+
+        private void Restore_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            BrushConverter bc = new BrushConverter();
+            Restore.Background = (Brush)bc.ConvertFrom("Transparent");
+        }
+
+        private void Restore_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (WindowState)
+            {
+                case WindowState.Maximized:
+                    WindowState = WindowState.Normal;
+                    break;
+                case WindowState.Normal:
+                    WindowState = WindowState.Maximized;
+                    break;
+            }
+        }
+
+        private void Minimize_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            BrushConverter bc = new BrushConverter();
+            Minimize.Background = (Brush)bc.ConvertFrom("#572e85");
+        }
+
+        private void Minimize_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            BrushConverter bc = new BrushConverter();
+            Minimize.Background = (Brush)bc.ConvertFrom("Transparent");
+        }
+
+        private void Minimize_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void HomeSidePanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
+        }
+
+        private void APODSidePanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
+
+        }
+
+
+        private void SearchImagesSidePanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
+        }
+
+        private void NeosSidePanel_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
         }
     }
 }
