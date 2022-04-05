@@ -15,6 +15,10 @@ namespace NASA_PL.Views
 
         public PlanetsView()
         {
+            // Syncfusion code activation
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjA3MjMyQDMyMzAyZTMxMmUzMGtjQnlrdnhGdXZ0ZVp4Q00xTnBlV0tWUGlFVXluZTNmdzUrVkp4Mmh3NlU9");
+
+
             InitializeComponent();
             viewModel = new ViewModels.PlanetsViewModel();
             DataContext = viewModel;
