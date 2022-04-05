@@ -19,24 +19,40 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary>
-                    <Style x:Key="SidePanelButton" TargetType="Button" BasedOn="{StaticResource PagesButton}">
+                    <Style x:Key="SidePanelButton"
+                           TargetType="Button"
+                           BasedOn="{StaticResource PagesButton}">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+
+
+
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Name="border" 
+
+                                    <Border Name="border"
                                             Background="Transparent">
                                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Border>
+
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter TargetName="border" Property="Background" Value="#b884f2" />
                                         </Trigger>
+
                                     </ControlTemplate.Triggers>
+
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                     </Style>
+
+                    <Style TargetType="ToolTip">
+                        <Setter Property="Placement" Value="Mouse"/>
+                        <Setter Property="HorizontalOffset" Value="-20"></Setter>
+                    </Style>
+
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>

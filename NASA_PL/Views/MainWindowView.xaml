@@ -259,7 +259,6 @@
                     <materialDesign:PackIcon
                         Foreground="White"
                         Kind="Home"
-                        ToolTip="Buses"
                         Height="50"
                         Width="50"
                         Margin="125 0 0 0"

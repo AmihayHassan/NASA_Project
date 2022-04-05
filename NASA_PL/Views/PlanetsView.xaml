@@ -42,6 +42,7 @@
 
             <syncfusion:CarouselItem
                 Name="EarthCarouselItem"
+                MouseDoubleClick="EarthCarouselItem_OnMouseDoubleClick"
                 >
                 <Viewbox Width="150">
                     <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Earth.png?alt=media"/>

@@ -26,9 +26,12 @@ namespace NASA_PL.Views
 
         }
 
-        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void EarthCarouselItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("OK");
+
+            PlanetsCarousel.SelectedIndex = 0;
+
         }
     }
 }
