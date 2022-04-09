@@ -160,6 +160,7 @@ namespace NASA_PL.Views
             {
                 ButtonBase_OnClick(sender, e);
             }
+            DataDisplay.Content = new NEOsView();
         }
 
         private void PlanetProfileSidePanel_OnClick(object sender, RoutedEventArgs e)

@@ -1,0 +1,129 @@
+﻿<Window x:Class="NASA_PL.Views.PlanetCardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NASA_PL.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Height="650"
+        Width="500"
+        FontSize="18"
+>
+
+    <Border
+        CornerRadius="40"
+        BorderBrush="#340B85"
+        BorderThickness="4"
+        Background="{StaticResource MaterialDesignDarkBackground}"
+        >
+
+
+        <StackPanel
+
+            Margin="0,0,0,0"
+            >
+
+            <Button
+                Name="Close"
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Margin="0,20,20,0"
+                Click="Close_OnClick"
+            >
+                <materialDesign:PackIcon
+                    Kind="Close"
+                    Width="30"
+                    Height="30" VerticalAlignment="Center"
+                />
+            </Button>
+
+
+            <Grid
+                Margin="30"
+            >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Name}" Grid.ColumnSpan="2" Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           Margin="0 0 0 30"
+                           /> 
+
+                <TextBlock Text="Average Distance From The Sun" Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Text="{Binding AverageDistanceFromTheSun}" Grid.Column="1" Grid.Row="1"/>
+
+                <TextBlock Text="Aphelion" Grid.Column="0" Grid.Row="2"/>
+                <TextBlock Text="{Binding Aphelion}" Grid.Column="1" Grid.Row="2"/>
+
+                <TextBlock Text="Perihelion" Grid.Column="0" Grid.Row="3"/>
+                <TextBlock Text="{Binding Perihelion}" Grid.Column="1" Grid.Row="3"/>
+
+                <TextBlock Text="Radius" Grid.Column="0" Grid.Row="4"/>
+                <TextBlock Text="{Binding Radius}" Grid.Column="1" Grid.Row="4"/>
+
+                <TextBlock Text="Mass" Grid.Column="0" Grid.Row="5"/>
+                <TextBlock Text="{Binding Mass}" Grid.Column="1" Grid.Row="5"/>
+
+                <TextBlock Text="Average Surface Temperature" Grid.Column="0" Grid.Row="6"/>
+                <TextBlock Text="{Binding AverageSurfaceTemp}" Grid.Column="1" Grid.Row="6"/>
+
+                <TextBlock Text="Orbital Period" Grid.Column="0" Grid.Row="7"/>
+                <TextBlock Text="{Binding OrbitalPeriod}" Grid.Column="1" Grid.Row="7"/>
+
+                <TextBlock Text="Average Speed" Grid.Column="0" Grid.Row="8"/>
+                <TextBlock Text="{Binding AverageSpeed}" Grid.Column="1" Grid.Row="8"/>
+
+                <TextBlock Text="Rotation Period" Grid.Column="0" Grid.Row="9"/>
+                <TextBlock Text="{Binding RotationPeriod}" Grid.Column="1" Grid.Row="9"/>
+
+                <TextBlock Text="Moon Number" Grid.Column="0" Grid.Row="10"/>
+                <TextBlock Text="{Binding MoonNumber}" Grid.Column="1" Grid.Row="10"/>
+
+                <Viewbox Grid.ColumnSpan="2" Grid.Row="11"
+                         Margin="0 20 0 20"
+                         MaxHeight="200"
+                         >
+                    <Image Source="{Binding ImageURL}"/>
+                </Viewbox>
+
+
+            </Grid>
+
+        </StackPanel>
+
+    </Border>
+
+</Window>

@@ -16,7 +16,7 @@ namespace NASA_PL.ViewModels
         {
             model = new Models.PlanetsModel();
         }
-        public List<Planet> PlanetsList
+        public List<Planet> GetPlanetsList
         {
             get
             {

@@ -13,16 +13,27 @@
 
     <Grid
         >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
         <syncfusion:Carousel x:Name="PlanetsCarousel"
                              RotationSpeed="300"
                              ItemsPerPage="8" 
                              VisualMode="Standard" 
-                             OpacityFraction="0.75" 
+                             OpacityFraction="0.9" 
                              RadiusX="375"
                              RadiusY="-150" 
                              OpacityEnabled="True" 
                              ScalingEnabled="True" 
-                             >
+                             Grid.Row="1"
+                             SelectedIndexChanged="PlanetsCarousel_OnSelectedIndexChanged"
+           
+        >
 
             <syncfusion:CarouselItem
                 Name="MercuryCarouselItem"
@@ -42,7 +53,6 @@
 
             <syncfusion:CarouselItem
                 Name="EarthCarouselItem"
-                MouseDoubleClick="EarthCarouselItem_OnMouseDoubleClick"
                 >
                 <Viewbox Width="150">
                     <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Earth.png?alt=media"/>
@@ -80,7 +90,7 @@
                     <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Uranus.png?alt=media"/>
                 </Viewbox>
             </syncfusion:CarouselItem>
-            
+
             <syncfusion:CarouselItem
                 Name="NeptuneCarouselItem"
                 >
@@ -91,6 +101,48 @@
 
         </syncfusion:Carousel>
 
+
+
+        <StackPanel Grid.Row="0">
+            <TextBlock 
+                Name="currentPlanetTextBlock" 
+                Text="Mercury"
+                VerticalAlignment="Center"  
+                HorizontalAlignment="Center" 
+                Grid.Row="1"
+                FontSize="50"
+                Foreground="White"
+                FontWeight="Bold" 
+                Margin="0 30 0 0"
+                MouseDown="CurrentPlanetTextBlock_OnMouseDown"/>
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Margin="0 60 0 0">
+
+            <Button
+                Click="LeftButtonBase_OnClick"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Margin="0 0 10 0">
+                <materialDesignMahApps:PackIcon
+                    Kind="ArrowLeftBold"/>
+            </Button>
+
+            <Button
+                Click="RightButtonBase_OnClick"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Margin="10 0 0 0">
+                <materialDesignMahApps:PackIcon
+                    Kind="ArrowRightBold"/>
+            </Button>
+
+
+        </StackPanel>
+      
     </Grid>
 
 

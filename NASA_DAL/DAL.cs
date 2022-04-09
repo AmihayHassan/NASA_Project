@@ -57,7 +57,7 @@ namespace NASA_DAL
                         //    {"H2O", 3.4 },
                         //    {"Hydrogenium", 3.2 }
                         //},
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mercury.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -85,7 +85,7 @@ namespace NASA_DAL
                         //    {"Helium", 0.0012 },
                         //    {"Neon", 0.0007 },
                         //},
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Venus.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -103,7 +103,7 @@ namespace NASA_DAL
                         RotationPeriod = 0.9972, //זמן סיבוב עצמי, ימים
                         MoonNumber = 1,
                         //AtmosphericPressure = 101.325, // kilo pascal
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Earth.png?alt=media" 
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -121,7 +121,7 @@ namespace NASA_DAL
                         RotationPeriod = 1.02595417, //זמן סיבוב עצמי, ימים
                         MoonNumber = 2,
                         //AtmosphericPressure = 0.8, // kilo pascal
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mars.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -138,7 +138,7 @@ namespace NASA_DAL
                         AverageSpeed = 13.0697, //km second
                         RotationPeriod = 0.41354166, //זמן סיבוב עצמי, ימים
                         MoonNumber = 79,
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Jupiter.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -155,7 +155,7 @@ namespace NASA_DAL
                         AverageSpeed = 9.639, //km second
                         RotationPeriod = 0.439409722, //זמן סיבוב עצמי, ימים
                         MoonNumber = 53, // 82, but 29 are not approved yet
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Saturn.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -172,7 +172,7 @@ namespace NASA_DAL
                         AverageSpeed = 6.795, //km second
                         RotationPeriod = 0.71833, //זמן סיבוב עצמי, ימים
                         MoonNumber = 27,
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Uranus.png?alt=media"
                     });
 
                     dbcontext.Planets.Add(new Planet()
@@ -189,7 +189,7 @@ namespace NASA_DAL
                         AverageSpeed = 5.432, //km second
                         RotationPeriod = 0.67118055, //זמן סיבוב עצמי, ימים
                         MoonNumber = 14,
-                        ImageURL = " "
+                        ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Neptune.png?alt=media"
                     });
 
                     #endregion

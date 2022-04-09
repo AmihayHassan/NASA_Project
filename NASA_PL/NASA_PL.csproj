@@ -152,11 +152,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\FilterCommand.cs" />
     <Compile Include="Models\APODModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
     <Compile Include="ViewModels\APODViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NEOsViewModel.cs" />
     <Compile Include="ViewModels\PlanetsViewModel.cs" />
     <Compile Include="Views\APODView.xaml.cs">
       <DependentUpon>APODView.xaml</DependentUpon>
@@ -164,14 +167,17 @@
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NEOsView.xaml.cs">
+      <DependentUpon>NEOsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanetCardView.xaml.cs">
+      <DependentUpon>PlanetCardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlanetsView.xaml.cs">
       <DependentUpon>PlanetsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -199,7 +205,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
@@ -217,10 +222,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\WindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NEOsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanetCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

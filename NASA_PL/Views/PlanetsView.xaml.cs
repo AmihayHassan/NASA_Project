@@ -1,7 +1,12 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.UI;
+using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
+using NASA_BE;
 using Syncfusion.Windows.Shared;
+using Page = System.Windows.Controls.Page;
 
 namespace NASA_PL.Views
 {
@@ -11,7 +16,8 @@ namespace NASA_PL.Views
     public partial class PlanetsView : Page
     {
 
-        ViewModels.PlanetsViewModel viewModel;
+        ViewModels.PlanetsViewModel ViewModel;
+        private List<Planet> PlanetsList;
 
         public PlanetsView()
         {
@@ -20,18 +26,51 @@ namespace NASA_PL.Views
 
 
             InitializeComponent();
-            viewModel = new ViewModels.PlanetsViewModel();
-            DataContext = viewModel;
-
-
-        }
-
-        private void EarthCarouselItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("OK");
-
+            ViewModel = new ViewModels.PlanetsViewModel();
+            DataContext = ViewModel;
+            PlanetsList = ViewModel.GetPlanetsList;
             PlanetsCarousel.SelectedIndex = 0;
 
+
         }
+
+
+        private void PlanetsCarousel_OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            currentPlanetTextBlock.Text = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
+        }
+
+        private void CurrentPlanetTextBlock_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var pcv = new PlanetCardView(PlanetsList[PlanetsCarousel.SelectedIndex]);
+            pcv.ShowDialog();
+        }
+
+        private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            int current = PlanetsCarousel.SelectedIndex;
+            if (current<7)
+            {
+                PlanetsCarousel.SelectedIndex = current + 1;
+            }
+            else
+            {
+                PlanetsCarousel.SelectedIndex = 0;
+            }
+        }
+
+        private void LeftButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            int current = PlanetsCarousel.SelectedIndex;
+            if (current > 0)
+            {
+                PlanetsCarousel.SelectedIndex = current - 1;
+            }
+            else
+            {
+                PlanetsCarousel.SelectedIndex = 7;
+            }
+        }
+
     }
 }
