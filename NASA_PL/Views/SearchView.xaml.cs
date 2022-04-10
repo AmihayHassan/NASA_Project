@@ -17,6 +17,8 @@ using NASA_PL.ViewModels;
 
 //TODO - try to make INotify or something else - to update live
 //TODO - click on picture to open in new window
+//TODO - make card dragable
+
 namespace NASA_PL.Views
 {
     /// <summary>
