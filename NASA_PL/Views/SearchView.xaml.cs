@@ -29,6 +29,7 @@ namespace NASA_PL.Views
             InitializeComponent();
             searchViewModel = new SearchViewModel();
             DataContext = searchViewModel;
+            SearchListBox.ItemsSource = searchViewModel.CollectionUrlImages;
         }
 
         //private void btSearch_Click(object sender, RoutedEventArgs e)
@@ -50,8 +51,13 @@ namespace NASA_PL.Views
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {
             var text = txtSearch.Text;
-            var ImageDictionary = Task.Run(() => searchViewModel.GetSearchResult(text)).Result;
-            SearchListBox.ItemsSource = ImageDictionary;
+            if (text.Length > 0)
+            {
+                Task.Run(() => searchViewModel.GetSearchResult(text));
+                // var ImageDictionary = Task.Run(() => searchViewModel.GetSearchResult(text)).Result;
+                // SearchListBox.ItemsSource = ImageDictionary;
+            }
+           
 
         }
     }

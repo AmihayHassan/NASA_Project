@@ -8,7 +8,9 @@
       x:Class="NASA_PL.Views.SearchView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"  
-      Title="Search">
+      Title="Search"
+      Foreground="White"
+      >
 
 
 
@@ -20,87 +22,44 @@
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
-        <Grid  Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
 
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="0"
+        >
 
+            <TextBox
+                Name="txtSearch"
+                Foreground="White"
+                VerticalContentAlignment="Center"
+                materialDesign:HintAssist.Hint="Search pictures and videos in NASA" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                FontSize="25"
+                materialDesign:HintAssist.IsFloating="True"
+            />
             <Button 
                 x:Name="btSearch" 
-                Height="auto" 
-                Grid.Column="0"   
-                Content="SEARCH" 
-                Click="btSearch_Click"   />
-            <TextBox 
-                Background="White" 
-                VerticalContentAlignment="Center"
-                materialDesign:HintAssist.Hint="Search" 
-                Foreground="{DynamicResource PrimaryHueLightBrush}" 
-                Opacity="0.4" 
-                FontSize="40" 
-                x:Name="txtSearch" 
-                Grid.Column="1" 
-                HorizontalAlignment="Stretch"/>
-        </Grid>
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Click="btSearch_Click"
+                
+                >
+                <materialDesign:PackIcon
+                    Kind="Search"
+                    Foreground="white"
+                    />
+            </Button>
+
+        </StackPanel>
 
 
-
-        <!--<Grid Margin="10" Grid.Row="1">
-            <ListBox ItemsSource="{Binding Path=CollectionUrlImages}" Grid.IsSharedSizeScope="True">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <materialDesign:Card
-                            Width="200"
-                            UniformCornerRadius="6"
-                            >
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="140" />
-                                    <RowDefinition
-                                        Height="*" />
-                                    <RowDefinition
-                                        Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Image
-                                    Source="{Binding Key}"
-                                    Height="140"
-                                    Width="196"
-                                    Stretch="UniformToFill" />
-  
-                                <StackPanel
-                                    Grid.Row="1"
-                                    Margin="8 24 8 0">
-                                    <TextBlock
-                                        TextWrapping="Wrap"
-                                        VerticalAlignment="Center"
-                                        Text="{Binding Value}" />
-                                </StackPanel>
-                          
-                            </Grid>
-                        </materialDesign:Card>
-
-
-                    </DataTemplate>
-
-                       
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>-->
 
         <Grid Margin="10" Grid.Row="1">
             <ListBox
                 Name="SearchListBox"
-                Grid.Row="1"
-                
-                Grid.IsSharedSizeScope="True">
+                DataContext="{Binding SearchViewModel}"
+                ItemsSource="{Binding collectionUrlImages}"
+            >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -113,42 +72,37 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
+                        <materialDesign:Card
+                            Width="200"
+                            Height="300">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image 
+                                        Source="{Binding Path=Key}"
+                                        Stretch="Uniform" 
+                                        Grid.Row="0"
+                                        Margin="0 10 0 0"
+                                    />
+                                <ScrollViewer
+                                        Grid.Row="1"
+                                        Margin="20">
+                                    <TextBlock
+                                        TextWrapping="Wrap"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Path=Value}"
+                                        
+                                        TextAlignment="Justify"
+                                        />
+                                </ScrollViewer>
+                            </Grid>
+                        </materialDesign:Card>
 
-                        <materialDesign:Flipper
-            Style="{StaticResource MaterialDesignCardFlipper}">
-                            <materialDesign:Flipper.FrontContent>
-                                <Button
-      Style="{StaticResource MaterialDesignFlatButton}"
-      Command="{x:Static materialDesign:Flipper.FlipCommand}"
-      Margin="8"
-                                    Height="200"
-      Width="200">
-                                    <Image Source="{Binding Path=Key}"/>
-                                </Button>
-                            </materialDesign:Flipper.FrontContent>
-                            <materialDesign:Flipper.BackContent>
-                                <StackPanel>
-                                    <Button     
-      Command="{x:Static materialDesign:Flipper.FlipCommand}"
-      Margin="8"
-                                    Height="200"
-                                    
-      Width="200"
-     >
-                                        <ScrollViewer >
-                                            <TextBlock Text="{Binding Path=Value}" TextWrapping="Wrap"/>
 
-                                        </ScrollViewer>
-                                    </Button>
-                                    <Button  Command="{x:Static materialDesign:Flipper.FlipCommand}" Style="{DynamicResource MaterialDesignToolForegroundButton }">
-                                        <materialDesign:PackIcon
-              Kind="ArrowLeft"
-              HorizontalAlignment="Right" />
-                                    </Button>
-
-                                </StackPanel>
-                            </materialDesign:Flipper.BackContent>
-                        </materialDesign:Flipper>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

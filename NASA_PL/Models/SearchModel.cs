@@ -18,8 +18,8 @@ namespace NASA_PL.Models
         }
         public async Task<Dictionary<string, string>> GetSearchResult(string search)
         {
-            var x= await bl.GetSearchResult(search);
-            return x;
+            return await bl.GetSearchResult(search);
+            
         }
     }
 }
