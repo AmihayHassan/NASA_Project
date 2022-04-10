@@ -176,6 +176,9 @@
     <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="UserControls\SidePanelUC.xaml.cs">
+      <DependentUpon>SidePanelUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\APODViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NEOsViewModel.cs" />
@@ -244,6 +247,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SidePanelUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

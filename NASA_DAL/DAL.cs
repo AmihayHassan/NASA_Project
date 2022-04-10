@@ -168,6 +168,35 @@ namespace NASA_DAL
                     #endregion
                     dbcontext.SaveChanges();
                 }
+
+                if (dbcontext.Users.ToList().Count == 0)
+                {
+                    #region add users
+
+                    dbcontext.Users.Add(new User()
+                    {
+                        Id = 1,
+                        Username = "Ronke21",
+                        Password = "Password1"
+                    });
+
+                    dbcontext.Users.Add(new User()
+                    {
+                        Id = 2,
+                        Username = "Amihay1544",
+                        Password = "ArabStyle123"
+                    });
+
+                    dbcontext.Users.Add(new User()
+                    {
+                        Id = 3,
+                        Username = "Yossi",
+                        Password = "Zaguri"
+                    });
+
+                    #endregion
+                    dbcontext.SaveChanges();
+                }
             }
         }
 

@@ -2,8 +2,10 @@ TODO list:
 - delete take(5) in BL.GetSearchResult
 - change search MVVM to INotify
 - add another command
-R - create model, viewmodel to main window
-R - create user control from "SidePanelButton" in main window
+- create login page and say hello to user in home page
+DONE - add users to DB
+DONE - create model, viewmodel to main window
+R - create user control from "SidePanelButton" in main window - Done creating the UC, can't use it in main window xaml
 H - card dragabale in planets
 H - open big picture in search
 - think if can use converter anywhere (maybe from NEOs screen to url query)

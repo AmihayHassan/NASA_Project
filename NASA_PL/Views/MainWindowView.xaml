@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NASA_PL"
+        xmlns:local="clr-namespace:NASA_PL.Views"
+        xmlns:ucs="clr-namespace:NASA_PL.UserControls"
         mc:Ignorable="d"
         Title="NasaProject" 
         WindowStyle="None"
@@ -18,6 +19,7 @@
         MinWidth="750"
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:userControls="clr-namespace:NASA_PL.UserControls"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -268,6 +270,9 @@
 
             </Button>
 
+
+
+
             <Button
                 Name="APODSidePanel"
                 Grid.Row="2"
@@ -363,6 +368,8 @@
 
             </Button>
 
+
+
             <Button
                 Name="NeosSidePanel"
                 Grid.Row="5"
@@ -402,69 +409,21 @@
             </Button>
 
 
+            <!--<ucs:SidePanelButtonUC 
+                    Grid.Row="6"  
+                    textBlock_text="APOD" 
+                    tooltip_text="Astronomy Picture Of the Day" 
+                    icon_kind="Image"
+                    click_function="APODSidePanel_OnClick"
+                />-->
+
+
         </Grid>
 
     </Grid>
 
 
 </Window>
-
-
-
-
-
-<!--<Border
-                    CornerRadius="40"
-                    BorderBrush="#cdd3ed"
-                    BorderThickness="4"
-                    Background="DarkSlateBlue"
-                    >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <Button     x:Name="quitBtn"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Right"
-                                Margin="15 "
-                                Height="30"
-                                Width="30"
-                                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
-                    <materialDesign:PackIcon
-                                        Kind="Close"
-                                        Width="20"
-                                        Height="20"/>
-                </Button>
-                <Button     x:Name="maximizeBtn"
-                                        VerticalAlignment="Top"
-                                        HorizontalAlignment="Left"
-                                        Margin="0 15"
-                                        Height="30"
-                                        Width="30"
-                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
-                    <materialDesign:PackIcon
-                                    Kind="WindowMaximize"
-                                    Width="20"
-                                    Height="20"/>
-                </Button>
-                <Button     x:Name="minimizeBtn"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Left"
-                                Margin=" 15"
-                                Height="30"
-                                Width="30"
-                                Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
-                    <materialDesign:PackIcon
-                            Kind="WindowMinimize"
-                            Width="20"
-                            Height="20"/>
-                </Button>
-            </StackPanel>
-        </Grid>
-    </Border>-->
 
 
 
