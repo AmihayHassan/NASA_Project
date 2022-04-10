@@ -16,6 +16,7 @@ using ControlzEx.Theming;
 using NASA_PL.ViewModels;
 
 //TODO - try to make INotify or something else - to update live
+//TODO - click on picture to open in new window
 namespace NASA_PL.Views
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace NASA_PL.Views
         {
             InitializeComponent();
             searchViewModel = new SearchViewModel();
-            DataContext = searchViewModel;
+
         }
 
         //private void btSearch_Click(object sender, RoutedEventArgs e)
