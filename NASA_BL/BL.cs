@@ -33,13 +33,16 @@ namespace NASA_BL
             return result.ToList();
         }
 
-
+        //TODO change SubDic to imagesAndDescription
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, bool debug = false)
         {
             var tasks = new List<Task<Dictionary<string, string>>>();
             var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            var SubDic= (from Item in imagesAndDescription select Item)
+                                                        .Take(5)
+                                                        .ToDictionary(Item=>Item.Key); 
             var res = new Dictionary<string, string>();
-            Parallel.ForEach(imagesAndDescription.Keys, async image =>
+            Parallel.ForEach(SubDic.Keys, async image =>
             {
                 ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
                 if (tag.result == null) return;

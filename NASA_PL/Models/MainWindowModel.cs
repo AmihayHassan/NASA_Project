@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//TODO - create this class
+
 namespace NASA_PL.Models
 {
     internal class MainWindowModel

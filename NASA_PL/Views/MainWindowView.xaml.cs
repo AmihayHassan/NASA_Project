@@ -6,6 +6,9 @@ using MaterialDesignThemes.Wpf;
 using NASA_BL;
 namespace NASA_PL.Views
 {
+    //TODO: create user controls. 
+
+
     /// <summary>
     /// Interaction logic for MainWindowView.xaml
     /// </summary>
@@ -152,6 +155,7 @@ namespace NASA_PL.Views
             {
                 ButtonBase_OnClick(sender, e);
             }
+            DataDisplay.Content = new SearchView();
         }
 
         private void NeosSidePanel_OnClick(object sender, RoutedEventArgs e)
