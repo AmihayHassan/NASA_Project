@@ -24,8 +24,6 @@ namespace NASA_PL.Views
         public MainWindowView()
         {
             InitializeComponent();
-
-
         }
 
         #region mouse effects and functionality for exit button
@@ -142,7 +140,7 @@ namespace NASA_PL.Views
         {
             if (!_hidden)
             {
-                 ButtonBase_OnClick(sender, e);
+                ButtonBase_OnClick(sender, e);
             }
 
             DataDisplay.Content = new APODView();

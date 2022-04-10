@@ -24,9 +24,6 @@
                            BasedOn="{StaticResource PagesButton}">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
                         <Setter Property="Cursor" Value="Hand"></Setter>
-
-
-
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
@@ -47,12 +44,10 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-
                     <Style TargetType="ToolTip">
                         <Setter Property="Placement" Value="Mouse"/>
                         <Setter Property="HorizontalOffset" Value="-20"></Setter>
                     </Style>
-
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
