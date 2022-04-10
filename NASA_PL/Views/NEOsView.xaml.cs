@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts.Configurations;
+
 using NASA_PL.ViewModels;
 
 namespace NASA_PL.Views
@@ -29,6 +31,7 @@ namespace NASA_PL.Views
             InitializeComponent();
             viewModel = new NEOsViewModel();
             DataContext = viewModel;
+
 
         }
 

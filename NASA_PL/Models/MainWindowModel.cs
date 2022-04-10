@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NASA_PL.Models
 {
-    internal class MainWindowModel
+    class MainWindowModel
     {
     }
 }

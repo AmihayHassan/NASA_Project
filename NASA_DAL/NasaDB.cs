@@ -21,8 +21,6 @@ namespace NASA_DAL
 
         public DbSet<User> Users { get; set; }
         public DbSet<Planet> Planets { get; set; }
-        public DbSet<Comet> Comets { get; set; }
-        public DbSet<Asteroid> Asteroids { get; set; }
 
     }
 }

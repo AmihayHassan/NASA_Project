@@ -27,12 +27,13 @@
                     Foreground="White"
                     />
         <!--<TextBlock  VerticalAlignment="Center"   FontStyle="Oblique"  HorizontalAlignment="Center" Grid.Row="1" Text="Loading Image..." Visibility="{Binding ElementName=image,Path=IsLoaded,UpdateSourceTrigger=PropertyChanged,Mode=OneWay,Converter={StaticResource Ramzor}}" FontSize="14" Opacity="0.4" FontWeight="Bold" FontFamily="Georgia" Margin="0,0,0,35"/>-->
-                    
+
 
         <materialDesign:Card
             UniformCornerRadius="14"
             Padding="4"
             Grid.Row="1"
+            Margin="30  0 "
             >
             <ProgressBar
                 Style="{StaticResource MaterialDesignCircularProgressBar}"
@@ -41,17 +42,19 @@
                 />
         </materialDesign:Card>
 
-        <!--Visibility="{Binding ElementName=image,Path=IsLoaded,UpdateSourceTrigger=PropertyChanged,Mode=OneWay,Converter={StaticResource Ramzor}}"--> 
+        <!--Visibility="{Binding ElementName=image,Path=IsLoaded,UpdateSourceTrigger=PropertyChanged,Mode=OneWay,Converter={StaticResource Ramzor}}"-->
 
 
 
 
-        <Border Grid.Row="1" BorderBrush="Black"  BorderThickness="5" >
-            <Image x:Name="image" Source="{Binding urlImage}" Stretch="Fill" />
+        <Border Grid.Row="1" MaxWidth="1000">
+            <ScrollViewer >
+                <Image x:Name="image" Source="{Binding urlImage}" Stretch="UniformToFill" />
+            </ScrollViewer>
         </Border>
         <ScrollViewer Grid.Row="2">
             <TextBlock
-                Padding="10" 
+                Padding="50 10" 
                 Grid.Row="2" 
                 TextWrapping="Wrap" 
                 Foreground="White"

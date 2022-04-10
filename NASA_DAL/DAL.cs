@@ -29,7 +29,6 @@ namespace NASA_DAL
 
 
 
-                    //TODO: add all planets, create Initialize function
                     dbcontext.Planets.Add(new Planet()
                     {
                         Id = 1,
@@ -44,19 +43,6 @@ namespace NASA_DAL
                         AverageSpeed = 47.36, //km second
                         RotationPeriod = 58.6462, //זמן סיבוב עצמי, ימים
                         MoonNumber = 0,
-                        //AtmosphericPressure = 0, // פסקל
-                        //MaterialsDict = new Dictionary<string, double> {
-                        //    {"Potassium", 31.7 },
-                        //    {"Calcium", 24.9 },
-                        //    {"Atomic Oxygen", 9.5 },
-                        //    {"Argon", 7 },
-                        //    {"Helium", 5.9},
-                        //    {"Molecular Oxygen", 5.6 },
-                        //    {"Nitrogen", 5.2 },
-                        //    {"Carbon dioxide", 3.6 },
-                        //    {"H2O", 3.4 },
-                        //    {"Hydrogenium", 3.2 }
-                        //},
                         ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mercury.png?alt=media"
                     });
 
@@ -74,17 +60,6 @@ namespace NASA_DAL
                         AverageSpeed = 35.020, //km second
                         RotationPeriod = 117, //זמן סיבוב עצמי, ימים
                         MoonNumber = 0,
-                        //AtmosphericPressure = 9.3, // mega pascal
-                        //MaterialsDict = new Dictionary<string, double> {
-                        //    {"Carbon dioxide", 96.5 },
-                        //    {"Nitrogen", 3.5 },
-                        //    {"SO2", 0.015 },
-                        //    {"Argon", 0.007 },
-                        //    {"Water vapor", 0.002 },
-                        //    {"Carbon monoxide", 0.0017},
-                        //    {"Helium", 0.0012 },
-                        //    {"Neon", 0.0007 },
-                        //},
                         ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Venus.png?alt=media"
                     });
 
@@ -102,7 +77,6 @@ namespace NASA_DAL
                         AverageSpeed = 29.783, //km second
                         RotationPeriod = 0.9972, //זמן סיבוב עצמי, ימים
                         MoonNumber = 1,
-                        //AtmosphericPressure = 101.325, // kilo pascal
                         ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Earth.png?alt=media" 
                     });
 
@@ -120,7 +94,6 @@ namespace NASA_DAL
                         AverageSpeed = 24.077, //km second
                         RotationPeriod = 1.02595417, //זמן סיבוב עצמי, ימים
                         MoonNumber = 2,
-                        //AtmosphericPressure = 0.8, // kilo pascal
                         ImageURL = "https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mars.png?alt=media"
                     });
 
@@ -235,8 +208,8 @@ namespace NASA_DAL
             catch (HttpRequestException e)
             {
                 Trace.WriteLine(e.Message);
-                //TODO: throw proper exception
-                throw new HttpRequestException();
+                //throw new HttpRequestException();
+                return JsonConvert.DeserializeObject<T>(string.Empty);
             }
         }
 
@@ -247,7 +220,6 @@ namespace NASA_DAL
         }
 
         #region Imagga
-        // TODO: convert "ImaggaTag" to "dynamic"
         public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
         {
             string apiKey = "acc_1d83319fb42c913";
@@ -266,8 +238,6 @@ namespace NASA_DAL
 
             ImaggaTag imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
 
-            //Trace.WriteLine(imageUrl);
-
             return imageTags;
         }
         #endregion
@@ -278,24 +248,16 @@ namespace NASA_DAL
             string request = $"https://images-api.nasa.gov/search?q={query}";
             var resultsList = await GetFromApi<dynamic>(request);
 
-            //TODO: check if it's OK to use <link:description> as <key:value>
-            //TODO: move parsing to BL
             Dictionary<string, string> linkAndDescriptionDictionary = new Dictionary<string, string>();
 
             foreach (var item in resultsList.collection.items)
             {
                 if (item.links != null)
                 {
-                    //try
-                    //{
+
                     string href = (string)item.links[0].href;
                     string description = (string)item.data[0].description;
                     linkAndDescriptionDictionary.Add(href, description);
-                    //}
-                    //catch (Exception e)
-                    //{
-                    //    Console.WriteLine(e);
-                    //}
                 }
 
             }
@@ -313,11 +275,6 @@ namespace NASA_DAL
         }
         #endregion
 
-        
-        
-        
-        
-        //TODO: include function that upload images to firebase
     }
 }
 

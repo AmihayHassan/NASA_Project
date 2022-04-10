@@ -8,7 +8,6 @@ using NASA_PL.ViewModels;
 
 namespace NASA_PL.Commands
 {
-    //TODO add another command
 
     class FilterCommand : ICommand
     {

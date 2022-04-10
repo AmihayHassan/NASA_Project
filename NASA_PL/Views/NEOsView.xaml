@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-
-      xmlns:local="clr-namespace:NASA_PL.Views"      
+  
       mc:Ignorable="d" 
       Foreground="white"
       d:DesignHeight="450" 
@@ -26,29 +25,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!--<Grid>
-                    <StackPanel Grid.Column="0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10"   Text="All those that are larger in diameter than ..." />
-                            <TextBox Name="txtDiameter" Style="{StaticResource MaterialDesignFilledTextBox}" VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" MaxWidth="400" materialDesign:HintAssist.Hint="Min diameter"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10"   Text="Is potentially hazardous asteroid" />
-                            <ToggleButton Command="{Binding Filter }" CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid ,Path=IsChecked}" x:Name="is_potentially_hazardous_asteroid" Style="{StaticResource MaterialDesignSwitchLightToggleButton}"   IsChecked="False"  />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="10"   Text="Between dates:" />
-                            <DatePicker    Name="startDate" Width="140" materialDesign:HintAssist.Hint="Pick Date"  Style="{StaticResource MaterialDesignOutlinedDatePicker}" Foreground="White"  />
-                            <TextBlock Margin="10"   Text="to:" />
-                            <DatePicker  Name="endDate" Width="140" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignOutlinedDatePicker}"  Foreground="White"  />
-                        </StackPanel>
-
-                    </StackPanel >
-                </Grid>-->
-
-                <TextBox 
+        <TextBox 
                     Name="txtDiameter" 
                     Grid.Row="0"
                     Grid.Column="0"
@@ -129,8 +106,10 @@
             Grid.ColumnSpan="5"
             Grid.Row="1" 
             ItemsSource="{Binding Path=NearEarthObj,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
-            GridLinesVisibility="All" 
+            GridLinesVisibility="Horizontal" 
             />
+
+
 
     </Grid>
 

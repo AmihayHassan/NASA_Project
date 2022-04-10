@@ -18,7 +18,6 @@ namespace NASA_PL.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
-            //TODO handle the delay in opening this page
         }
 
     }

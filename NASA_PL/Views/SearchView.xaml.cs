@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,9 +16,7 @@ using System.Windows.Shapes;
 using ControlzEx.Theming;
 using NASA_PL.ViewModels;
 
-//TODO - try to make INotify or something else - to update live
-//TODO - click on picture to open in new window
-//TODO - make card dragable
+
 
 namespace NASA_PL.Views
 {
@@ -57,6 +56,7 @@ namespace NASA_PL.Views
             {
                 //Task.Run(() => searchViewModel.GetSearchResult(text));
                 var ImageDictionary = Task.Run(() => searchViewModel.GetSearchResult(text)).Result;
+                //Thread.Sleep(5000);
                 SearchListBox.ItemsSource = ImageDictionary;
             }
            

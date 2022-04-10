@@ -38,6 +38,7 @@ namespace NASA_BL
         {
             var tasks = new List<Task<Dictionary<string, string>>>();
             var imagesAndDescription = await dal.GetSearchResult(querySearch);
+
             var SubDic= (from Item in imagesAndDescription select Item)
                                                         .Take(5)
                                                         .ToDictionary(Item=>Item.Key); 

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NASA_BE
 {
-    public class Planet : IAstronomicalObject
+    public class Planet
     {
         [Key]
         public int Id { get; set; }
@@ -22,8 +22,6 @@ namespace NASA_BE
         public double AverageSpeed { get; set; }
         public double RotationPeriod { get; set; }
         public int MoonNumber { get; set; }
-        //public double AtmosphericPressure { get; set; }
-        //public Dictionary<string, double> MaterialsDict { get; set; }
         public string ImageURL { get; set; }
     }
 }
