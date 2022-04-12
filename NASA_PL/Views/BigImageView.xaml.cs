@@ -11,24 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using NASA_BE;
 
 namespace NASA_PL.Views
 {
     /// <summary>
-    /// Interaction logic for PlanetCardView.xaml
+    /// Interaction logic for BigImageView.xaml
     /// </summary>
-    public partial class PlanetCardView : Window
+    public partial class BigImageView : Window
     {
-        public PlanetCardView(Planet planet)
+        public BigImageView(string imageUrl)
         {
             InitializeComponent();
-            DataContext = planet;
-        }
-
-        private void Close_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
+            BigImage.Source = new BitmapImage(new Uri(imageUrl));
         }
 
         private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -37,6 +31,11 @@ namespace NASA_PL.Views
             {
                 DragMove();
             }
+        }
+
+        private void Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

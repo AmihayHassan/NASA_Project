@@ -187,6 +187,9 @@
     <Compile Include="Views\APODView.xaml.cs">
       <DependentUpon>APODView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BigImageView.xaml.cs">
+      <DependentUpon>BigImageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\APODView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BigImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

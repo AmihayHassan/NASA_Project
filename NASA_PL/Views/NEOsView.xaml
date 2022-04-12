@@ -37,7 +37,7 @@
                     materialDesign:HintAssist.Hint="Min diameter"/>
 
 
-            <StackPanel 
+        <StackPanel 
             Grid.Row="0"
             Grid.Column="1"
             VerticalAlignment="Center"
@@ -48,7 +48,7 @@
                 HorizontalAlignment="Center"
                 Margin="10"/>
             <ToggleButton 
-                Command="{Binding Filter }" 
+                Command="{Binding Filter }"
                 CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid ,Path=IsChecked}" 
                 x:Name="is_potentially_hazardous_asteroid" 
                 Style="{StaticResource MaterialDesignSwitchLightToggleButton}"   
@@ -90,26 +90,38 @@
                     Foreground="White"
                     Width="30"
                     Height="30" VerticalAlignment="Center"
-
                 />
         </Button>
 
-
-
-        <DataGrid  
-            IsReadOnly="True" 
-            CanUserAddRows="False"  
-            ColumnWidth="7*" 
-            CanUserSortColumns="True"  
-            AutoGenerateColumns="True" 
-            Name="Result" 
+        <materialDesign:Card
+            Grid.Column="0"
             Grid.ColumnSpan="5"
             Grid.Row="1" 
-            ItemsSource="{Binding Path=NearEarthObj,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+            UniformCornerRadius="20"
+            >
+
+            <Grid>
+
+                <DataGrid
+            IsReadOnly="True" 
+            CanUserAddRows="False"  
+            CanUserSortColumns="True"  
+            AutoGenerateColumns="True" 
+            Name="Result"
+            ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
             GridLinesVisibility="Horizontal" 
             />
 
+                <!--<ProgressBar
+                    Name="ViewProgressBar"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Value="0"
+                    IsIndeterminate="True"
+                />-->
 
+            </Grid>
+
+        </materialDesign:Card>
 
     </Grid>
 

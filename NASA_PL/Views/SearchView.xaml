@@ -4,17 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NASA_PL.Views"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       x:Class="NASA_PL.Views.SearchView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"  
       Title="Search"
       Foreground="White"
       >
-
-
-
-
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -52,15 +50,13 @@
 
         </StackPanel>
 
-
-
         <Grid Margin="10" Grid.Row="1">
             <ListBox
                 Name="SearchListBox"
             >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel/>
+                        <WrapPanel />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
@@ -71,6 +67,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <materialDesign:Card
+                            MouseDoubleClick="Control_OnMouseDoubleClick"
                             Width="200"
                             Height="300"
                             UniformCornerRadius="5">
@@ -82,6 +79,7 @@
                                         Height="*" />
                                 </Grid.RowDefinitions>
                                 <Image 
+                                    Name="SearchListBoxItemImage"
                                         Source="{Binding Path=Key}"
                                         Stretch="Uniform" 
                                         Grid.Row="0"
@@ -89,12 +87,17 @@
                                     />
                                 <ScrollViewer
                                         Grid.Row="1"
+                                        VerticalScrollBarVisibility="Auto"
                                         Margin="20">
+
+                                    <ScrollViewer.Resources>
+                                        <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">5</system:Double>
+                                    </ScrollViewer.Resources>
+
                                     <TextBlock
                                         TextWrapping="Wrap"
                                         VerticalAlignment="Center"
                                         Text="{Binding Path=Value}"
-                                        
                                         TextAlignment="Justify"
                                         />
                                 </ScrollViewer>

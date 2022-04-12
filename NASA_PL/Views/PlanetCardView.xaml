@@ -21,109 +21,112 @@
         FontSize="18"
 >
 
-    <Border
-        CornerRadius="40"
-        BorderBrush="#340B85"
-        BorderThickness="4"
+
+    <materialDesign:Card
+        Background="#320b86"
+        UniformCornerRadius="30"
+        Padding="3"
+        >
+
+        <materialDesign:Card
         Background="{StaticResource MaterialDesignDarkBackground}"
+        UniformCornerRadius="25"
+        MouseDown="UIElement_OnMouseDown"
+        Padding="10"
         >
 
 
-        <StackPanel
+            <StackPanel>
 
-            Margin="0,0,0,0"
-            >
-
-            <Button
+                <Button
                 Name="Close"
                 Grid.Row="0"
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                Margin="0,20,20,0"
                 Click="Close_OnClick"
             >
-                <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                     Kind="Close"
                     Width="30"
                     Height="30" VerticalAlignment="Center"
                 />
-            </Button>
+                </Button>
 
 
-            <Grid
-                Margin="30"
-            >
+                <Grid Margin="20">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Text="{Binding Name}" Grid.ColumnSpan="2" Grid.Row="0"
+                    <TextBlock Text="{Binding Name}" Grid.ColumnSpan="2" Grid.Row="0"
                            HorizontalAlignment="Center"
                            FontSize="30"
                            Margin="0 0 0 30"
-                           /> 
+                           />
 
-                <TextBlock Text="Average Distance From The Sun" Grid.Column="0" Grid.Row="1"/>
-                <TextBlock Text="{Binding AverageDistanceFromTheSun}" Grid.Column="1" Grid.Row="1"/>
+                    <TextBlock Text="Average Distance From The Sun" Grid.Column="0" Grid.Row="1"/>
+                    <TextBlock Text="{Binding AverageDistanceFromTheSun}" Grid.Column="1" Grid.Row="1"/>
 
-                <TextBlock Text="Aphelion" Grid.Column="0" Grid.Row="2"/>
-                <TextBlock Text="{Binding Aphelion}" Grid.Column="1" Grid.Row="2"/>
+                    <TextBlock Text="Aphelion" Grid.Column="0" Grid.Row="2"/>
+                    <TextBlock Text="{Binding Aphelion}" Grid.Column="1" Grid.Row="2"/>
 
-                <TextBlock Text="Perihelion" Grid.Column="0" Grid.Row="3"/>
-                <TextBlock Text="{Binding Perihelion}" Grid.Column="1" Grid.Row="3"/>
+                    <TextBlock Text="Perihelion" Grid.Column="0" Grid.Row="3"/>
+                    <TextBlock Text="{Binding Perihelion}" Grid.Column="1" Grid.Row="3"/>
 
-                <TextBlock Text="Radius" Grid.Column="0" Grid.Row="4"/>
-                <TextBlock Text="{Binding Radius}" Grid.Column="1" Grid.Row="4"/>
+                    <TextBlock Text="Radius" Grid.Column="0" Grid.Row="4"/>
+                    <TextBlock Text="{Binding Radius}" Grid.Column="1" Grid.Row="4"/>
 
-                <TextBlock Text="Mass" Grid.Column="0" Grid.Row="5"/>
-                <TextBlock Text="{Binding Mass}" Grid.Column="1" Grid.Row="5"/>
+                    <TextBlock Text="Mass" Grid.Column="0" Grid.Row="5"/>
+                    <TextBlock Text="{Binding Mass}" Grid.Column="1" Grid.Row="5"/>
 
-                <TextBlock Text="Average Surface Temperature" Grid.Column="0" Grid.Row="6"/>
-                <TextBlock Text="{Binding AverageSurfaceTemp}" Grid.Column="1" Grid.Row="6"/>
+                    <TextBlock Text="Average Surface Temperature" Grid.Column="0" Grid.Row="6"/>
+                    <TextBlock Text="{Binding AverageSurfaceTemp}" Grid.Column="1" Grid.Row="6"/>
 
-                <TextBlock Text="Orbital Period" Grid.Column="0" Grid.Row="7"/>
-                <TextBlock Text="{Binding OrbitalPeriod}" Grid.Column="1" Grid.Row="7"/>
+                    <TextBlock Text="Orbital Period" Grid.Column="0" Grid.Row="7"/>
+                    <TextBlock Text="{Binding OrbitalPeriod}" Grid.Column="1" Grid.Row="7"/>
 
-                <TextBlock Text="Average Speed" Grid.Column="0" Grid.Row="8"/>
-                <TextBlock Text="{Binding AverageSpeed}" Grid.Column="1" Grid.Row="8"/>
+                    <TextBlock Text="Average Speed" Grid.Column="0" Grid.Row="8"/>
+                    <TextBlock Text="{Binding AverageSpeed}" Grid.Column="1" Grid.Row="8"/>
 
-                <TextBlock Text="Rotation Period" Grid.Column="0" Grid.Row="9"/>
-                <TextBlock Text="{Binding RotationPeriod}" Grid.Column="1" Grid.Row="9"/>
+                    <TextBlock Text="Rotation Period" Grid.Column="0" Grid.Row="9"/>
+                    <TextBlock Text="{Binding RotationPeriod}" Grid.Column="1" Grid.Row="9"/>
 
-                <TextBlock Text="Moon Number" Grid.Column="0" Grid.Row="10"/>
-                <TextBlock Text="{Binding MoonNumber}" Grid.Column="1" Grid.Row="10"/>
+                    <TextBlock Text="Moon Number" Grid.Column="0" Grid.Row="10"/>
+                    <TextBlock Text="{Binding MoonNumber}" Grid.Column="1" Grid.Row="10"/>
 
-                <Viewbox Grid.ColumnSpan="2" Grid.Row="11"
+                    <Viewbox Grid.ColumnSpan="2" Grid.Row="11"
                          Margin="0 20 0 20"
                          MaxHeight="200"
                          >
-                    <Image Source="{Binding ImageURL}"/>
-                </Viewbox>
+                        <Image Source="{Binding ImageURL}"/>
+                    </Viewbox>
 
 
-            </Grid>
+                </Grid>
 
-        </StackPanel>
+            </StackPanel>
 
-    </Border>
+        </materialDesign:Card>
+
+    </materialDesign:Card>
 
 </Window>

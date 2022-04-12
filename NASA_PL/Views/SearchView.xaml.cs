@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ControlzEx.Theming;
+using MaterialDesignThemes.Wpf;
 using NASA_PL.ViewModels;
 
 
@@ -30,7 +32,6 @@ namespace NASA_PL.Views
         {
             InitializeComponent();
             searchViewModel = new SearchViewModel();
-
         }
 
         //private void btSearch_Click(object sender, RoutedEventArgs e)
@@ -49,18 +50,20 @@ namespace NASA_PL.Views
         //        MessageBox.Show(ex.ToString());
         //    }
         //}
-        private void btSearch_Click(object sender, RoutedEventArgs e)
+        private async void btSearch_Click(object sender, RoutedEventArgs e)
         {
             var text = txtSearch.Text;
-            if (text.Length > 0)
-            {
-                //Task.Run(() => searchViewModel.GetSearchResult(text));
-                var ImageDictionary = Task.Run(() => searchViewModel.GetSearchResult(text)).Result;
-                //Thread.Sleep(5000);
-                SearchListBox.ItemsSource = ImageDictionary;
-            }
-           
+            if (text.Length <= 0) return;
+            var ImageDictionary = await Task.Run(() => searchViewModel.GetSearchResult(text).Result);
+            SearchListBox.ItemsSource = ImageDictionary;
+        }
 
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var x = SearchListBox.SelectedItems;
+
+            BigImageView bigImageView = new BigImageView("https://wpf-tutorial.com/Images/ArticleImages/1/basic-controls/image_control_strech_sample.png");
+            bigImageView.ShowDialog();
         }
     }
 }

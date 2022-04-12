@@ -25,8 +25,6 @@ namespace NASA_PL.Models
                 where s.Diameter > diameter
                 select s).ToList();
             return neoList;
-
-
         }
     }
 }

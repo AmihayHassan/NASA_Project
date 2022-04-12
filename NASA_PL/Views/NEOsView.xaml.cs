@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using LiveCharts.Configurations;
 
 using NASA_PL.ViewModels;
@@ -31,23 +32,22 @@ namespace NASA_PL.Views
             InitializeComponent();
             viewModel = new NEOsViewModel();
             DataContext = viewModel;
-
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var start = DateTime.Parse(startDate.Text).ToString("yyyy-MM-dd");
             var end = DateTime.Parse(endDate.Text).ToString("yyyy-MM-dd");
+            // default value
             double diameter = 0;
-            if (txtDiameter.Text != null)
+            if (txtDiameter.Text != string.Empty)
             {
                 double.TryParse(txtDiameter.Text, out diameter);
             }
 
             bool hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
 
-            Task.Run(() => viewModel.SearcNEO(start, end, diameter, hazardous));
+            await Task.Run(() => viewModel.SearcNEO(start, end, diameter, hazardous));
         }
 
 
@@ -74,6 +74,16 @@ namespace NASA_PL.Views
                 MessageBox.Show("end date must be in the past", "Error");
             }
 
+            if (endDate.SelectedDate - startDate.SelectedDate > new TimeSpan(7, 0, 0, 0))
+            {
+                FilterButton.IsEnabled = false;
+                MessageBox.Show("The Feed date limit is only 7 Days", "Error");
+            }
+
+            if (startDate.SelectedDate == null || endDate.SelectedDate == null)
+            {
+                FilterButton.IsEnabled = false;
+            }
         }
     }
 }

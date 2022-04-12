@@ -13,12 +13,10 @@ namespace NASA_PL.Views
     {
         APODViewModel ViewModel = new APODViewModel();
 
-
         public APODView()
         {
             InitializeComponent();
             DataContext = ViewModel;
         }
-
     }
 }
