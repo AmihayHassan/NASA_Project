@@ -36,23 +36,25 @@ namespace NASA_BL
         //TODO change SubDic to imagesAndDescription
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, bool debug = false)
         {
-            var tasks = new List<Task<Dictionary<string, string>>>();
-            var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            //var tasks = new List<Task<Dictionary<string, string>>>();
+            //var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            //return imagesAndDescription;
 
-            var SubDic= (from Item in imagesAndDescription select Item)
-                                                        .Take(5)
-                                                        .ToDictionary(Item=>Item.Key); 
-            var res = new Dictionary<string, string>();
-            Parallel.ForEach(SubDic.Keys, async image =>
-            {
-                ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
-                if (tag.result == null) return;
-                if (tag.result.tags.Any((x) => x.confidence > 85 && x.tag.en == "planet"))
-                {
-                    res.Add(image, imagesAndDescription[image]);
-                }
-            });
-            return res;
+            return await dal.GetSearchResult(querySearch);
+            //var SubDic= (from Item in imagesAndDescription select Item)
+            //                                            .Take(5)
+            //                                            .ToDictionary(Item=>Item.Key); 
+            //var res = new Dictionary<string, string>();
+            //Parallel.ForEach(SubDic.Keys, async image =>
+            //{
+            //    ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
+            //    if (tag.result == null) return;
+            //    if (tag.result.tags.Any((x) => x.confidence > 85 && x.tag.en == "planet"))
+            //    {
+            //        res.Add(image, imagesAndDescription[image]);
+            //    }
+            //});
+            //return res;
         }
 
         public List<Planet> GetSolarSystem()

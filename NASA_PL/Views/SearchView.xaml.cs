@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ControlzEx.Theming;
+using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
 using NASA_PL.ViewModels;
 
@@ -58,12 +59,18 @@ namespace NASA_PL.Views
             SearchListBox.ItemsSource = ImageDictionary;
         }
 
+
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = SearchListBox.SelectedItems;
+            var x = sender as Card;
 
-            BigImageView bigImageView = new BigImageView("https://wpf-tutorial.com/Images/ArticleImages/1/basic-controls/image_control_strech_sample.png");
-            bigImageView.ShowDialog();
+            var y = x.GetChildObjects().FirstOrDefault();
+            var z = y.GetChildObjects().FirstOrDefault(c => c is Image);
+            var a = (z as Image).Source.ToString();
+
+            var bvi = new BigImageView(a);
+            bvi.ShowDialog();
+
         }
     }
 }

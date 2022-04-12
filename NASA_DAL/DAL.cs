@@ -283,12 +283,10 @@ namespace NASA_DAL
             {
                 if (item.links != null)
                 {
-
                     string href = (string)item.links[0].href;
                     string description = (string)item.data[0].description;
                     linkAndDescriptionDictionary.Add(href, description);
                 }
-
             }
             return linkAndDescriptionDictionary;
         }

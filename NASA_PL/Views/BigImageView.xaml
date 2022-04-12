@@ -52,7 +52,6 @@
                         Margin="0 10 0 0"
                         Name="BigImage"
                         Stretch="Uniform"
-
                         ></Image>
 
                     </StackPanel>
