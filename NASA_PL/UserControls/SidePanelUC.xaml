@@ -8,9 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Button
-        Style="{StaticResource SidePanelButton}"
         ToolTip="{Binding tooltip_text}"
-        Click="{Binding click_function}"
+       
 
     >
 

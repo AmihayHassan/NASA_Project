@@ -22,8 +22,7 @@ namespace NASA_PL.UserControls
     {
         public string textBlock_text { get; set; }
         public string tooltip_text { get; set; }
-        public string icon_kind { get; set; }
-        public string click_function { get; set; }
+
         public SidePanelUC()
         {
             InitializeComponent();

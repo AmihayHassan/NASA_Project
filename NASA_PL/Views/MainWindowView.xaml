@@ -240,7 +240,13 @@
 
             </Button>
 
-            <Button
+            <userControls:SidePanelButtonUC
+                Grid.Row="1"
+                TextBlockText="Home"
+                PackIconKind="Home"
+                />
+
+            <!--<Button
                 Name="HomeSidePanel"
                 Grid.Row="1"
                 Style="{StaticResource SidePanelButton}"
@@ -268,7 +274,7 @@
 
                 </StackPanel>
 
-            </Button>
+            </Button>-->
 
 
 
@@ -409,13 +415,7 @@
             </Button>
 
 
-            <!--<ucs:SidePanelButtonUC 
-                    Grid.Row="6"  
-                    textBlock_text="APOD" 
-                    tooltip_text="Astronomy Picture Of the Day" 
-                    icon_kind="Image"
-                    click_function="APODSidePanel_OnClick"
-                />-->
+
 
 
         </Grid>
