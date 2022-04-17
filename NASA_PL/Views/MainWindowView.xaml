@@ -122,8 +122,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Foreground="White"
-                    Height="40"
-                    Width="40"
+                    Height="30"
+                    Width="30"
                 />
             </Border>
 
@@ -146,8 +146,8 @@
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Foreground="White"
-                      Height="40"
-                      Width="40"
+                      Height="30"
+                      Width="30"
                       />
             </Border>
 
@@ -169,8 +169,8 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="White"
-                Height="40"
-                Width="40"
+                Height="30"
+                Width="30"
             />
 
             </Border>
@@ -244,6 +244,10 @@
                 Grid.Row="1"
                 TextBlockText="Home"
                 PackIconKind="Home"
+                TextBlockMargin="5 5 0 5"
+                PackIconMargin="125 0 0 0"
+                Tooltip="Home"
+                
                 />
 
             <!--<Button
@@ -261,7 +265,7 @@
                         Text="Home"
                         FontSize="30"
                         Foreground="White"
-                        Margin="5 5 0 5"
+                        Margin=""
                     />
 
                     <materialDesign:PackIcon
@@ -269,7 +273,7 @@
                         Kind="Home"
                         Height="50"
                         Width="50"
-                        Margin="125 0 0 0"
+                        Margin=""
                     />
 
                 </StackPanel>

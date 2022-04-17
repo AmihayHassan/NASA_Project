@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
-using NASA_PL.Converters;
 
 namespace NASA_PL.UserControls
 {
@@ -25,13 +24,15 @@ namespace NASA_PL.UserControls
     {
         public string TextBlockName { get; set; }
         public string TextBlockText { get; set; }
-        public Thickness TextBlockMargin { get; set; }
-        public Thickness PackIconMargin { get; set; }
+        public string TextBlockMargin { get; set; }
+        public string PackIconMargin { get; set; }
         public string PackIconKind { get; set; }
         public string Tooltip { get; set; }
+        public string Command { get; set; }
         public SidePanelButtonUC()
         {
             InitializeComponent();
+            DataContext = this;
         }
     }
 }

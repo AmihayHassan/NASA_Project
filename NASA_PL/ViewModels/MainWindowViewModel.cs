@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using NASA_BE;
 using NASA_PL.Models;
 
@@ -12,13 +13,19 @@ using NASA_PL.Models;
 //
 namespace NASA_PL.ViewModels
 {
-
-    class MainWindowViewModel
+    [INotifyPropertyChanged]
+    public partial class MainWindowViewModel
     {
         MainWindowModel model;
         public MainWindowViewModel()
         {
             model = new MainWindowModel();
         }
+
+        #region sidebar commands
+
+
+
+        #endregion
     }
 }

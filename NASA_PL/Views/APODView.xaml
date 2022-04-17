@@ -49,7 +49,7 @@
 
         <Border Grid.Row="1" MaxWidth="1000">
             <ScrollViewer >
-                <Image x:Name="image" Source="{Binding urlImage}" Stretch="UniformToFill" />
+                <Image x:Name="image" Source="{Binding ImageUrl}" Stretch="UniformToFill" />
             </ScrollViewer>
         </Border>
         <ScrollViewer Grid.Row="2">

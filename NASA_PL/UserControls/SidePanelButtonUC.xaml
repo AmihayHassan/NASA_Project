@@ -5,19 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:NASA_PL.UserControls"
-             xmlns:converters="clr-namespace:NASA_PL.Converters"
-
-    mc:Ignorable="d" 
+             mc:Ignorable="d" 
              >
-    <UserControl.Resources>
-        <converters:StringToPackIconConverter x:Key="StringToPackIcon"/>
-    </UserControl.Resources>
 
-
-    <Button Style="{StaticResource SidePanelButton}">
+    <Button Style="{StaticResource SidePanelButton}"
+            ToolTip="{Binding Tooltip}"
+            Command="{Binding Command}">
         <StackPanel Orientation="Horizontal">
             <TextBlock  
-                Text="{Binding TextBlockText}"
+                Text="{Binding Path=TextBlockText}"
                        FontSize="30"
                        Foreground="White"
                        VerticalAlignment="Center"
@@ -27,7 +23,7 @@
                 Height="50"
                 Width="50"
                 Margin="{Binding PackIconMargin}"
-                Kind="{Binding Path=PackIconKind, Converter={StaticResource StringToPackIcon}}"
+                Kind="{Binding Path=PackIconKind}"
                 />
         </StackPanel>
     </Button>

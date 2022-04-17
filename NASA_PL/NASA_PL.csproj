@@ -171,12 +171,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\FilterCommand.cs" />
-    <Compile Include="Converters\StringToPackIconConverter.cs" />
+    <Compile Include="Commands\SideBarOpenCloseCommand.cs" />
     <Compile Include="Models\APODModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="UserControls\SidePanel.xaml.cs">
+      <DependentUpon>SidePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SidePanelButtonUC.xaml.cs">
       <DependentUpon>SidePanelButtonUC.xaml</DependentUpon>
     </Compile>
@@ -237,7 +240,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NASA_BE\NASA_BE.csproj">
       <Project>{01bb2d74-4c7e-4760-8ef8-0a2ce8b9d23a}</Project>
@@ -254,6 +259,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SidePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,45 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Xaml.Behaviors.Core;
 using NASA_BE;
 using NASA_PL.Models;
 
 namespace NASA_PL.ViewModels
 {
-
-    class APODViewModel
+    internal class APODViewModel
     {
-        APODModel model;
-        APOD apod;
+        private APOD _apod;
         public APODViewModel()
         {
-            model = new APODModel();
-            apod = Task.Run( () =>  model.GetImageOfTheDay()).Result;
+            Task.Run(InitViewModel).GetAwaiter().GetResult();
         }
 
-        public string urlImage
+        private async Task InitViewModel()
         {
-            get
-            {
-                return apod.Url;
-            }
+            var model = new APODModel();
+            _apod = await model.GetImageOfTheDay();
         }
 
-        public string Title
-        {
-            get
-            {
-                return apod.Title;
-            }
-        }
-
-        public string Explanation
-        {
-            get
-            {
-                return apod.Explanation;
-            }
-        }
-
+        public string ImageUrl => _apod.Url;
+        public string Title => _apod.Title;
+        public string Explanation => _apod.Explanation;
     }
 }
