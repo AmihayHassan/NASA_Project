@@ -55,7 +55,7 @@
             >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel />
+                        <WrapPanel/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
@@ -97,11 +97,12 @@
                                         <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">5</system:Double>
                                     </ScrollViewer.Resources>
 
-                                    <TextBlock
+                                    <TextBox
                                         TextWrapping="Wrap"
                                         VerticalAlignment="Center"
-                                        Text="{Binding Path=Value}"
+                                        Text="{Binding Path=Value, Mode=OneWay}"
                                         TextAlignment="Justify"
+                                        IsReadOnly="True"
                                         />
                                 </ScrollViewer>
                             </Grid>

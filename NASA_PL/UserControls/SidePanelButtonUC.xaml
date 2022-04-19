@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:NASA_PL.UserControls"
-             mc:Ignorable="d" 
-             >
+             mc:Ignorable="d">
 
-    <Button Style="{StaticResource SidePanelButton}"
-            ToolTip="{Binding Tooltip}"
-            Command="{Binding Command}">
+    <Button 
+        x:Name="SidePanelButton"
+        Style="{StaticResource SidePanelButton}"
+        ToolTip="{Binding Tooltip}"
+    >
         <StackPanel Orientation="Horizontal">
             <TextBlock  
                 Text="{Binding Path=TextBlockText}"
@@ -27,11 +28,6 @@
                 />
         </StackPanel>
     </Button>
-
-
-
-
-
 
 
 </UserControl>

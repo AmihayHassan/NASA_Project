@@ -171,20 +171,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\FilterCommand.cs" />
-    <Compile Include="Commands\SideBarOpenCloseCommand.cs" />
+    <Compile Include="Commands\MyRelayCommand.cs" />
     <Compile Include="Models\APODModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
-    <Compile Include="UserControls\SidePanel.xaml.cs">
-      <DependentUpon>SidePanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\SidePanelButtonUC.xaml.cs">
       <DependentUpon>SidePanelButtonUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SidePanelUC.xaml.cs">
-      <DependentUpon>SidePanelUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\APODViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -262,15 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SidePanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\SidePanelButtonUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\SidePanelUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,6 +14,8 @@
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
 
+        Name="MainWindow"
+
         Icon="../Media/StarIcon.png"
         MinHeight="550"
         MinWidth="750"
@@ -77,92 +79,46 @@
             NavigationUIVisibility="Hidden"
         />
 
-
-        <Border
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
-            Background="#532782"
-            Height="50"
-            VerticalAlignment="Top"
-            MouseDown="UIElement_OnMouseDown">
-
-            <TextBlock x:Name="MainTimerTextBlock"
-                   FontSize="20"
-                   Margin="0,0,80,0"
-                   Foreground="White"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center"
-                   />
-        </Border>
-
-        <StackPanel
+        <DockPanel
             Grid.Column="1"
             Grid.Row="0"
-            Orientation="Horizontal"
-            HorizontalAlignment="Right"
+            LastChildFill="True"
+            Background="#532782"
+            MouseDown="Drag_OnMouseDown"
             >
 
-            <!--Minimize button-->
-            <Border
-                Name="Minimize"
+            <!--Exit button-->
+            <Button
+                Name="Exit"
                 Width="70"
                 Height="50"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                MouseEnter="Minimize_OnMouseEnter"
-                MouseLeave="Minimize_OnMouseLeave"
-                MouseDown="Minimize_OnMouseDown"
-            >
+                DockPanel.Dock="Right"
+                BorderThickness="0"
+                Command="{Binding CloseWindowCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=MainWindow}"
+                >
 
-                <materialDesign:PackIcon
-                    Kind="WindowMinimize"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Foreground="White"
-                    Height="30"
-                    Width="30"
-                />
-            </Border>
-
-            <!--Restore button-->
-            <Border
-            Name="Restore"
-            Width="70"
-            Height="50"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            MouseEnter="Restore_OnMouseEnter"
-            MouseLeave="Restore_OnMouseLeave"
-            MouseDown="Restore_OnMouseDown"
-            >
-
-                <materialDesign:PackIcon
-                      Kind="WindowRestore"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Foreground="White"
-                      Height="30"
-                      Width="30"
-                      />
-            </Border>
-
-            <!--Exit button-->
-            <Border
-            Name="Exit"
-            Width="70"
-            Height="50"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Background="#E81123"
-            BorderBrush="Transparent"
-            MouseEnter="Exit_OnMouseEnter"
-            MouseLeave="Exit_OnMouseLeave"
-            MouseDown="Exit_OnMouseDown">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#E81123"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F1707A"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
 
                 <materialDesign:PackIcon
                 Kind="WindowClose"
@@ -173,9 +129,96 @@
                 Width="30"
             />
 
-            </Border>
+            </Button>
+            <!--Restore button-->
+            <Button
+            Name="Restore"
+            Width="70"
+            Height="50"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            DockPanel.Dock="Right"
+            BorderThickness="0"
+            Command="{Binding RestoreWindowCommand, Mode=OneWay}"
+            CommandParameter="{Binding ElementName=MainWindow}"
+            >
 
-        </StackPanel>
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#572e85"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+
+                <materialDesign:PackIcon
+                      Kind="WindowRestore"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="White"
+                      Height="30"
+                      Width="30"
+                      />
+            </Button>
+            <!--Minimize button-->
+            <Button
+                Name="Minimize"
+                Width="70"
+                Height="50"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                BorderBrush="Transparent"
+                DockPanel.Dock="Right"
+                Command="{Binding MinimizeWindowCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=MainWindow}"
+            >
+
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#572e85"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <materialDesign:PackIcon
+                    Kind="WindowMinimize"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Height="30"
+                    Width="30"
+                />
+            </Button>
+
+
+        </DockPanel>
 
         <!--Side panel-->
         <Grid
@@ -247,41 +290,7 @@
                 TextBlockMargin="5 5 0 5"
                 PackIconMargin="125 0 0 0"
                 Tooltip="Home"
-                
                 />
-
-            <!--<Button
-                Name="HomeSidePanel"
-                Grid.Row="1"
-                Style="{StaticResource SidePanelButton}"
-                ToolTip="Home"
-                Click="HomeSidePanel_OnClick"
-                >
-
-                <StackPanel Orientation="Horizontal">
-
-                    <TextBlock
-                        Name="Home"
-                        Text="Home"
-                        FontSize="30"
-                        Foreground="White"
-                        Margin=""
-                    />
-
-                    <materialDesign:PackIcon
-                        Foreground="White"
-                        Kind="Home"
-                        Height="50"
-                        Width="50"
-                        Margin=""
-                    />
-
-                </StackPanel>
-
-            </Button>-->
-
-
-
 
             <Button
                 Name="APODSidePanel"
@@ -313,7 +322,6 @@
                 </StackPanel>
 
             </Button>
-
 
             <Button
                 Name="PlanetProfileSidePanel"

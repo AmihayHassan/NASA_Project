@@ -22,13 +22,12 @@ namespace NASA_PL.UserControls
     /// </summary>
     public partial class SidePanelButtonUC : UserControl
     {
-        public string TextBlockName { get; set; }
         public string TextBlockText { get; set; }
         public string TextBlockMargin { get; set; }
         public string PackIconMargin { get; set; }
         public string PackIconKind { get; set; }
         public string Tooltip { get; set; }
-        public string Command { get; set; }
+
         public SidePanelButtonUC()
         {
             InitializeComponent();

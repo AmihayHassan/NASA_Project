@@ -53,13 +53,13 @@
             </ScrollViewer>
         </Border>
         <ScrollViewer Grid.Row="2">
-            <TextBlock
+            <TextBox
                 Padding="50 10" 
-                Grid.Row="2" 
                 TextWrapping="Wrap" 
                 Foreground="White"
                 FontSize="14" 
-                Text="{Binding Explanation}"
+                Text="{Binding Explanation, Mode=OneWay}"
+                IsReadOnly="True"
                 FontFamily="Arial"
                 />
 

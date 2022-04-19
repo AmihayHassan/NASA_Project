@@ -34,23 +34,7 @@ namespace NASA_PL.Views
             InitializeComponent();
             searchViewModel = new SearchViewModel();
         }
-
-        //private void btSearch_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-
-        //    {
-        //        var text = txtSearch.Text;
-        //        progressBar.Visibility = Visibility.Visible;
-        //        var searchList = searchViewModel.GetSearchResult(text);
-        //        SearchListBox.ItemsSource= searchList;
-        //        progressBar.Visibility = Visibility.Collapsed;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
+        
         private async void btSearch_Click(object sender, RoutedEventArgs e)
         {
             var text = txtSearch.Text;
@@ -58,7 +42,6 @@ namespace NASA_PL.Views
             var ImageDictionary = await Task.Run(() => searchViewModel.GetSearchResult(text).Result);
             SearchListBox.ItemsSource = ImageDictionary;
         }
-
 
         private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
