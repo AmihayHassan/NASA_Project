@@ -49,6 +49,14 @@ namespace NASA_PL.Views
             }
         }
 
+        private void SideBarButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!_hidden)
+            {
+                ButtonBase_OnClick(sender, e);
+            }
+        }
+
         private void Drag_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -57,60 +65,6 @@ namespace NASA_PL.Views
             }
         }
         #endregion
-
-        private void InfoButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            //var info = new InfoWindow();
-            //info.ShowDialog();
-        }
-
-        private void HomeSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            DataDisplay.Content = null;
-        }
-
-        private void APODSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            DataDisplay.Content = new APODView();
-        }
-
-        private void SearchImagesSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-            DataDisplay.Content = new SearchView();
-        }
-
-        private void NeosSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-            DataDisplay.Content = new NEOsView();
-        }
-
-        private void PlanetProfileSidePanel_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_hidden)
-            {
-                ButtonBase_OnClick(sender, e);
-            }
-
-            DataDisplay.Content = new PlanetsView();
-        }
     }
 }
 

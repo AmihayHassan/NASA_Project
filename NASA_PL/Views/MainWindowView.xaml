@@ -272,7 +272,8 @@
                 Width="90"
                 Height="80"
                 BorderBrush="Transparent"
-                Click="InfoButton_OnClick">
+                Command="{Binding OpenInfoWindowCommand, Mode=OneWay}"
+                >
 
                 <materialDesign:PackIcon
                     Foreground="White"
@@ -297,7 +298,9 @@
                 Grid.Row="2"
                 Style="{StaticResource SidePanelButton}"
                 ToolTip="Astronomy Picture Of the Day"
-                Click="APODSidePanel_OnClick"
+                Command="{Binding OpenApodPageCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=DataDisplay}"
+                Click="SideBarButton_OnClick"
             >
 
                 <StackPanel Orientation="Horizontal">
@@ -328,7 +331,9 @@
                 Grid.Row="3"
                 Style="{StaticResource SidePanelButton}"
                 ToolTip="Planet Profile"
-                Click="PlanetProfileSidePanel_OnClick"
+                Command="{Binding OpenPlanetsPageCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=DataDisplay}"
+                Click="SideBarButton_OnClick"
             >
 
                 <StackPanel Orientation="Horizontal">
@@ -360,7 +365,9 @@
                 Grid.Row="4"
                 Style="{StaticResource SidePanelButton}"
                 ToolTip="Search Images"
-                Click="SearchImagesSidePanel_OnClick"
+                Command="{Binding OpenSearchPageCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=DataDisplay}"
+                Click="SideBarButton_OnClick"
             >
 
                 <StackPanel Orientation="Horizontal">
@@ -392,7 +399,9 @@
                 Name="NeosSidePanel"
                 Grid.Row="5"
                 Style="{StaticResource SidePanelButton}"
-                Click="NeosSidePanel_OnClick"
+                Command="{Binding OpenNeosPageCommand, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=DataDisplay}"
+                Click="SideBarButton_OnClick"
             >
 
                 <Button.ToolTip>
