@@ -11,7 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using NASA_BE;
 using NASA_PL.Commands;
 using NASA_PL.Models;
-
+using NASA_PL.Views;
 
 namespace NASA_PL.ViewModels
 {
@@ -23,7 +23,7 @@ namespace NASA_PL.ViewModels
         public ICommand CloseWindowCommand { get; private set; }
         public ICommand RestoreWindowCommand { get; private set; }
         public ICommand MinimizeWindowCommand { get; private set; }
-        public ICommand BlablaCommand { get; private set; }
+
 
         private readonly MainWindowModel _model;
         public MainWindowViewModel()
@@ -32,14 +32,7 @@ namespace NASA_PL.ViewModels
             CloseWindowCommand = new RelayCommand<Window>(CloseWindow);
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
-            BlablaCommand = new MyRelayCommand<Window, MouseEventArgs>(blabla);
         }
-
-        private void blabla(Window w, MouseEventArgs e)
-        {
-
-        }
-
 
         private void CloseWindow(Window window)
         {

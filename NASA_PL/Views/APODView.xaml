@@ -54,7 +54,7 @@
         </Border>
         <ScrollViewer Grid.Row="2">
             <TextBox
-                Padding="50 10" 
+                Padding="75 25" 
                 TextWrapping="Wrap" 
                 Foreground="White"
                 FontSize="14" 
