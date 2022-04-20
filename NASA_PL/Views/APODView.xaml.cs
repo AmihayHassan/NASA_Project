@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using NASA_PL.ViewModels;
 
 namespace NASA_PL.Views
@@ -6,8 +7,6 @@ namespace NASA_PL.Views
     /// <summary>
     /// Interaction logic for APODView.xaml
     /// </summary>
-
-
 
     public partial class APODView : Page
     {

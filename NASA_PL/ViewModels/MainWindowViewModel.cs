@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NASA_BE;
-using NASA_PL.Commands;
 using NASA_PL.Models;
 using NASA_PL.Views;
 
@@ -18,8 +11,6 @@ namespace NASA_PL.ViewModels
     [INotifyPropertyChanged]
     public partial class MainWindowViewModel
     {
-        [ObservableProperty] public bool Hidden;
-
         public ICommand CloseWindowCommand { get; private set; }
         public ICommand RestoreWindowCommand { get; private set; }
         public ICommand MinimizeWindowCommand { get; private set; }
@@ -32,6 +23,7 @@ namespace NASA_PL.ViewModels
         public ICommand OpenInfoWindowCommand { get; private set; }
 
         private readonly MainWindowModel _model;
+
         public MainWindowViewModel()
         {
             _model = new MainWindowModel();
@@ -39,10 +31,10 @@ namespace NASA_PL.ViewModels
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
 
-            OpenApodPageCommand = new RelayCommand<Frame>(OpenApodPage);
-            OpenSearchPageCommand = new RelayCommand<Frame>(OpenSearchPage);
-            OpenPlanetsPageCommand = new RelayCommand<Frame>(OpenPlanetsPage);
-            OpenNeosPageCommand = new RelayCommand<Frame>(OpenNeosPage);
+            OpenApodPageCommand = new RelayCommand<Frame>(OpenApodPage, frame => !(frame.Content is APODView));
+            OpenSearchPageCommand = new RelayCommand<Frame>(OpenSearchPage, frame => !(frame.Content is SearchView));
+            OpenPlanetsPageCommand = new RelayCommand<Frame>(OpenPlanetsPage, frame => !(frame.Content is PlanetsView));
+            OpenNeosPageCommand = new RelayCommand<Frame>(OpenNeosPage, frame => !(frame.Content is NEOsView));
 
             OpenInfoWindowCommand = new RelayCommand(() =>
             {

@@ -24,14 +24,11 @@ namespace NASA_PL.Views
             // Syncfusion code activation
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjA3MjMyQDMyMzAyZTMxMmUzMGtjQnlrdnhGdXZ0ZVp4Q00xTnBlV0tWUGlFVXluZTNmdzUrVkp4Mmh3NlU9");
 
-
             InitializeComponent();
             ViewModel = new ViewModels.PlanetsViewModel();
             DataContext = ViewModel;
             PlanetsList = ViewModel.GetPlanetsList;
             PlanetsCarousel.SelectedIndex = 0;
-
-
         }
 
 
