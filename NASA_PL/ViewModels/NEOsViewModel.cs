@@ -8,34 +8,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NASA_BE;
+using NASA_BE.Annotations;
 using NASA_PL.Commands;
 using NASA_PL.Models;
 
 namespace NASA_PL.ViewModels
 {
+    [ObservableObject]
     public class NEOsViewModel : INotifyPropertyChanged
     {
         public ICommand Filter { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
+
         private readonly NEOsModel _model;
+
         public NEOsViewModel()
         {
             _model = new NEOsModel();
             Filter = new FilterCommand(this);
         }
 
-        private ObservableCollection<NearEarthObject> nearEarthObj;
+        [ObservableProperty]
+        ObservableCollection<NearEarthObject> nearEarthObj;
         public ObservableCollection<NearEarthObject> NearEarthObj
         {
             get => nearEarthObj;
             set
             {
                 nearEarthObj = value;
-                OnPropertyChanged("NearEarthObj");
+                OnPropertyChanged(nameof(NearEarthObj));
             }
         }
-        public async Task SearcNEO(string start, string end, double diameter, bool hazardous)
+
+
+        public async Task SearchNeo(string start, string end, double diameter, bool hazardous)
         {
             NearEarthObj = await _model.GetNearEarthObject(start, end, diameter);
             HazardOnly(hazardous);
@@ -48,12 +56,17 @@ namespace NASA_PL.ViewModels
                 return;
             }
             //NearEarthObj = hazardous ? _model.neoList.Where(neo => neo.Hazardous).ToList() : _model.neoList.ToList();
-            NearEarthObj = new ObservableCollection<NearEarthObject>(hazardous ? _model.neoList.Where(neo => neo.Hazardous).ToList() : _model.neoList.ToList());
+            NearEarthObj = new ObservableCollection<NearEarthObject>(hazardous ?
+                    _model.neoList.Where(neo => neo.Hazardous).ToList()
+                    :
+                    _model.neoList.ToList());
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

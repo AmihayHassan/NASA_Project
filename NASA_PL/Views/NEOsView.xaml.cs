@@ -49,7 +49,7 @@ namespace NASA_PL.Views
 
             var hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
 
-            await Task.Run(() => _viewModel.SearcNEO(start, end, diameter, hazardous));
+            await Task.Run(() => _viewModel.SearchNeo(start, end, diameter, hazardous));
         }
 
 

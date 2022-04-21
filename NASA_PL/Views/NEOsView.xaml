@@ -85,6 +85,7 @@
                 Grid.Column="4"
                 IsEnabled="False"
                 >
+
             <materialDesign:PackIcon
                     Kind="Filter"
                     Foreground="White"
@@ -108,7 +109,7 @@
             CanUserSortColumns="True"  
             AutoGenerateColumns="True" 
             Name="Result"
-            ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+            ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
             GridLinesVisibility="Horizontal" 
             />
 

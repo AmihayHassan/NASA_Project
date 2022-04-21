@@ -4,20 +4,25 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using NASA_BE;
 using NASA_BL;
 
 
 namespace NASA_PL.Models
 {
-    class NEOsModel
+    public class NEOsModel : ObservableObject
     {
+
         BL bl;
+
+        [ObservableProperty]
         public ObservableCollection<NearEarthObject> neoList;
 
         public NEOsModel()
         {
             bl = new BL();
+            neoList = new ObservableCollection<NearEarthObject>();
         }
 
         public async Task<ObservableCollection<NearEarthObject>> GetNearEarthObject(string start, string end, double diameter)
