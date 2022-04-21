@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,18 @@ namespace NASA_PL.Models
     class NEOsModel
     {
         BL bl;
-        public List<NearEarthObject> neoList;
+        public ObservableCollection<NearEarthObject> neoList;
 
         public NEOsModel()
         {
             bl = new BL();
         }
 
-        public async Task<List<NearEarthObject>> GetNearEarthObject(string start, string end, double diameter)
+        public async Task<ObservableCollection<NearEarthObject>> GetNearEarthObject(string start, string end, double diameter)
         {
-            neoList = (from s in await bl.GetNearEarthObject(start, end)
-                where s.Diameter > diameter
-                select s).ToList();
+            neoList = new ObservableCollection<NearEarthObject>(from s in await bl.GetNearEarthObject(start, end)
+                                                                where s.Diameter > diameter
+                                                                select s);
             return neoList;
         }
     }

@@ -17,12 +17,9 @@ namespace NASA_PL.Views
     public partial class MainWindowView : Window
     {
 
-        #region init decleration
         private readonly BL _bl;
-
         private bool _hidden;
 
-        #endregion
         public MainWindowView()
         {
             InitializeComponent();
@@ -30,7 +27,6 @@ namespace NASA_PL.Views
             DataContext = mainWindowViewModel;
         }
 
-        #region open close menu and drag window
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (_hidden)
@@ -64,7 +60,6 @@ namespace NASA_PL.Views
                 DragMove();
             }
         }
-        #endregion
     }
 }
 

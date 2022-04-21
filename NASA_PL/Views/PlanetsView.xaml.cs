@@ -46,7 +46,7 @@ namespace NASA_PL.Views
         private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             int current = PlanetsCarousel.SelectedIndex;
-            if (current<7)
+            if (current < 7)
             {
                 PlanetsCarousel.SelectedIndex = current + 1;
             }

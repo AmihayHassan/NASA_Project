@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
 using LiveCharts.Configurations;
 
 using NASA_PL.ViewModels;
@@ -22,22 +23,23 @@ namespace NASA_PL.Views
     /// <summary>
     /// Interaction logic for NEOsView.xaml
     /// </summary>
+    
     public partial class NEOsView : Page
     {
-
-        NEOsViewModel viewModel;
+        private readonly NEOsViewModel _viewModel;
 
         public NEOsView()
         {
             InitializeComponent();
-            viewModel = new NEOsViewModel();
-            DataContext = viewModel;
+            _viewModel = new NEOsViewModel();
+            DataContext = _viewModel;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var start = DateTime.Parse(startDate.Text).ToString("yyyy-MM-dd");
             var end = DateTime.Parse(endDate.Text).ToString("yyyy-MM-dd");
+            
             // default value
             double diameter = 0;
             if (txtDiameter.Text != string.Empty)
@@ -45,9 +47,9 @@ namespace NASA_PL.Views
                 double.TryParse(txtDiameter.Text, out diameter);
             }
 
-            bool hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
+            var hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
 
-            await Task.Run(() => viewModel.SearcNEO(start, end, diameter, hazardous));
+            await Task.Run(() => _viewModel.SearcNEO(start, end, diameter, hazardous));
         }
 
 

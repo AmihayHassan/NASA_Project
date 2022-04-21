@@ -39,14 +39,12 @@ namespace NASA_PL.Commands
             bool val = bool.Parse(parameter.ToString());
             if (val)
             {
-                neosVM.Hazardonly(true);
-
+                neosVM.HazardOnly(true);
             }
             else
             {
-                neosVM.Hazardonly();
+                neosVM.HazardOnly();
             }
-
         }
     }
 }

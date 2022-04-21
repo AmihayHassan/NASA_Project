@@ -11,23 +11,11 @@ namespace NASA_PL.ViewModels
 {
     public class PlanetsViewModel
     {
-        private Models.PlanetsModel model;
+        private readonly Models.PlanetsModel _model;
         public PlanetsViewModel()
         {
-            model = new Models.PlanetsModel();
+            _model = new Models.PlanetsModel();
         }
-        public List<Planet> GetPlanetsList
-        {
-            get
-            {
-                return model.GetSolarSystem();
-            }
-
-        }
-
-
-
-
-
+        public List<Planet> GetPlanetsList => _model.GetSolarSystem();
     }
 }
