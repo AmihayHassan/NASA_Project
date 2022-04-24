@@ -43,31 +43,31 @@ namespace NASA_PL.Views
         //    pcv.ShowDialog();
         //}
 
-        private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            int current = PlanetsCarousel.SelectedIndex;
-            if (current < 7)
-            {
-                PlanetsCarousel.SelectedIndex = current + 1;
-            }
-            else
-            {
-                PlanetsCarousel.SelectedIndex = 0;
-            }
-        }
+        //private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    int current = PlanetsCarousel.SelectedIndex;
+        //    if (current < 7)
+        //    {
+        //        PlanetsCarousel.SelectedIndex = current + 1;
+        //    }
+        //    else
+        //    {
+        //        PlanetsCarousel.SelectedIndex = 0;
+        //    }
+        //}
 
-        private void LeftButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            int current = PlanetsCarousel.SelectedIndex;
-            if (current > 0)
-            {
-                PlanetsCarousel.SelectedIndex = current - 1;
-            }
-            else
-            {
-                PlanetsCarousel.SelectedIndex = 7;
-            }
-        }
+        //private void LeftButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    int current = PlanetsCarousel.SelectedIndex;
+        //    if (current > 0)
+        //    {
+        //        PlanetsCarousel.SelectedIndex = current - 1;
+        //    }
+        //    else
+        //    {
+        //        PlanetsCarousel.SelectedIndex = 7;
+        //    }
+        //}
 
     }
 }

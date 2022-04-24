@@ -18,10 +18,16 @@ namespace NASA_PL.ViewModels
     {
         private readonly Models.PlanetsModel _model;
         public ICommand OpenPlanetCardCommand { get; private set; }
+        public ICommand MovePlanetRightCommand { get; private set; }
+        public ICommand MovePlanetLeftCommand { get; private set; }
+
         public PlanetsViewModel()
         {
             _model = new Models.PlanetsModel();
-            OpenPlanetCardCommand = new RelayCommand<Carousel>(OpenPlanetCard, O => true);
+            OpenPlanetCardCommand = new RelayCommand<Carousel>(OpenPlanetCard, o => true);
+            MovePlanetRightCommand = new RelayCommand<Carousel>(MovePlanetRight, o => true);
+            MovePlanetLeftCommand = new RelayCommand<Carousel>(MovePlanetLeft, o => true);
+
 
         }
         public List<Planet> GetPlanetsList => _model.GetSolarSystem();
@@ -30,7 +36,32 @@ namespace NASA_PL.ViewModels
         {
             var pcv = new PlanetCardView(GetPlanetsList[planetCarousel.SelectedIndex]);
             pcv.ShowDialog();
+        }
 
+        private void MovePlanetRight(Carousel PlanetsCarousel)
+        {
+            int current = PlanetsCarousel.SelectedIndex;
+            if (current < 7)
+            {
+                PlanetsCarousel.SelectedIndex = current + 1;
+            }
+            else
+            {
+                PlanetsCarousel.SelectedIndex = 0;
+            }
+        }
+
+        private void MovePlanetLeft(Carousel PlanetsCarousel)
+        {
+            int current = PlanetsCarousel.SelectedIndex;
+            if (current > 0)
+            {
+                PlanetsCarousel.SelectedIndex = current - 1;
+            }
+            else
+            {
+                PlanetsCarousel.SelectedIndex = 7;
+            }
         }
 
     }
