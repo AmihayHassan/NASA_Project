@@ -34,10 +34,5 @@ namespace NASA_PL.Views
                 DragMove();
             }
         }
-
-        private void Close_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

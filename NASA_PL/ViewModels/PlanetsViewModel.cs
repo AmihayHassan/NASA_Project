@@ -27,8 +27,6 @@ namespace NASA_PL.ViewModels
             OpenPlanetCardCommand = new RelayCommand<Carousel>(OpenPlanetCard, o => true);
             MovePlanetRightCommand = new RelayCommand<Carousel>(MovePlanetRight, o => true);
             MovePlanetLeftCommand = new RelayCommand<Carousel>(MovePlanetLeft, o => true);
-
-
         }
         public List<Planet> GetPlanetsList => _model.GetSolarSystem();
 

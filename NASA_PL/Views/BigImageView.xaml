@@ -39,7 +39,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        Click="Close_OnClick"
+                        IsCancel="True"
                     >
                         <materialDesign:PackIcon
                             Kind="Close"
