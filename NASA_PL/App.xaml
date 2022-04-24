@@ -14,11 +14,11 @@
 
                 <ResourceDictionary>
                     <Style x:Key="SidePanelButton" TargetType="Button">
-
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
                         <Setter Property="Cursor" Value="Hand"/>
                         <Setter Property="Background" Value="#3d1865"/>
                         <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Height" Value="115"></Setter>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">

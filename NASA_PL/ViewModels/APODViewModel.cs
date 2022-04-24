@@ -11,7 +11,7 @@ using NASA_PL.Models;
 
 namespace NASA_PL.ViewModels
 {
-    internal class APODViewModel
+    public class APODViewModel
     {
         private APOD _apod;
         public APODViewModel()
