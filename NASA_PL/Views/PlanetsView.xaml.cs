@@ -37,11 +37,11 @@ namespace NASA_PL.Views
             currentPlanetTextBlock.Text = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
         }
 
-        private void CurrentPlanetTextBlock_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var pcv = new PlanetCardView(PlanetsList[PlanetsCarousel.SelectedIndex]);
-            pcv.ShowDialog();
-        }
+        //private void CurrentPlanetTextBlock_OnMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    var pcv = new PlanetCardView(PlanetsList[PlanetsCarousel.SelectedIndex]);
+        //    pcv.ShowDialog();
+        //}
 
         private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
         {

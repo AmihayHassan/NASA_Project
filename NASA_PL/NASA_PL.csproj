@@ -173,7 +173,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\FilterCommand.cs" />
-    <Compile Include="Commands\MyRelayCommand.cs" />
     <Compile Include="Models\APODModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
