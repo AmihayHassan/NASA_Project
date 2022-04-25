@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using LiveCharts.Configurations;
+using System.Text.RegularExpressions;
 
 using NASA_PL.ViewModels;
 
@@ -23,7 +24,7 @@ namespace NASA_PL.Views
     /// <summary>
     /// Interaction logic for NEOsView.xaml
     /// </summary>
-    
+
     public partial class NEOsView : Page
     {
         private readonly NEOsViewModel _viewModel;
@@ -35,22 +36,22 @@ namespace NASA_PL.Views
             DataContext = _viewModel;
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var start = DateTime.Parse(startDate.Text).ToString("yyyy-MM-dd");
-            var end = DateTime.Parse(endDate.Text).ToString("yyyy-MM-dd");
-            
-            // default value
-            double diameter = 0;
-            if (txtDiameter.Text != string.Empty)
-            {
-                double.TryParse(txtDiameter.Text, out diameter);
-            }
+        //private async void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var start = DateTime.Parse(startDate.Text).ToString("yyyy-MM-dd");
+        //    var end = DateTime.Parse(endDate.Text).ToString("yyyy-MM-dd");
 
-            var hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
+        //    // default value
+        //    double diameter = 0;
+        //    if (txtDiameter.Text != string.Empty)
+        //    {
+        //        double.TryParse(txtDiameter.Text, out diameter);
+        //    }
 
-            await Task.Run(() => _viewModel.SearchNeo(start, end, diameter, hazardous));
-        }
+        //    var hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
+
+        //    await Task.Run(() => _viewModel.SearchNeo(start, end, diameter, hazardous));
+        //}
 
 
         private void Date_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -86,6 +87,12 @@ namespace NASA_PL.Views
             {
                 FilterButton.IsEnabled = false;
             }
+        }
+
+        private void TxtDiameter_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
