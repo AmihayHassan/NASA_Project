@@ -5,7 +5,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       xmlns:local="clr-namespace:NASA_PL.Views"
-      xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="NASA_PL.Views.PlanetsView"
+      xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+      x:Class="NASA_PL.Views.PlanetsView"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PlanetsView">
@@ -31,10 +33,16 @@
                              OpacityEnabled="True" 
                              ScalingEnabled="True" 
                              Grid.Row="1"
-                             SelectedIndexChanged="PlanetsCarousel_OnSelectedIndexChanged"
+                             
 
-           
         >
+
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectedIndexChanged">
+                    <b:InvokeCommandAction Command="{Binding UpdatePlanetNameCommand }"
+                                           CommandParameter="{Binding ElementName=PlanetsCarousel}" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
 
             <syncfusion:CarouselItem
                 Name="MercuryCarouselItem"
@@ -110,7 +118,7 @@
                     HorizontalAlignment="Center">
             <TextBlock 
                 Name="currentPlanetTextBlock" 
-                Text="Mercury"
+                Text="{Binding PlanetName}"
                 VerticalAlignment="Center"  
                 HorizontalAlignment="Center" 
                 FontSize="50"

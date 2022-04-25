@@ -36,29 +36,12 @@ namespace NASA_PL.Views
             DataContext = _viewModel;
         }
 
-        //private async void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var start = DateTime.Parse(startDate.Text).ToString("yyyy-MM-dd");
-        //    var end = DateTime.Parse(endDate.Text).ToString("yyyy-MM-dd");
-
-        //    // default value
-        //    double diameter = 0;
-        //    if (txtDiameter.Text != string.Empty)
-        //    {
-        //        double.TryParse(txtDiameter.Text, out diameter);
-        //    }
-
-        //    var hazardous = is_potentially_hazardous_asteroid.IsChecked.Value;
-
-        //    await Task.Run(() => _viewModel.SearchNeo(start, end, diameter, hazardous));
-        //}
-
 
         private void Date_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (startDate.SelectedDate >= endDate.SelectedDate)
+            if (startDate.SelectedDate > endDate.SelectedDate)
             {
-                FilterButton.IsEnabled = false;
+                FilterButton.IsEnabled = (startDate.SelectedDate > endDate.SelectedDate);
             }
             else
             {
@@ -69,12 +52,14 @@ namespace NASA_PL.Views
             {
                 FilterButton.IsEnabled = false;
                 MessageBox.Show("start date must be in the past", "Error");
+                startDate.SelectedDate = DateTime.Today.Date.AddDays(-1);
             }
 
             if (endDate.SelectedDate >= DateTime.Today.Date)
             {
                 FilterButton.IsEnabled = false;
                 MessageBox.Show("end date must be in the past", "Error");
+                endDate.SelectedDate = DateTime.Today.Date.AddDays(-1);
             }
 
             if (endDate.SelectedDate - startDate.SelectedDate > new TimeSpan(7, 0, 0, 0))

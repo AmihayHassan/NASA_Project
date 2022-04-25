@@ -31,7 +31,8 @@ namespace NASA_PL.ViewModels
         public ICommand UpdateEndDateCommand { get; set; }
         public ICommand UpdateDiameterCommand { get; set; }
         public ICommand UpdateIsHazardousCommand { get; set; }
-        public IAsyncRelayCommand GetNeosCommand { get; set; }
+
+        public IAsyncRelayCommand SearchNeosCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -68,7 +69,8 @@ namespace NASA_PL.ViewModels
                 }
             });
 
-            GetNeosCommand = new AsyncRelayCommand(async () =>
+
+            SearchNeosCommand = new AsyncRelayCommand(async () =>
             {
                 await Task.Run(() => SearchNeo(_start, _end, _diameter, _hazardous));
             }, _start != string.Empty && _end != string.Empty);

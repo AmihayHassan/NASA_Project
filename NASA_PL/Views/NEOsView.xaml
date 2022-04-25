@@ -38,7 +38,7 @@
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="TextChanged">
                     <b:InvokeCommandAction Command="{Binding UpdateDiameterCommand}"
-                                           CommandParameter="{Binding ElementName=txtDiameter, Path=Text}" />
+                                           CommandParameter="{Binding ElementName=txtDiameter}" />
                 </b:EventTrigger>
             </b:Interaction.Triggers>
         </TextBox>
@@ -59,7 +59,7 @@
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="IsChecked">
                         <b:InvokeCommandAction Command="{Binding UpdateIsHazardousCommand}"
-                                               CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid, Path=IsChecked}" />
+                                               CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid}" />
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
             </ToggleButton>
@@ -75,7 +75,7 @@
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="SelectedDateChanged">
                     <b:InvokeCommandAction Command="{Binding UpdateStartDateCommand}"
-                                           CommandParameter="{Binding ElementName=startDate, Path=SelectedDate}" />
+                                           CommandParameter="{Binding ElementName=startDate}" />
                 </b:EventTrigger>
             </b:Interaction.Triggers>
         </DatePicker>
@@ -90,7 +90,7 @@
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="SelectedDateChanged">
                     <b:InvokeCommandAction Command="{Binding UpdateEndDateCommand}"
-                                           CommandParameter="{Binding ElementName=endDate, Path=SelectedDate}" />
+                                           CommandParameter="{Binding ElementName=endDate}" />
                 </b:EventTrigger>
             </b:Interaction.Triggers>
         </DatePicker>
@@ -100,7 +100,7 @@
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                 Grid.Row="0"
                 Grid.Column="4"
-                Command="{Binding }"
+                Command="{Binding SearchNeosCommand }"
                 IsEnabled="False">
 
             <materialDesign:PackIcon Kind="Filter"

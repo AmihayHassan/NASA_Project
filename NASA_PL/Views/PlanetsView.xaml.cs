@@ -34,40 +34,8 @@ namespace NASA_PL.Views
 
         private void PlanetsCarousel_OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            currentPlanetTextBlock.Text = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
+            //currentPlanetTextBlock.Text = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
         }
-
-        //private void CurrentPlanetTextBlock_OnMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    var pcv = new PlanetCardView(PlanetsList[PlanetsCarousel.SelectedIndex]);
-        //    pcv.ShowDialog();
-        //}
-
-        //private void RightButtonBase_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    int current = PlanetsCarousel.SelectedIndex;
-        //    if (current < 7)
-        //    {
-        //        PlanetsCarousel.SelectedIndex = current + 1;
-        //    }
-        //    else
-        //    {
-        //        PlanetsCarousel.SelectedIndex = 0;
-        //    }
-        //}
-
-        //private void LeftButtonBase_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    int current = PlanetsCarousel.SelectedIndex;
-        //    if (current > 0)
-        //    {
-        //        PlanetsCarousel.SelectedIndex = current - 1;
-        //    }
-        //    else
-        //    {
-        //        PlanetsCarousel.SelectedIndex = 7;
-        //    }
-        //}
 
     }
 }
