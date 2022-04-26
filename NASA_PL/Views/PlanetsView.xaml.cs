@@ -34,7 +34,7 @@ namespace NASA_PL.Views
 
         private void PlanetsCarousel_OnSelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //currentPlanetTextBlock.Text = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
+            PlanetName.Content = PlanetsList[PlanetsCarousel.SelectedIndex].Name;
         }
 
     }
