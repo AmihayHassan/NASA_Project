@@ -257,19 +257,17 @@ namespace NASA_DAL
         #region get images and media for planets
         public async Task<Dictionary<string, string>> GetSearchResult(string query)
         {
-            string request = $"https://images-api.nasa.gov/search?q={query}";
+            var request = $"https://images-api.nasa.gov/search?q={query}";
             var resultsList = await GetFromApi<dynamic>(request);
 
-            Dictionary<string, string> linkAndDescriptionDictionary = new Dictionary<string, string>();
+            var linkAndDescriptionDictionary = new Dictionary<string, string>();
 
             foreach (var item in resultsList.collection.items)
             {
-                if (item.links != null)
-                {
-                    string href = (string)item.links[0].href;
-                    string description = (string)item.data[0].description;
-                    linkAndDescriptionDictionary.Add(href, description);
-                }
+                if (item.links == null) continue;
+                var href = (string)item.links[0].href;
+                var description = (string)item.data[0].description;
+                linkAndDescriptionDictionary.Add(href, description);
             }
             return linkAndDescriptionDictionary;
         }

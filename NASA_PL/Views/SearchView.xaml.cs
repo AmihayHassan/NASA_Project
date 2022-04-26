@@ -28,32 +28,11 @@ namespace NASA_PL.Views
     /// </summary>
     public partial class SearchView : Page
     {
-        SearchViewModel searchViewModel = null;
         public SearchView()
         {
             InitializeComponent();
-            searchViewModel = new SearchViewModel();
-        }
-        
-        private async void btSearch_Click(object sender, RoutedEventArgs e)
-        {
-            var text = txtSearch.Text;
-            if (text.Length <= 0) return;
-            var ImageDictionary = await Task.Run(() => searchViewModel.GetSearchResult(text).Result);
-            SearchListBox.ItemsSource = ImageDictionary;
-        }
-
-        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var x = sender as Card;
-
-            var y = x.GetChildObjects().FirstOrDefault();
-            var z = y.GetChildObjects().FirstOrDefault(c => c is Image);
-            var a = (z as Image).Source.ToString();
-
-            var bvi = new BigImageView(a);
-            bvi.ShowDialog();
-
+            var searchViewModel = new SearchViewModel();
+            DataContext = searchViewModel;
         }
     }
 }

@@ -1,5 +1,5 @@
 TODO list:
-- delete take(5) in BL.GetSearchResult
+- delete take(5) in BL.GetSearchResult (get all images)
 - change search MVVM to INotify
 - add another command
 - create login page and say hello to user in home page

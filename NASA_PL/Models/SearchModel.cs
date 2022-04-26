@@ -16,10 +16,9 @@ namespace NASA_PL.Models
         {
             bl = new BL();
         }
-        public async Task<Dictionary<string, string>> GetSearchResult(string search)
+        public async Task<Dictionary<string, string>> GetSearchResult(string search, int confidence)
         {
-            return await bl.GetSearchResult(search);
-            
+            return await bl.GetSearchResult(search, confidence);
         }
     }
 }

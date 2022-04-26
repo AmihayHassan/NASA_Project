@@ -9,7 +9,7 @@ namespace NASA_BL
     public class BL
     {
         private Dal dal = new Dal();
-        
+
         public async Task<APOD> GetAPOD()
         {
             return await dal.GetApodFromNasaApi();
@@ -34,22 +34,17 @@ namespace NASA_BL
         }
 
         //TODO change SubDic to imagesAndDescription
-        public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, bool debug = false)
+        public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence, bool debug = false)
         {
-            //var tasks = new List<Task<Dictionary<string, string>>>();
-            //var imagesAndDescription = await dal.GetSearchResult(querySearch);
-            //return imagesAndDescription;
-
             return await dal.GetSearchResult(querySearch);
-            //var SubDic= (from Item in imagesAndDescription select Item)
-            //                                            .Take(5)
-            //                                            .ToDictionary(Item=>Item.Key); 
+            //var imagesAndDescription = await dal.GetSearchResult(querySearch);
+
             //var res = new Dictionary<string, string>();
-            //Parallel.ForEach(SubDic.Keys, async image =>
+            //Parallel.ForEach(imagesAndDescription.Keys, async image =>
             //{
             //    ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
             //    if (tag.result == null) return;
-            //    if (tag.result.tags.Any((x) => x.confidence > 85 && x.tag.en == "planet"))
+            //    if (tag.result.tags.Any((x) => x.confidence >= confidence && x.tag.en == "planet"))
             //    {
             //        res.Add(image, imagesAndDescription[image]);
             //    }

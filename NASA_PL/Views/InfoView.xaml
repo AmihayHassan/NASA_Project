@@ -19,7 +19,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Height="200"
-        Width="330"
+        Width="350"
         >
     <Border
         CornerRadius="40"

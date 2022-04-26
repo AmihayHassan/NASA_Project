@@ -5,22 +5,81 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.Controls;
+using MaterialDesignThemes.Wpf;
+using NASA_BE.Annotations;
 using NASA_PL.Models;
+using NASA_PL.Views;
 
 namespace NASA_PL.ViewModels
 {
-    [INotifyPropertyChanged]
-    public class SearchViewModel
+    public class SearchViewModel : INotifyPropertyChanged
     {
         private readonly SearchModel _searchModel;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _queryString;
+        private int _confidence;
+
+        private Dictionary<string, string> _resultsDictionary;
+        public Dictionary<string, string> ResultsDictionary
+        {
+            get => _resultsDictionary;
+            set
+            {
+                _resultsDictionary = value;
+                OnPropertyChanged(nameof(ResultsDictionary));
+            }
+        }
+
+
+        public ICommand UpdateQueryStringCommand { get; set; }
+        public ICommand UpdateConfidenceCommand { get; set; }
+        public IAsyncRelayCommand SearchCommand { get; set; }
+
         public SearchViewModel()
         {
             _searchModel = new SearchModel();
+            ResultsDictionary = new Dictionary<string, string>();
+
+            UpdateQueryStringCommand = new RelayCommand<TextBox>(box =>
+            {
+                _queryString = box.Text;
+            });
+
+            UpdateConfidenceCommand = new RelayCommand<Slider>(slider =>
+            {
+                _confidence = Convert.ToInt32(slider.Value);
+            });
+
+            SearchCommand = new AsyncRelayCommand(async () =>
+            {
+                ResultsDictionary = await Task.Run(() => GetSearchResult(_queryString, _confidence));
+            });
         }
-        public async Task<Dictionary<string, string>> GetSearchResult(string search)
+
+        public async Task<Dictionary<string, string>> GetSearchResult(string search, int confidence)
         {
-            return await _searchModel.GetSearchResult(search);
+            var result = await _searchModel.GetSearchResult(search, confidence);
+
+            // if no images were found or no image matched the required confidence
+            if (result.Count == 0)
+            {
+                result.Add("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/NASA_Wormball_logo.svg/768px-NASA_Wormball_logo.svg.png",
+                    $"No matching images for \"{_queryString}\" with confidence of {_confidence}%");
+            }
+
+            return result;
+        }
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -34,8 +34,8 @@ namespace NASA_PL.ViewModels
 
         public IAsyncRelayCommand SearchNeosCommand { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
+        public event PropertyChangedEventHandler PropertyChanged;
         private readonly NEOsModel _model;
 
         public NEOsViewModel()
