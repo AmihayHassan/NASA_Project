@@ -34,14 +34,14 @@ namespace NASA_PL.Views
                 var sb = Resources["OpenMenu"] as Storyboard;
                 sb?.Begin(SideBar);
                 _hidden = false;
-                OpenCloseButtonIcon.Kind = PackIconKind.Menu;
+                OpenCloseButtonIcon.Kind = PackIconKind.MenuOpen;
             }
             else
             {
                 var sb = Resources["CloseMenu"] as Storyboard;
                 sb?.Begin(SideBar);
                 _hidden = true;
-                OpenCloseButtonIcon.Kind = PackIconKind.MenuOpen;
+                OpenCloseButtonIcon.Kind = PackIconKind.Menu;
             }
         }
 

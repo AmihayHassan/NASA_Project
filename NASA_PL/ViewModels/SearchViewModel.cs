@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -36,6 +37,16 @@ namespace NASA_PL.ViewModels
             }
         }
 
+        private Visibility _showList;
+        public Visibility ShowList
+        {
+            get => _showList;
+            set
+            {
+                _showList = value;
+                OnPropertyChanged(nameof(ShowList));
+            }
+        }
 
         public ICommand UpdateQueryStringCommand { get; set; }
         public ICommand UpdateConfidenceCommand { get; set; }
@@ -44,7 +55,7 @@ namespace NASA_PL.ViewModels
         public SearchViewModel()
         {
             _searchModel = new SearchModel();
-            ResultsDictionary = new Dictionary<string, string>();
+            ResultsDictionary = null;
 
             UpdateQueryStringCommand = new RelayCommand<TextBox>(box =>
             {
@@ -58,7 +69,10 @@ namespace NASA_PL.ViewModels
 
             SearchCommand = new AsyncRelayCommand(async () =>
             {
+                ShowList = Visibility.Collapsed;
+                ResultsDictionary = new Dictionary<string, string>();
                 ResultsDictionary = await Task.Run(() => GetSearchResult(_queryString, _confidence));
+                ShowList = Visibility.Visible;
             });
         }
 

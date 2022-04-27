@@ -14,8 +14,6 @@ namespace NASA_PL.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            // if imageUrl is null or empty, then set visibility to Visible
-            // else, set visibility to Collapsed
             if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
                 return Visibility.Visible;

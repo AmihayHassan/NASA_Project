@@ -7,6 +7,8 @@
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:viewModels="clr-namespace:NASA_PL.ViewModels"
+      xmlns:converters="clr-namespace:NASA_PL.Converters"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       x:Class="NASA_PL.Views.SearchView"
       mc:Ignorable="d"
       d:DesignHeight="450"
@@ -14,6 +16,10 @@
       Title="Search"
       Foreground="White">
 
+    <Page.Resources>
+        <converters:ProgressBarVisibilityConverter x:Key="ProgressBarVisibilityConverter" />
+        <converters:DictToVisibilityConverter x:Key="DictToVisibilityConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -77,70 +83,79 @@
         <Grid Margin="10"
               Grid.Row="1">
 
-            <ListBox Name="SearchListBox"
-                     ItemsSource="{Binding ResultsDictionary }">
+            <Grid>
 
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
+                <ProgressBar Name="ImageLoadingProgressBar"
+                             IsIndeterminate="True"
+                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="150"
+                             Height="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Visibility="{Binding ResultsDictionary, Converter={StaticResource DictToVisibilityConverter}}">
+                </ProgressBar>
 
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Margin"
-                                Value="5" />
-                    </Style>
+                <ListBox Name="SearchListBox"
+                         Visibility="{Binding ShowList}"
+                         ItemsSource="{Binding ResultsDictionary }">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Margin"
+                                    Value="5" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card Name="Card"
+                                                 Width="225"
+                                                 Height="300"
+                                                 UniformCornerRadius="5">
 
-                </ListBox.ItemContainerStyle>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1.5*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <materialDesign:Card Name="Card"
-                                             Width="225"
-                                             Height="300"
-                                             UniformCornerRadius="5">
+                                    <Image x:Name="ListImage"
+                                           Source="{Binding Path=Key}"
+                                           Stretch="Uniform"
+                                           Grid.Row="0"
+                                           Margin="0 10 0 0"
+                                           ToolTipService.InitialShowDelay="1000">
+                                        <Image.ToolTip>
+                                            <ToolTip Placement="Center">
+                                                <Image Source="{Binding Path=Key}"
+                                                       MaxHeight="500"
+                                                       MaxWidth="500" />
+                                            </ToolTip>
+                                        </Image.ToolTip>
+                                    </Image>
+                                    <ScrollViewer Grid.Row="1"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  Margin="20">
+                                        <ScrollViewer.Resources>
+                                            <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">5</system:Double>
+                                        </ScrollViewer.Resources>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1.5*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                                        <TextBox TextWrapping="Wrap"
+                                                 VerticalAlignment="Center"
+                                                 Text="{Binding Path=Value, Mode=OneWay}"
+                                                 TextAlignment="Justify"
+                                                 IsReadOnly="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-                                <Image x:Name="ListImage"
-                                       Source="{Binding Path=Key}"
-                                       Stretch="Uniform"
-                                       Grid.Row="0"
-                                       Margin="0 10 0 0"
-                                       ToolTipService.InitialShowDelay="1000">
-                                    <Image.ToolTip>
-                                        <ToolTip Placement="Center">
-                                            <Image Source="{Binding Path=Key}"
-                                                   MaxHeight="500"
-                                                   MaxWidth="500" />
-                                        </ToolTip>
-                                    </Image.ToolTip>
-                                </Image>
-                                <ScrollViewer Grid.Row="1"
-                                              VerticalScrollBarVisibility="Auto"
-                                              Margin="20">
-                                    <ScrollViewer.Resources>
-                                        <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">5</system:Double>
-                                    </ScrollViewer.Resources>
-
-                                    <TextBox TextWrapping="Wrap"
-                                             VerticalAlignment="Center"
-                                             Text="{Binding Path=Value, Mode=OneWay}"
-                                             TextAlignment="Justify"
-                                             IsReadOnly="True" />
-                                </ScrollViewer>
-                            </Grid>
-                        </materialDesign:Card>
-
-
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            </Grid>
         </Grid>
 
 
