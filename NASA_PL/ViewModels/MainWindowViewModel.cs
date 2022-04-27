@@ -31,7 +31,13 @@ namespace NASA_PL.ViewModels
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
 
-            OpenApodPageCommand = new RelayCommand<Frame>(OpenApodPage, frame => frame.Content is not APODView);
+
+            OpenApodPageCommand = new RelayCommand<Frame>(async frame =>
+            {
+                frame.Content = new APODView();
+            }
+            , frame => frame.Content is not APODView);
+
             OpenSearchPageCommand = new RelayCommand<Frame>(OpenSearchPage, frame => frame.Content is not SearchView);
             OpenPlanetsPageCommand = new RelayCommand<Frame>(OpenPlanetsPage, frame => frame.Content is not PlanetsView);
             OpenNeosPageCommand = new RelayCommand<Frame>(OpenNeosPage, frame => frame.Content is not NEOsView);
@@ -64,11 +70,6 @@ namespace NASA_PL.ViewModels
                     window.WindowState = WindowState.Maximized;
                     break;
             }
-        }
-
-        private void OpenApodPage(Frame frame)
-        {
-            frame.Content = new APODView();
         }
 
         private void OpenSearchPage(Frame frame)

@@ -95,7 +95,7 @@
             </b:Interaction.Triggers>
         </DatePicker>
 
-                <!--Click="Button_Click"-->
+        <!--Click="Button_Click"-->
         <Button Name="FilterButton"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                 Grid.Row="0"
@@ -117,11 +117,11 @@
 
             <Grid>
 
-                <DataGrid IsReadOnly="True"
+                <DataGrid Name="Result"
+                          IsReadOnly="True"
                           CanUserAddRows="False"
                           CanUserSortColumns="True"
                           AutoGenerateColumns="True"
-                          Name="Result"
                           ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                           GridLinesVisibility="Horizontal" />
 
