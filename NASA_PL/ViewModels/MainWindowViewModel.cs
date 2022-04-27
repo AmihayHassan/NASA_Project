@@ -31,8 +31,7 @@ namespace NASA_PL.ViewModels
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
 
-
-            OpenApodPageCommand = new RelayCommand<Frame>(async frame =>
+            OpenApodPageCommand = new RelayCommand<Frame>(frame =>
             {
                 frame.Content = new APODView();
             }
