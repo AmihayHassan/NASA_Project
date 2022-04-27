@@ -1,20 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using CommunityToolkit.Mvvm.ComponentModel;
-using LiveCharts.Configurations;
 using System.Text.RegularExpressions;
 
 using NASA_PL.ViewModels;
@@ -48,12 +35,12 @@ namespace NASA_PL.Views
                 FilterButton.IsEnabled = true;
             }
 
-            if (startDate.SelectedDate >= DateTime.Today.Date)
-            {
-                FilterButton.IsEnabled = false;
-                MessageBox.Show("start date must be in the past", "Error");
-                startDate.SelectedDate = DateTime.Today.Date.AddDays(-1);
-            }
+            //if (startDate.SelectedDate >= DateTime.Today.Date)
+            //{
+            //    FilterButton.IsEnabled = false;
+            //    MessageBox.Show("start date must be in the past", "Error");
+            //    startDate.SelectedDate = DateTime.Today.Date.AddDays(-1);
+            //}
 
             if (endDate.SelectedDate >= DateTime.Today.Date)
             {

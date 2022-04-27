@@ -6,6 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d"
       Foreground="white"
       d:DesignHeight="450"
@@ -69,6 +70,8 @@
                     Width="150"
                     Grid.Row="0"
                     Grid.Column="2"
+                    DisplayDateEnd="{Binding Yesterday}"
+                    SelectedDate="{Binding StartDate}"
                     materialDesign:HintAssist.Hint="Start Date"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     SelectedDateChanged="Date_OnSelectedDateChanged">
@@ -84,6 +87,8 @@
                     Width="150"
                     Grid.Row="0"
                     Grid.Column="3"
+                    DisplayDateEnd="{Binding Yesterday}"
+                    SelectedDate="{Binding EndDate}"
                     materialDesign:HintAssist.Hint="End Date"
                     Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     SelectedDateChanged="Date_OnSelectedDateChanged">

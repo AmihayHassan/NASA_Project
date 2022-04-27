@@ -26,6 +26,8 @@ namespace NASA_PL.ViewModels
         private int _diameter = 0;
         private bool _hazardous = false;
 
+        public DateTime Yesterday { get; set; }
+
         public ICommand Filter { get; set; }
         public ICommand UpdateStartDateCommand { get; set; }
         public ICommand UpdateEndDateCommand { get; set; }
@@ -42,6 +44,8 @@ namespace NASA_PL.ViewModels
         {
             _model = new NEOsModel();
             Filter = new FilterCommand(this);
+
+            Yesterday = DateTime.Now.AddDays(-1);
 
             UpdateStartDateCommand = new RelayCommand<DatePicker>(picker =>
             {
@@ -68,8 +72,7 @@ namespace NASA_PL.ViewModels
                     _hazardous = toggle.IsChecked.Value;
                 }
             });
-
-
+            
             SearchNeosCommand = new AsyncRelayCommand(async () =>
             {
                 await Task.Run(() => SearchNeo(_start, _end, _diameter, _hazardous));
