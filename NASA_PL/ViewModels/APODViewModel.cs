@@ -23,14 +23,9 @@ namespace NASA_PL.ViewModels
             set
             {
                 _apod = value;
-
-                // when property is changed, notify the view
                 OnPropertyChanged(nameof(Apod));
-                // also notify the view that the image has changed
                 OnPropertyChanged(nameof(ImageUrl));
-                // and the title
                 OnPropertyChanged(nameof(Title));
-                // and the explanation
                 OnPropertyChanged(nameof(Explanation));
             }
         }
@@ -47,14 +42,10 @@ namespace NASA_PL.ViewModels
             var model = new APODModel();
             Apod = await model.GetImageOfTheDay();
         }
-        
-        public string ImageUrl => Apod == null ? "" : Apod.Url;
-        public string Title => Apod == null ? "" : Apod.Title;
-        public string Explanation => Apod == null ? "" : Apod.Explanation;
 
-        //public string ImageUrl => _apod.Url;
-        //public string Title => _apod.Title;
-        //public string Explanation => _apod.Explanation;
+        public string ImageUrl => Apod == null ? "" : Apod.Url;
+        public string Title => Apod == null ? "loading image" : Apod.Title;
+        public string Explanation => Apod == null ? "" : Apod.Explanation;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

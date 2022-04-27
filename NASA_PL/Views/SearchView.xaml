@@ -109,14 +109,15 @@
 
                                 <Image x:Name="ListImage"
                                        Source="{Binding Path=Key}"
-                                       Stretch="UniformToFill"
+                                       Stretch="Uniform"
                                        Grid.Row="0"
-                                       Margin="0 10 0 0">
+                                       Margin="0 10 0 0"
+                                       ToolTipService.InitialShowDelay="1000">
                                     <Image.ToolTip>
                                         <ToolTip Placement="Center">
                                             <Image Source="{Binding Path=Key}"
                                                    MaxHeight="500"
-                                                   MaxWidth="500"/>
+                                                   MaxWidth="500" />
                                         </ToolTip>
                                     </Image.ToolTip>
                                 </Image>

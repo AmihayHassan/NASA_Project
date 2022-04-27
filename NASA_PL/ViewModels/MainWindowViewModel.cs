@@ -11,6 +11,10 @@ namespace NASA_PL.ViewModels
     [INotifyPropertyChanged]
     public partial class MainWindowViewModel
     {
+        public PlanetsView PlanetsPage;
+        public SearchView SearchPage;
+        public NEOsView NEOsPage;
+
         public ICommand CloseWindowCommand { get; private set; }
         public ICommand RestoreWindowCommand { get; private set; }
         public ICommand MinimizeWindowCommand { get; private set; }
@@ -26,6 +30,10 @@ namespace NASA_PL.ViewModels
 
         public MainWindowViewModel()
         {
+            PlanetsPage = new PlanetsView();
+            SearchPage = new SearchView();
+            NEOsPage = new NEOsView();
+
             _model = new MainWindowModel();
             CloseWindowCommand = new RelayCommand<Window>(CloseWindow);
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
@@ -37,9 +45,9 @@ namespace NASA_PL.ViewModels
             }
             , frame => frame.Content is not APODView);
 
-            OpenSearchPageCommand = new RelayCommand<Frame>(OpenSearchPage, frame => frame.Content is not SearchView);
-            OpenPlanetsPageCommand = new RelayCommand<Frame>(OpenPlanetsPage, frame => frame.Content is not PlanetsView);
-            OpenNeosPageCommand = new RelayCommand<Frame>(OpenNeosPage, frame => frame.Content is not NEOsView);
+            OpenSearchPageCommand = new RelayCommand<Frame>(frame => frame.Content = SearchPage, frame => frame.Content is not SearchView);
+            OpenPlanetsPageCommand = new RelayCommand<Frame>(frame => frame.Content = PlanetsPage, frame => frame.Content is not PlanetsView);
+            OpenNeosPageCommand = new RelayCommand<Frame>(frame => frame.Content = NEOsPage, frame => frame.Content is not NEOsView);
 
             OpenInfoWindowCommand = new RelayCommand(() =>
             {
@@ -69,21 +77,6 @@ namespace NASA_PL.ViewModels
                     window.WindowState = WindowState.Maximized;
                     break;
             }
-        }
-
-        private void OpenSearchPage(Frame frame)
-        {
-            frame.Content = new SearchView();
-        }
-
-        private void OpenPlanetsPage(Frame frame)
-        {
-            frame.Content = new PlanetsView();
-        }
-
-        private void OpenNeosPage(Frame frame)
-        {
-            frame.Content = new NEOsView();
         }
     }
 }

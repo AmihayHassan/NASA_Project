@@ -5,11 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NASA_PL.Views"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converters="clr-namespace:NASA_PL.Converters"
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
       ShowsNavigationUI="False"
       Title="APODView">
+
+    <Page.Resources>
+        <converters:ProgressBarVisibilityConverter x:Key="ProgressBarVisibilityConverter" />
+    </Page.Resources>
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
@@ -27,29 +32,37 @@
                     FontWeight="Bold"
                     Foreground="White" />
 
-
-        <!--<ProgressBar
-                Style="{StaticResource MaterialDesignCircularProgressBar}"
-                Value="0"
-                IsIndeterminate="True"
-                />-->
-
         <Border Grid.Row="1"
-                MaxWidth="1000">
-            <ScrollViewer>
+                MaxWidth="1000"
+                Margin="50 0">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <ProgressBar Name="ImageLoadingProgressBar"
+                             IsIndeterminate="True"
+                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="150"
+                             Height="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Visibility="{Binding ImageUrl, Converter={StaticResource ProgressBarVisibilityConverter}}" />
+
                 <Image x:Name="image"
                        Source="{Binding ImageUrl}"
                        Stretch="UniformToFill"
+                       ToolTipService.InitialShowDelay="1000"
                        MaxWidth="800">
+
                     <Image.ToolTip>
                         <ToolTip Placement="Center">
                             <Image Source="{Binding ImageUrl}"
-                                   MaxHeight="750"
-                                   MaxWidth="750"></Image>
+                                   MaxHeight="1000"
+                                   MaxWidth="1000"></Image>
                         </ToolTip>
                     </Image.ToolTip>
+
                 </Image>
-            </ScrollViewer>
+            </StackPanel>
         </Border>
 
         <ScrollViewer Grid.Row="2">

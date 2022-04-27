@@ -194,6 +194,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\FilterCommand.cs" />
+    <Compile Include="Converters\ImageVisibilityConverter.cs" />
     <Compile Include="Models\APODModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
@@ -330,6 +331,7 @@
   <ItemGroup>
     <Resource Include="Media\StarIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

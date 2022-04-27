@@ -88,12 +88,12 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Label Name="PlanetName"
-                       Content="Mercury"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="50"
-                       Foreground="White"
-                       FontWeight="Bold" />
+                   Content="Mercury"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="50"
+                   Foreground="White"
+                   FontWeight="Bold" />
 
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                     Margin="10 0 "
