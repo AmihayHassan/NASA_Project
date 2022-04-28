@@ -78,14 +78,6 @@ namespace NASA_PL.ViewModels
             ExportToExcelCommand = new RelayCommand(() =>
             {
                 ExportToExcel(nearEarthObj);
-            }, () =>
-            {
-                return true;
-                //if (nearEarthObj == null)
-                //{
-                //    return false;
-                //}
-                //return nearEarthObj.Count > 0;
             });
 
             SearchNeosCommand = new AsyncRelayCommand(async () =>
