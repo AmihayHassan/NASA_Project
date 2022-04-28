@@ -103,7 +103,7 @@ namespace NASA_PL.ViewModels
             {
                 nearEarthObj = value;
                 OnPropertyChanged(nameof(NearEarthObj));
-                CanExport = nearEarthObj != null && nearEarthObj.Count > 0;
+                CanExport = nearEarthObj is {Count: > 0};
                 OnPropertyChanged(nameof(CanExport));
             }
         }
