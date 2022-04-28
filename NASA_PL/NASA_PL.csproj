@@ -206,9 +206,6 @@
     <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
-    <Compile Include="UserControls\SidePanelButtonUC.xaml.cs">
-      <DependentUpon>SidePanelButtonUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\APODViewModel.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -297,10 +294,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UserControls\SidePanelButtonUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\APODView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -341,7 +334,9 @@
   <ItemGroup>
     <Resource Include="Media\StarIcon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UserControls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

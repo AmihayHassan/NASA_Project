@@ -60,6 +60,19 @@ namespace NASA_BL
         {
             return dal.CheckUserAndPassword(user, password);
         }
+
+        // create function that send to dal imageURL and save it to firebase
+        public async Task<string> SaveImageToFirebase(string imageURL)
+        {
+            return await dal.UploadImageToFirebase(imageURL);
+        }
+
+        //create function that get all images in firebase and return them
+        public  List<string> GetImagesFromFirebase()
+        {
+            return  dal.GetSavedImages();
+        }
+
     }
 
 }

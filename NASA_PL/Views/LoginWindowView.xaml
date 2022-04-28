@@ -110,21 +110,19 @@
 
                 <Grid Grid.Row="4">
 
-                    <Border Grid.Column="0"
-                            CornerRadius="30"
-                            Height="60"
-                            Margin="10"
-                            BorderBrush="DarkOrchid"
-                            Opacity="0.8"
-                            BorderThickness="3"
-                            Background="LightGray"
-                            MouseDown="UIElement_OnMouseLeave">
-                        <Label Content="Login"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="20"
-                               Foreground="DarkOrchid" />
-                    </Border>
+                    <Button Name="Login"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Foreground="DarkOrchid"
+                            Click="ButtonBase_OnClick">
+                        <materialDesign:PackIcon Kind="Login"
+                                                 Width="20"
+                                                 Height="20" />
+                    </Button>
+
+
+
 
                 </Grid>
 

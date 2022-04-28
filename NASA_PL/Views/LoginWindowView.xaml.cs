@@ -41,18 +41,6 @@ namespace NASA_PL.Views
             }
         }
 
-        private void UIElement_OnMouseLeave(object sender, MouseEventArgs e)
-        {
-            var model = new LoginWindowModel();
-            if (model.CheckUserAndPassword(UserNameTextBox.Text, PasswordBox.Password))
-            {
-                Close();
-            }
-            else
-            {
-                WrongPassword.Text = "username or password are incorrect";
-            }
-        }
 
         private void UserNameTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -68,6 +56,19 @@ namespace NASA_PL.Views
         {
             Close();
             wnd.Close();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var model = new LoginWindowModel();
+            if (model.CheckUserAndPassword(UserNameTextBox.Text, PasswordBox.Password))
+            {
+                Close();
+            }
+            else
+            {
+                WrongPassword.Text = "username or password are incorrect";
+            }
         }
     }
 }
