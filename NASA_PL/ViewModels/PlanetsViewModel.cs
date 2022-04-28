@@ -18,10 +18,10 @@ using Syncfusion.Windows.Shared;
 
 namespace NASA_PL.ViewModels
 {
-    public class PlanetsViewModel
+    public class PlanetsViewModel : INotifyPropertyChanged
     {
-
         private readonly Models.PlanetsModel _model;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand OpenPlanetCardCommand { get; private set; }
         public ICommand MovePlanetRightCommand { get; private set; }
@@ -69,5 +69,11 @@ namespace NASA_PL.ViewModels
             }
         }
 
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

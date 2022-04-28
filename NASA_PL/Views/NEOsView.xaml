@@ -7,10 +7,15 @@
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:converters="clr-namespace:NASA_PL.Converters"
       mc:Ignorable="d"
       Foreground="white"
       d:DesignHeight="450"
       d:DesignWidth="800">
+
+    <Page.Resources>
+        <converters:ObservableCollectionToVisibilityConverter x:Key="ObservableCollectionToVisibilityConverter" />
+    </Page.Resources>    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -140,13 +145,25 @@
 
             <Grid>
 
+                <ProgressBar Name="ImageLoadingProgressBar"
+                             IsIndeterminate="True"
+                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="150"
+                             Height="150"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Visibility="{Binding NearEarthObj , Converter={StaticResource ObservableCollectionToVisibilityConverter}}">
+                </ProgressBar>
+
                 <DataGrid Name="Result"
                           IsReadOnly="True"
                           CanUserAddRows="False"
                           CanUserSortColumns="True"
                           AutoGenerateColumns="True"
-                          ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                          GridLinesVisibility="Horizontal" />
+                          Background="Transparent"
+                          ItemsSource="{Binding NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          GridLinesVisibility="Horizontal"
+                          Visibility="{Binding ShowDataGrid}" />
 
             </Grid>
 

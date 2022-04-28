@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -77,37 +78,50 @@ namespace NASA_PL.ViewModels
 
             ExportToExcelCommand = new RelayCommand(() =>
             {
-                ExportToExcel(nearEarthObj);
+                ExportToExcel(_nearEarthObj);
             });
 
             SearchNeosCommand = new AsyncRelayCommand(async () =>
             {
+                ShowDataGrid = Visibility.Collapsed;
+                NearEarthObj = new ObservableCollection<NearEarthObject>();
                 await Task.Run(() => SearchNeo(_start, _end, _diameter, _hazardous));
+                ShowDataGrid= Visibility.Visible;
             }, _start != string.Empty && _end != string.Empty);
         }
 
-        [ObservableProperty]
-        ObservableCollection<NearEarthObject> nearEarthObj;
+        private ObservableCollection<NearEarthObject> _nearEarthObj;
         public ObservableCollection<NearEarthObject> NearEarthObj
         {
-            get => nearEarthObj;
+            get => _nearEarthObj;
             set
             {
-                nearEarthObj = value;
+                _nearEarthObj = value;
                 OnPropertyChanged(nameof(NearEarthObj));
-                CanExport = nearEarthObj is {Count: > 0};
+                CanExport = _nearEarthObj is { Count: > 0 };
                 OnPropertyChanged(nameof(CanExport));
             }
         }
 
-        bool canExport;
+        private bool _canExport;
         public bool CanExport
         {
-            get => canExport;
+            get => _canExport;
             set
             {
-                canExport = value;
+                _canExport = value;
                 OnPropertyChanged(nameof(CanExport));
+            }
+        }
+
+        private Visibility _showDataGrid;
+        public Visibility ShowDataGrid
+        {
+            get => _showDataGrid;
+            set
+            {
+                _showDataGrid = value;
+                OnPropertyChanged(nameof(ShowDataGrid));
             }
         }
 

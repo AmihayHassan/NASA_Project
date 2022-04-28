@@ -147,7 +147,17 @@
                                                  VerticalAlignment="Center"
                                                  Text="{Binding Path=Value, Mode=OneWay}"
                                                  TextAlignment="Justify"
-                                                 IsReadOnly="True" />
+                                                 IsReadOnly="True">
+                                            <TextBox.ToolTip>
+                                                <ToolTip Placement="Center">
+                                                    <TextBlock Text="{Binding Path=Value, Mode=OneWay}"
+                                                               TextWrapping="Wrap"
+                                                               MaxWidth="300"
+                                                               FontSize="18"
+                                                               TextAlignment="Justify" />
+                                                </ToolTip>
+                                            </TextBox.ToolTip>
+                                        </TextBox>
                                     </ScrollViewer>
                                 </Grid>
                             </materialDesign:Card>
