@@ -35,7 +35,7 @@ namespace NASA_PL.ViewModels
             NEOsPage = new NEOsView();
 
             _model = new MainWindowModel();
-            CloseWindowCommand = new RelayCommand<Window>(CloseWindow);
+            CloseWindowCommand = new RelayCommand<Window>(window => window?.Close());
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
 
@@ -55,12 +55,7 @@ namespace NASA_PL.ViewModels
                 infoWindow.ShowDialog();
             });
         }
-
-        private void CloseWindow(Window window)
-        {
-            window?.Close();
-        }
-
+        
         private void MinimizeWindow(Window window)
         {
             window.WindowState = WindowState.Minimized;

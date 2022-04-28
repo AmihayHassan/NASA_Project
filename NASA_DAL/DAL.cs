@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
 using FirebaseAdmin;
+//using Firebase.Storage;
 
 namespace NASA_DAL
 {
@@ -307,32 +308,33 @@ namespace NASA_DAL
         //create function that receive image url, download it and save it to firebase and return its url
         public async Task<string> UploadImageToFirebase(string imageUrl)
         {
-            var client = new RestClient(imageUrl);
-            var request = new RestRequest(Method.GET);
-            var response = await client.ExecuteAsync(request);
-            var image = response.RawBytes;
-            var imageName = Guid.NewGuid().ToString() + ".jpg";
-            var storage = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com");
-            var storageRef = storage.Child("Images/" + imageName);
-            var uploadTask = storageRef.PutBytesAsync(image);
-            var downloadUrl = await uploadTask;
+            //var client = new RestClient(imageUrl);
+            //var request = new RestRequest(Method.GET);
+            //var response = await client.ExecuteAsync(request);
+            //var image = response.RawBytes;
+            //var imageName = Guid.NewGuid().ToString() + ".jpg";
+            //var storage = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com");
+            //var storageRef = storage.Child("Images/" + imageName);
+            //var uploadTask = storageRef.PutBytesAsync(image);
+            //var downloadUrl = await uploadTask;
 
-            //add the image to the database
-            using (var ctx = new NasaDB())
-            {
-                ctx.SavedImagesFB.Add(downloadUrl.ToString());
-                await ctx.SaveChangesAsync();
-            }
-
-            return downloadUrl.ToString();
+            ////add the image to the database
+            //using (var ctx = new NasaDB())
+            //{
+            //    ctx.SavedImagesFB.Add(downloadUrl.ToString());
+            //    await ctx.SaveChangesAsync();
+            //}
+            return null;
+            //return downloadUrl.ToString();
         }
 
         public List<string> GetSavedImages()
         {
             using (var ctx = new NasaDB())
             {
-                return ctx.SavedImagesFB.ToList();
+                //return ctx.SavedImagesFB.ToList();
             }
+            return null;
         }
 
     }

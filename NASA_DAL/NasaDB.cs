@@ -14,14 +14,13 @@ namespace NASA_DAL
     public class NasaDB : DbContext
     {
         public NasaDB() : base()
-
         {
 
         }
 
         public DbSet<User> UsersAndPasswords { get; set; }
         public DbSet<Planet> Planets { get; set; }
-        public DbSet<string> SavedImagesFB { get; set; }
+        //public DbSet<string> SavedImagesFB { get; set; }
 
     }
 }

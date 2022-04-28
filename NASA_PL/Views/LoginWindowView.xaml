@@ -17,127 +17,124 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Height="450"
-        Width="370">
+        Width="370"
+        Foreground="White"
+        Name="LoginWindow">
 
-    <Border CornerRadius="40"
-            BorderBrush="#320b86"
-            MouseDown="UIElement_OnMouseDown"
-            BorderThickness="4"
-            Background="{StaticResource MaterialDesignDarkBackground}">
+    <materialDesign:Card UniformCornerRadius="15"
+                         Padding="5">
+        <materialDesign:Card UniformCornerRadius="20">
 
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
 
+                <Button Name="Close"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        Margin="0,20,0,0"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding ElementName=LoginWindow}">
+                    <materialDesign:PackIcon Kind="Close"
+                                             Width="30"
+                                             Height="30" />
+                </Button>
 
-        <StackPanel VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Margin="0,0,0,0">
+                <StackPanel Orientation="Vertical">
 
-            <Button Name="Close"
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                    Margin="0,20,0,0"
-                    Click="Close_OnClick">
-                <materialDesign:PackIcon Kind="Close"
-                                         Width="30"
-                                         Height="30" />
-            </Button>
+                    <DockPanel LastChildFill="True">
+                        <materialDesign:PackIcon HorizontalAlignment="Center"
+                                                 Height="100"
+                                                 Width="100"
+                                                 Kind="Telescope"
+                                                 Opacity="0.9" />
+                        <materialDesign:PackIcon Kind="MoonAndStars"
+                                                 Width="50"
+                                                 Height="50"
+                                                 HorizontalAlignment="Center" />
+                    </DockPanel>
 
-            <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center"
+                               Style="{StaticResource MaterialDesignButtonTextBlock}"
+                               FontSize="25"
+                               Text="Welcome to NASA project"
+                               Foreground="White" />
 
-                <materialDesign:PackIcon HorizontalAlignment="Center"
-                                         Height="100"
-                                         Width="100"
-                                         Kind="Bus"
-                                         Opacity="0.9"
-                                         Foreground="DarkOrchid" />
-
-                <TextBlock HorizontalAlignment="Center"
-                           Style="{StaticResource MaterialDesignButtonTextBlock}"
-                           FontSize="25"
-                           Text="Welcome to NASA project"
-                           Foreground="DarkOrchid" />
-
-            </StackPanel>
-
-            <Grid Name="LoginGrid"
-                  Margin="30">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-
-                    <TextBox Name="UserNameTextBox"
-                             Width="200"
-                             FontSize="18"
-                             materialDesign:HintAssist.Hint="Username"
-                             materialDesign:HintAssist.IsFloating="True"
-                             TextChanged="UserNameTextBox_OnTextChanged" />
-                    <materialDesign:PackIcon VerticalAlignment="Bottom"
-                                             Kind="User"
-                                             Height="35"
-                                             Width="70"
-                                             Opacity="0.8"
-                                             Foreground="DarkOrchid" />
                 </StackPanel>
 
-                <StackPanel Grid.Row="2"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    <PasswordBox Name="PasswordBox"
+                <Grid Name="LoginGrid"
+                      Margin="30">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+
+                        <TextBox Name="UserNameTextBox"
                                  Width="200"
                                  FontSize="18"
-                                 materialDesign:HintAssist.Hint="Password"
+                                 materialDesign:HintAssist.Hint="Username"
                                  materialDesign:HintAssist.IsFloating="True"
-                                 PasswordChanged="PasswordBox_OnPasswordChanged" />
+                                 Text="{Binding Username}" />
+                        <materialDesign:PackIcon VerticalAlignment="Bottom"
+                                                 Kind="User"
+                                                 Height="35"
+                                                 Width="70"
+                                                 Opacity="0.8" />
+                    </StackPanel>
 
-                    <materialDesign:PackIcon VerticalAlignment="Bottom"
-                                             Kind="FormTextboxPassword"
-                                             Height="30"
-                                             Width="70"
-                                             Opacity="0.8"
-                                             Foreground="DarkOrchid" />
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <PasswordBox Name="PasswordBox"
+                                     Width="200"
+                                     FontSize="18"
+                                     PasswordChanged="PasswordBox_OnPasswordChanged"
+                                     materialDesign:HintAssist.Hint="Password"
+                                     materialDesign:HintAssist.IsFloating="True" />
 
-                </StackPanel>
+                        <materialDesign:PackIcon VerticalAlignment="Bottom"
+                                                 Kind="FormTextboxPassword"
+                                                 Height="30"
+                                                 Width="70"
+                                                 Opacity="0.8" />
 
-                <Grid Grid.Row="4">
+                    </StackPanel>
 
-                    <Button Name="Login"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Foreground="DarkOrchid"
-                            Click="ButtonBase_OnClick">
-                        <materialDesign:PackIcon Kind="Login"
-                                                 Width="20"
-                                                 Height="20" />
-                    </Button>
+                    <Grid Grid.Row="4">
+
+                        <Button Name="Login"
+                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                HorizontalAlignment="Center"
+                                Width="150"
+                                Command="{Binding LoginCommand}"
+                                CommandParameter="{Binding ElementName=LoginWindow}">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Login" />
+                                <materialDesign:PackIcon Kind="Login"
+                                                         Width="20"
+                                                         Height="20" />
+                            </StackPanel>
+                        </Button>
 
 
 
+
+                    </Grid>
 
                 </Grid>
 
-                <TextBlock Name="WrongPassword"
-                           Grid.Row="3"
-                           FontSize="15"
-                           TextAlignment="Left"
-                           Foreground="Red" />
+            </StackPanel>
 
-
-            </Grid>
-
-        </StackPanel>
-
-    </Border>
+        </materialDesign:Card>
+    </materialDesign:Card>
 
 </Window>
 

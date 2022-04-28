@@ -22,13 +22,8 @@ namespace NASA_PL.Views
     {
         public PlanetCardView(Planet planet)
         {
-            InitializeComponent();
             DataContext = planet;
-        }
-
-        private void Close_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
+            InitializeComponent();
         }
 
         private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)

@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using MaterialDesignThemes.Wpf;
 using NASA_BL;
-using NASA_PL.UserControls;
+//using NASA_PL.UserControls;
 using NASA_PL.ViewModels;
 
 namespace NASA_PL.Views
@@ -22,9 +22,9 @@ namespace NASA_PL.Views
 
         public MainWindowView()
         {
-            var lp = new LoginWindowView();
-            lp.ShowDialog();
             InitializeComponent();
+            //var lp = new LoginWindowView();
+            //lp.ShowDialog();
             var mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;
         }
