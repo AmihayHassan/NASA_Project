@@ -23,7 +23,8 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
 
         <TextBox Name="txtDiameter"
@@ -115,8 +116,24 @@
                                      VerticalAlignment="Center" />
         </Button>
 
+        <Button Name="ExportButton"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Grid.Row="0"
+                Grid.Column="5"
+                Command="{Binding ExportToExcelCommand }"
+                IsEnabled="{Binding CanExport}"
+                ToolTip="Export to Excel">
+
+            <materialDesign:PackIcon Kind="MicrosoftExcel"
+                                     Foreground="White"
+                                     Width="30"
+                                     Height="30"
+                                     VerticalAlignment="Center" />
+
+        </Button>
+
         <materialDesign:Card Grid.Column="0"
-                             Grid.ColumnSpan="5"
+                             Grid.ColumnSpan="6"
                              Grid.Row="1"
                              UniformCornerRadius="20">
 
@@ -129,13 +146,6 @@
                           AutoGenerateColumns="True"
                           ItemsSource="{Binding Path=NearEarthObj, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                           GridLinesVisibility="Horizontal" />
-
-                <!--<ProgressBar
-                    Name="ViewProgressBar"
-                    Style="{StaticResource MaterialDesignCircularProgressBar}"
-                    Value="0"
-                    IsIndeterminate="True"
-                />-->
 
             </Grid>
 

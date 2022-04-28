@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -33,6 +34,7 @@ namespace NASA_PL.ViewModels
         public ICommand UpdateEndDateCommand { get; set; }
         public ICommand UpdateDiameterCommand { get; set; }
         public ICommand UpdateIsHazardousCommand { get; set; }
+        public ICommand ExportToExcelCommand { get; set; }
 
         public IAsyncRelayCommand SearchNeosCommand { get; set; }
 
@@ -72,7 +74,20 @@ namespace NASA_PL.ViewModels
                     _hazardous = toggle.IsChecked.Value;
                 }
             });
-            
+
+            ExportToExcelCommand = new RelayCommand(() =>
+            {
+                ExportToExcel(nearEarthObj);
+            }, () =>
+            {
+                return true;
+                //if (nearEarthObj == null)
+                //{
+                //    return false;
+                //}
+                //return nearEarthObj.Count > 0;
+            });
+
             SearchNeosCommand = new AsyncRelayCommand(async () =>
             {
                 await Task.Run(() => SearchNeo(_start, _end, _diameter, _hazardous));
@@ -88,7 +103,93 @@ namespace NASA_PL.ViewModels
             {
                 nearEarthObj = value;
                 OnPropertyChanged(nameof(NearEarthObj));
+                CanExport = nearEarthObj != null && nearEarthObj.Count > 0;
+                OnPropertyChanged(nameof(CanExport));
             }
+        }
+
+        bool canExport;
+        public bool CanExport
+        {
+            get => canExport;
+            set
+            {
+                canExport = value;
+                OnPropertyChanged(nameof(CanExport));
+            }
+        }
+
+
+
+        // define function to export to csv
+        private void ExportToExcel(ObservableCollection<NearEarthObject> nearEarthObj)
+        {
+            // Create an instance of Excel.Application
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+
+            // Create a new Workbook
+            Microsoft.Office.Interop.Excel.Workbook workbook = null;
+
+            // open the new workbook
+            workbook = excel.Workbooks.Add(Type.Missing);
+
+
+            // change the name of the workbook
+            workbook.Title = $"Neos:{_start}_{_end}";
+
+            // Create a new Worksheet
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+
+            //worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+
+            // Set the name of Worksheet
+            worksheet.Name = "NEOs";
+
+            // Fill in the header of the Excel file
+            worksheet.Cells[1, 1] = "Name";
+            worksheet.Cells[1, 2] = "Id";
+            worksheet.Cells[1, 3] = "Diameter";
+            worksheet.Cells[1, 4] = "Velocity";
+            worksheet.Cells[1, 5] = "Hazardous";
+            worksheet.Cells[1, 6] = "CloseApproach";
+            worksheet.Cells[1, 7] = "MissDistance";
+
+            // Fill in the data
+            for (var i = 0; i < nearEarthObj.Count; i++)
+            {
+                worksheet.Cells[i + 2, 1] = nearEarthObj[i].Name;
+                worksheet.Cells[i + 2, 2] = nearEarthObj[i].Id;
+                worksheet.Cells[i + 2, 3] = nearEarthObj[i].Diameter;
+                worksheet.Cells[i + 2, 4] = nearEarthObj[i].Velocety;
+                worksheet.Cells[i + 2, 5] = nearEarthObj[i].Hazardous;
+                worksheet.Cells[i + 2, 6] = nearEarthObj[i].CloseApproach;
+                worksheet.Cells[i + 2, 7] = nearEarthObj[i].MissDistance;
+            }
+
+            // create a name for the excel file
+            var filename = $"NEOs_result_from_{DateTime.Now.ToString().Replace(" ", "_")}.xlsx";
+
+            // change the path to save the excel file
+            excel.DefaultFilePath = @"C:\Users\amiha\Downloads";
+            // change the name of the excel file
+            //excel.Caption = filename;
+
+            //excel.Save(filename);
+
+            excel.Caption = filename;
+
+            //// Save the file
+            //workbook.Save();
+
+            //// Close the workbook
+            //workbook.Close(true, Type.Missing, Type.Missing);
+
+            // Quit the Excel application
+            excel.Quit();
+
+            // release the COM objects (very important!)
+            Marshal.ReleaseComObject(worksheet);
         }
 
 

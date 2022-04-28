@@ -106,7 +106,6 @@ namespace NASA_BE
         public bool Hazardous { get; set; }
         public string CloseApproach { get; set; }
         public string MissDistance { get; set; }
-
     }
 
 }
