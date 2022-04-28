@@ -22,6 +22,8 @@ namespace NASA_PL.Views
 
         public MainWindowView()
         {
+            var lp = new LoginWindowView();
+            lp.ShowDialog();
             InitializeComponent();
             var mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;

@@ -21,10 +21,10 @@ namespace NASA_DAL
 
         public Dal()
         {
-            using (NasaDB dbcontext = new NasaDB())
-            {
-                SeedDataBaseIfEmpty(dbcontext).GetAwaiter().GetResult();
-            }
+            NasaDB dbcontext = new NasaDB();
+            
+            SeedDataBaseIfEmpty(dbcontext).GetAwaiter().GetResult();
+            
         }
 
         public async Task SeedDataBaseIfEmpty(NasaDB dbcontext)
@@ -172,31 +172,36 @@ namespace NASA_DAL
                 await dbcontext.SaveChangesAsync();
             }
 
-            if (dbcontext.Users.ToList().Count == 0)
+             if (dbcontext.UsersAndPasswords.ToList().Count == 0)
             {
                 #region add users
 
-                dbcontext.Users.Add(new User()
+                dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 1,
                     Username = "Ronke21",
                     Password = "Password1"
                 });
 
-                dbcontext.Users.Add(new User()
+                dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 2,
                     Username = "Amihay1544",
                     Password = "ArabStyle123"
                 });
 
-                dbcontext.Users.Add(new User()
+                dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 3,
                     Username = "Yossi",
                     Password = "Zaguri"
                 });
-
+                dbcontext.UsersAndPasswords.Add(new User()
+                {
+                    Id = 4,
+                    Username = "admin",
+                    Password = "123"
+                });
                 #endregion
                 dbcontext.SaveChanges();
             }
@@ -282,6 +287,21 @@ namespace NASA_DAL
             return r;
         }
         #endregion
+
+        public bool CheckUserAndPassword(string user, string password)
+        {
+            var ctx = new NasaDB();
+            var usersFromDB = ctx.UsersAndPasswords.ToList();
+            foreach (var userFromDB in usersFromDB)
+            {
+                if (userFromDB.Username == user && userFromDB.Password == password)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
     }
 }

@@ -19,7 +19,7 @@ namespace NASA_DAL
 
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> UsersAndPasswords { get; set; }
         public DbSet<Planet> Planets { get; set; }
 
     }

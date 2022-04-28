@@ -56,6 +56,10 @@ namespace NASA_BL
         {
             return dal.GetSolarSystem();
         }
+        public bool CheckUserAndPassword(string user, string password)
+        {
+            return dal.CheckUserAndPassword(user, password);
+        }
     }
 
 }

@@ -201,6 +201,7 @@
     <Compile Include="Converters\DictToVisibilityConverter.cs" />
     <Compile Include="Converters\ProgressBarVisibilityConverter.cs" />
     <Compile Include="Models\APODModel.cs" />
+    <Compile Include="Models\LoginWindowModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
     <Compile Include="Models\PlanetsModel.cs" />
@@ -209,6 +210,7 @@
       <DependentUpon>SidePanelButtonUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\APODViewModel.cs" />
+    <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NEOsViewModel.cs" />
     <Compile Include="ViewModels\PlanetsViewModel.cs" />
@@ -221,6 +223,9 @@
     </Compile>
     <Compile Include="Views\InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindowView.xaml.cs">
+      <DependentUpon>LoginWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -305,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
