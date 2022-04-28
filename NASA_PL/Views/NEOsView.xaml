@@ -15,7 +15,7 @@
 
     <Page.Resources>
         <converters:ObservableCollectionToVisibilityConverter x:Key="ObservableCollectionToVisibilityConverter" />
-    </Page.Resources>    
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -57,11 +57,11 @@
             <TextBlock Text="Is potentially hazardous?"
                        HorizontalAlignment="Center"
                        Margin="10" />
-            <ToggleButton Command="{Binding Filter}"
+            <ToggleButton x:Name="is_potentially_hazardous_asteroid"
+                          Command="{Binding Filter}"
                           CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid ,Path=IsChecked}"
-                          x:Name="is_potentially_hazardous_asteroid"
                           Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
-                          IsChecked="False"
+                          IsChecked="{Binding Hazardous}"
                           HorizontalAlignment="Center">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="IsChecked">

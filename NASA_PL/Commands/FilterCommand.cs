@@ -12,21 +12,16 @@ namespace NASA_PL.Commands
     class FilterCommand : ICommand
     {
         NEOsViewModel neosVM;
-        public FilterCommand(NEOsViewModel m)
+
+        public FilterCommand(NEOsViewModel viewModel)
         {
-            neosVM = m;
+            neosVM = viewModel;
         }
+        
         event EventHandler ICommand.CanExecuteChanged
         {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-            }
-
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-            }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
         bool ICommand.CanExecute(object parameter)

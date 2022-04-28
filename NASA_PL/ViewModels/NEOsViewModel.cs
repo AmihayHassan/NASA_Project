@@ -26,7 +26,17 @@ namespace NASA_PL.ViewModels
         private string _start;
         private string _end;
         private int _diameter = 0;
+
         private bool _hazardous = false;
+        public bool Hazardous
+        {
+            get => _hazardous;
+            set
+            {
+                _hazardous = value;
+                OnPropertyChanged(nameof(Hazardous));
+            }
+        }
 
         public DateTime Yesterday { get; set; }
 
@@ -86,7 +96,7 @@ namespace NASA_PL.ViewModels
                 ShowDataGrid = Visibility.Collapsed;
                 NearEarthObj = new ObservableCollection<NearEarthObject>();
                 await Task.Run(() => SearchNeo(_start, _end, _diameter, _hazardous));
-                ShowDataGrid= Visibility.Visible;
+                ShowDataGrid = Visibility.Visible;
             }, _start != string.Empty && _end != string.Empty);
         }
 
@@ -212,10 +222,13 @@ namespace NASA_PL.ViewModels
                 return;
             }
             //NearEarthObj = hazardous ? _model.neoList.Where(neo => neo.Hazardous).ToList() : _model.neoList.ToList();
-            NearEarthObj = new ObservableCollection<NearEarthObject>(hazardous ?
-                    _model.neoList.Where(neo => neo.Hazardous).ToList()
-                    :
-                    _model.neoList.ToList());
+            if (NearEarthObj is not null)
+            {
+                NearEarthObj = new ObservableCollection<NearEarthObject>(hazardous ?
+                        _model.neoList.Where(neo => neo.Hazardous).ToList()
+                        :
+                        _model.neoList.ToList());
+            }
         }
 
 
