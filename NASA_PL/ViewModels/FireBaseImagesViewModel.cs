@@ -79,7 +79,7 @@ namespace NASA_PL.ViewModels
             {
                 foreach (var image in result)
                 {
-                    imagesDict.Add(image.Url, image.savingeTime.ToString());
+                    imagesDict.Add(image.Url, image.Description);
                 }
             }
 

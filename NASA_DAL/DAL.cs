@@ -325,8 +325,8 @@ namespace NASA_DAL
         //create function that receive image url, download it and save it to firebase and return its url
         public async Task UploadImageToFirebase(string imageUrl, string imageDescription)
         {
-            var ctx = new NasaDB();
-            var imageList = ctx.SavedImagesFB.ToList();
+            var dbcontext = new NasaDB();
+            var imageList = dbcontext.SavedImagesFB.ToList();
             //check if image already exist in firebase
             var imageExist = imageList.FirstOrDefault(x => x.Url == imageUrl);
             if (imageExist != null)
@@ -358,29 +358,36 @@ namespace NASA_DAL
                 Description = imageDescription,
                 Id = DateTime.Now.Ticks
             };
-
-
-            await UploadImageToDatabase(imageToAdd);
+            
+            UploadImageToDatabase(imageToAdd);
+            var imageList2 = dbcontext.SavedImagesFB.ToList();
 
             return;
 
         }
 
         // create function that receive Firebaseimage and add it to the database
-        public async Task<string> UploadImageToDatabase(FirebaseImage image)
+        public void UploadImageToDatabase(FirebaseImage image)
         {
-            var ctx = new NasaDB();
-            var imageList = ctx.SavedImagesFB.ToList();
+            var dbcontext = new NasaDB();
+            var imageList = dbcontext.SavedImagesFB.ToList();
             //check if image already exist in database
             var imageExist = imageList.FirstOrDefault(x => x.Url == image.Url);
             if (imageExist != null)
             {
-                return imageExist.Url;
+                return;
             }
 
-            ctx.SavedImagesFB.Add(image);
-            ctx.SaveChanges();
-            return image.Url;
+            dbcontext.SavedImagesFB.Add(new FirebaseImage()
+            {
+                Url = image.Url,
+                Name = image.Name,
+                savingeTime = DateTime.Now,
+                Description = image.Description,
+                Id = DateTime.Now.Ticks
+
+            });
+            dbcontext.SaveChanges();
         }
 
 
