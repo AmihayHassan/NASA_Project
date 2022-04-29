@@ -246,15 +246,7 @@
 
                 </Button>
             </DockPanel>
-
-            <!--<userControls:SidePanelButtonUC
-                Grid.Row="1"
-                TextBlockText="Home"
-                PackIconKind="Home"
-                TextBlockMargin="5 5 0 5"
-                PackIconMargin="125 0 0 0"
-                Tooltip="Home"
-                />-->
+            
 
             <Button Name="APODSidePanel"
                     Style="{StaticResource SidePanelButton}"
@@ -347,7 +339,7 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <TextBlock x:Name="ConsecutiveStations"
+                    <TextBlock x:Name="NeosTB"
                                FontSize="30"
                                Foreground="White"
                                Text="NEOs"
@@ -363,6 +355,40 @@
                 </StackPanel>
 
             </Button>
+
+
+            <Button Name="FireBaseSidePanel"
+                    Style="{StaticResource SidePanelButton}"
+                    Command="{Binding OpenFireBasePageCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=DataDisplay}"
+                    Click="SideBarButton_OnClick">
+
+                <Button.ToolTip>
+                    <ToolTip>
+                        Fire base images
+                    </ToolTip>
+                </Button.ToolTip>
+
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock x:Name="FBTextBlock"
+                               FontSize="30"
+                               Foreground="White"
+                               Text="Firebase"
+                               Margin="5 5 0 5" />
+
+
+                    <materialDesign:PackIcon Foreground="White"
+                                             Kind="Firebase"
+                                             Height="50"
+                                             Width="50"
+                                             Margin="90 0 0 0" />
+
+                </StackPanel>
+
+            </Button>
+            
 
         </StackPanel>
 

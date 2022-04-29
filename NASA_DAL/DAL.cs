@@ -11,9 +11,8 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Firebase.Storage.Client;
 using RestSharp;
-using FirebaseAdmin;
-//using Firebase.Storage;
 
 namespace NASA_DAL
 {
@@ -207,6 +206,23 @@ namespace NASA_DAL
                 #endregion
                 dbcontext.SaveChanges();
             }
+
+            if (dbcontext.SavedImagesFB.ToList().Count == 0)
+            {
+                #region add images
+                dbcontext.SavedImagesFB.Add(new FirebaseImage()
+                {
+                    Url = "https://devops.com.vn/wp-content/uploads/2021/02/firebase.png",
+                    Name = "xxx",
+                    savingeTime = DateTime.Now,
+                    Description = "default",
+                    Id = DateTime.Now.Ticks
+
+                });
+
+                #endregion
+                dbcontext.SaveChanges();
+            }            
         }
 
         public List<Planet> GetSolarSystem()
@@ -305,36 +321,76 @@ namespace NASA_DAL
             return false;
         }
 
-        //create function that receive image url, download it and save it to firebase and return its url
-        public async Task<string> UploadImageToFirebase(string imageUrl)
-        {
-            //var client = new RestClient(imageUrl);
-            //var request = new RestRequest(Method.GET);
-            //var response = await client.ExecuteAsync(request);
-            //var image = response.RawBytes;
-            //var imageName = Guid.NewGuid().ToString() + ".jpg";
-            //var storage = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com");
-            //var storageRef = storage.Child("Images/" + imageName);
-            //var uploadTask = storageRef.PutBytesAsync(image);
-            //var downloadUrl = await uploadTask;
 
-            ////add the image to the database
-            //using (var ctx = new NasaDB())
-            //{
-            //    ctx.SavedImagesFB.Add(downloadUrl.ToString());
-            //    await ctx.SaveChangesAsync();
-            //}
-            return null;
-            //return downloadUrl.ToString();
+        //create function that receive image url, download it and save it to firebase and return its url
+        public async Task UploadImageToFirebase(string imageUrl, string imageDescription)
+        {
+            var ctx = new NasaDB();
+            var imageList = ctx.SavedImagesFB.ToList();
+            //check if image already exist in firebase
+            var imageExist = imageList.FirstOrDefault(x => x.Url == imageUrl);
+            if (imageExist != null)
+            {
+                return;
+            }
+
+            var client = new RestClient(imageUrl);
+            var request = new RestRequest(Method.GET);
+            var response = await client.ExecuteAsync(request);
+            var image = response.RawBytes;
+            //convert image to stream
+            var imageStream = new MemoryStream(image);
+            var imageName = Guid.NewGuid().ToString() + ".jpg";
+            var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
+                .Child("Images/" + imageName)
+                .PutAsync(imageStream);
+            var downloadUrl = await task;
+            string x = "g";
+            
+            //add the image to the database
+
+            //create new FirebaseImage
+            var imageToAdd = new FirebaseImage()
+            {
+                Url = downloadUrl,
+                Name = imageName,
+                savingeTime = DateTime.Now,
+                Description = imageDescription,
+                Id = DateTime.Now.Ticks
+            };
+
+
+            await UploadImageToDatabase(imageToAdd);
+
+            return;
+
         }
 
-        public List<string> GetSavedImages()
+        // create function that receive Firebaseimage and add it to the database
+        public async Task<string> UploadImageToDatabase(FirebaseImage image)
+        {
+            var ctx = new NasaDB();
+            var imageList = ctx.SavedImagesFB.ToList();
+            //check if image already exist in database
+            var imageExist = imageList.FirstOrDefault(x => x.Url == image.Url);
+            if (imageExist != null)
+            {
+                return imageExist.Url;
+            }
+
+            ctx.SavedImagesFB.Add(image);
+            ctx.SaveChanges();
+            return image.Url;
+        }
+
+
+        public List<FirebaseImage> GetSavedImages()
         {
             using (var ctx = new NasaDB())
             {
-                //return ctx.SavedImagesFB.ToList();
+                return ctx.SavedImagesFB.ToList();
             }
-            return null;
+
         }
 
     }

@@ -62,13 +62,13 @@ namespace NASA_BL
         }
 
         // create function that send to dal imageURL and save it to firebase
-        public async Task<string> SaveImageToFirebase(string imageURL)
+        public async Task SaveImageToFirebase(string imageURL, string imageDescription)
         {
-            return await dal.UploadImageToFirebase(imageURL);
+            await dal.UploadImageToFirebase(imageURL, imageDescription);
         }
 
         //create function that get all images in firebase and return them
-        public  List<string> GetImagesFromFirebase()
+        public  List<FirebaseImage> GetImagesFromFirebase()
         {
             return  dal.GetSavedImages();
         }

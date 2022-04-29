@@ -20,7 +20,7 @@ namespace NASA_DAL
 
         public DbSet<User> UsersAndPasswords { get; set; }
         public DbSet<Planet> Planets { get; set; }
-        //public DbSet<string> SavedImagesFB { get; set; }
+        public DbSet<FirebaseImage> SavedImagesFB { get; set; }
 
     }
 }

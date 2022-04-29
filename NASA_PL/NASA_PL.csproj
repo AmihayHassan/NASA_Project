@@ -67,6 +67,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.Storage, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Firebase.DotNet.Storage.1.0.3\lib\netstandard2.0\Firebase.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Firebase.Utils.1.0.0\lib\netstandard2.0\Firebase.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="FirebaseAdmin, Version=2.3.0.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
       <HintPath>..\packages\FirebaseAdmin.2.3.0\lib\net461\FirebaseAdmin.dll</HintPath>
     </Reference>
@@ -202,6 +208,7 @@
     <Compile Include="Converters\ObservableCollectionToVisibilityConverter.cs" />
     <Compile Include="Converters\ProgressBarVisibilityConverter.cs" />
     <Compile Include="Models\APODModel.cs" />
+    <Compile Include="Models\FireBaseImagesModel.cs" />
     <Compile Include="Models\LoginWindowModel.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NEOsModel.cs" />
@@ -211,6 +218,7 @@
       <DependentUpon>PlanetViewUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\APODViewModel.cs" />
+    <Compile Include="ViewModels\FireBaseImagesViewModel.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NEOsViewModel.cs" />
@@ -221,6 +229,9 @@
     </Compile>
     <Compile Include="Views\BigImageView.xaml.cs">
       <DependentUpon>BigImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FireBaseImagesView.xaml.cs">
+      <DependentUpon>FireBaseImagesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
@@ -307,6 +318,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BigImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FireBaseImagesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

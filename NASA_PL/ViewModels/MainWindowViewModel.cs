@@ -14,6 +14,7 @@ namespace NASA_PL.ViewModels
         public PlanetsView PlanetsPage;
         public SearchView SearchPage;
         public NEOsView NEOsPage;
+        public FireBaseImagesView FireBaseImagesPage;
 
         public ICommand CloseWindowCommand { get; private set; }
         public ICommand RestoreWindowCommand { get; private set; }
@@ -21,6 +22,7 @@ namespace NASA_PL.ViewModels
 
         public ICommand OpenApodPageCommand { get; private set; }
         public ICommand OpenSearchPageCommand { get; private set; }
+        public ICommand OpenFireBasePageCommand { get; private set; }
         public ICommand OpenPlanetsPageCommand { get; private set; }
         public ICommand OpenNeosPageCommand { get; private set; }
 
@@ -33,6 +35,7 @@ namespace NASA_PL.ViewModels
             PlanetsPage = new PlanetsView();
             SearchPage = new SearchView();
             NEOsPage = new NEOsView();
+            FireBaseImagesPage = new FireBaseImagesView();
 
             _model = new MainWindowModel();
             CloseWindowCommand = new RelayCommand<Window>(window => window?.Close());
@@ -46,6 +49,8 @@ namespace NASA_PL.ViewModels
             , frame => frame.Content is not APODView);
 
             OpenSearchPageCommand = new RelayCommand<Frame>(frame => frame.Content = SearchPage, frame => frame.Content is not SearchView);
+            OpenFireBasePageCommand = new RelayCommand<Frame>(frame => frame.Content = FireBaseImagesPage, frame => frame.Content is not FireBaseImagesView);
+            
             OpenPlanetsPageCommand = new RelayCommand<Frame>(frame => frame.Content = PlanetsPage, frame => frame.Content is not PlanetsView);
             OpenNeosPageCommand = new RelayCommand<Frame>(frame => frame.Content = NEOsPage, frame => frame.Content is not NEOsView);
 
