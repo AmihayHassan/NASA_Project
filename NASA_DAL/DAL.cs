@@ -1,18 +1,12 @@
-﻿using NASA_BE;
+﻿using Firebase.Storage.Client;
+using NASA_BE;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Policy;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Firebase.Storage.Client;
-using RestSharp;
 
 namespace NASA_DAL
 {
@@ -209,7 +203,7 @@ namespace NASA_DAL
             {
                 const string url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/NASA_Wormball_logo.svg/768px-NASA_Wormball_logo.svg.png";
                 const string description = "Default Image";
-                await UploadImageToFirebase(url, description);
+                await Task.Run(async () => await UploadImageToFirebase(url, description));
             }
         }
 
@@ -257,7 +251,7 @@ namespace NASA_DAL
             request.AddParameter("image_url", imageUrl);
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
-            IRestResponse response = await client.ExecuteAsync(request);
+            IRestResponse response = client.Execute(request);
 
             ImaggaTag imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
 

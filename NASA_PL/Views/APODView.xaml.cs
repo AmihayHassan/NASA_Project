@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using NASA_PL.ViewModels;
 using System.Windows.Controls;
-using NASA_PL.ViewModels;
 
 namespace NASA_PL.Views
 {

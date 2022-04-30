@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
-using System.Windows;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using NASA_BE.Annotations;
 using NASA_PL.Models;
 using NASA_PL.Views;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
 
 namespace NASA_PL.ViewModels
 {
@@ -23,10 +17,8 @@ namespace NASA_PL.ViewModels
 
         private LoginWindowModel _model;
 
-
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
-
 
         private string _username;
         public string Username
@@ -49,7 +41,6 @@ namespace NASA_PL.ViewModels
                 OnPropertyChanged(nameof(Password));
             }
         }
-
 
 
         public LoginWindowViewModel()

@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls;
-using MaterialDesignThemes.Wpf;
+﻿using CommunityToolkit.Mvvm.Input;
 using NASA_BE.Annotations;
 using NASA_PL.Models;
-using NASA_PL.Views;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace NASA_PL.ViewModels
 {
@@ -46,7 +37,7 @@ namespace NASA_PL.ViewModels
         }
 
         public IAsyncRelayCommand UpdateCommand { get; set; }
-        
+
         public FireBaseImagesViewModel()
         {
             Task.Run(InitViewModel);

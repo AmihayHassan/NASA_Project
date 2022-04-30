@@ -1,21 +1,15 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using NASA_BE.Annotations;
+using NASA_PL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MahApps.Metro.Controls;
-using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
-using NASA_BE.Annotations;
-using NASA_PL.Models;
-using NASA_PL.Views;
 
 namespace NASA_PL.ViewModels
 {

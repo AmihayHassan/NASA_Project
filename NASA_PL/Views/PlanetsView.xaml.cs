@@ -1,11 +1,6 @@
-﻿using System;
+﻿using NASA_BE;
 using System.Collections.Generic;
-using System.Web.UI;
 using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using NASA_BE;
-using Syncfusion.Windows.Shared;
 using Page = System.Windows.Controls.Page;
 
 namespace NASA_PL.Views

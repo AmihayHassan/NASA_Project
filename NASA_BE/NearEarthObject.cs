@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace NASA_BE
 {
@@ -84,7 +80,7 @@ namespace NASA_BE
         public List<CloseApproachData> close_approach_data { get; set; }
         public bool is_sentry_object { get; set; }
     }
-    
+
     public class NearEarthObjects
     {
         public Links links { get; set; }

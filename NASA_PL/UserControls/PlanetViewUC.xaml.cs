@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NASA_BE;
-using NASA_PL.Views;
-using UserControl = System.Windows.Controls.UserControl;
+﻿using UserControl = System.Windows.Controls.UserControl;
 
 namespace NASA_PL.UserControls
 {

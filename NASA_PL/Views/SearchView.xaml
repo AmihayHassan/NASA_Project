@@ -34,6 +34,7 @@
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top"
                      FontSize="25"
+                     KeyDown="QueryStringText_OnKeyDown"
                      materialDesign:HintAssist.IsFloating="True"
                      Margin="20 0">
                 <b:Interaction.Triggers>

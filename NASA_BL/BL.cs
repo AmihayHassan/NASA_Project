@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using NASA_BE;
+using NASA_DAL;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NASA_BE;
-using NASA_DAL;
 
 namespace NASA_BL
 {
@@ -34,21 +34,22 @@ namespace NASA_BL
         }
 
         //TODO change SubDic to imagesAndDescription
-        public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence, bool debug = false)
+        public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence)
         {
-            //return await dal.GetSearchResult(querySearch);
             var imagesAndDescription = await dal.GetSearchResult(querySearch);
 
             var res = new Dictionary<string, string>();
+
             Parallel.ForEach(imagesAndDescription.Keys, async image =>
             {
-                ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
+                var tag = await dal.GetImageTagsFromImagga(image);
                 if (tag.result == null) return;
                 if (tag.result.tags.Any((x) => x.confidence >= confidence && x.tag.en == "planet"))
                 {
                     res.Add(image, imagesAndDescription[image]);
                 }
             });
+
             return res;
         }
 
@@ -68,9 +69,9 @@ namespace NASA_BL
         }
 
         //create function that get all images in firebase and return them
-        public  List<FirebaseImage> GetImagesFromFirebase()
+        public List<FirebaseImage> GetImagesFromFirebase()
         {
-            return  dal.GetSavedImages();
+            return dal.GetSavedImages();
         }
 
     }

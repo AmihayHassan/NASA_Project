@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using MaterialDesignThemes.Wpf;
+﻿using MaterialDesignThemes.Wpf;
 using NASA_BL;
 //using NASA_PL.UserControls;
 using NASA_PL.ViewModels;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace NASA_PL.Views
 {
@@ -23,8 +21,8 @@ namespace NASA_PL.Views
         public MainWindowView()
         {
             InitializeComponent();
-            //var lp = new LoginWindowView();
-            //lp.ShowDialog();
+            var lp = new LoginWindowView();
+            lp.ShowDialog();
             var mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;
         }

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using NASA_PL.ViewModels;
+using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
-
-using NASA_PL.ViewModels;
 
 namespace NASA_PL.Views
 {

@@ -1,10 +1,10 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NASA_PL.Models;
 using NASA_PL.Views;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace NASA_PL.ViewModels
 {
@@ -57,7 +57,7 @@ namespace NASA_PL.ViewModels
                 infoWindow.ShowDialog();
             });
         }
-        
+
         private void MinimizeWindow(Window window)
         {
             window.WindowState = WindowState.Minimized;

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using NASA_BE;
+using NASA_BE.Annotations;
+using NASA_PL.Commands;
+using NASA_PL.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -11,12 +15,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using NASA_BE;
-using NASA_BE.Annotations;
-using NASA_PL.Commands;
-using NASA_PL.Models;
 
 namespace NASA_PL.ViewModels
 {

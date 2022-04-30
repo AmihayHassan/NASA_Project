@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Xaml.Behaviors.Core;
-using NASA_BE;
+﻿using NASA_BE;
 using NASA_BE.Annotations;
 using NASA_PL.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace NASA_PL.ViewModels
 {

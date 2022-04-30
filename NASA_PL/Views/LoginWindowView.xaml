@@ -16,6 +16,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
+        Icon="../Media/StarIcon.png"
         Height="450"
         Width="370"
         Foreground="White"
@@ -76,12 +77,14 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center">
 
+                        <!-- set focus to this textbox -->
                         <TextBox Name="UserNameTextBox"
                                  Width="200"
                                  FontSize="18"
                                  materialDesign:HintAssist.Hint="Username"
                                  materialDesign:HintAssist.IsFloating="True"
                                  Text="{Binding Username}" />
+                        
                         <materialDesign:PackIcon VerticalAlignment="Bottom"
                                                  Kind="User"
                                                  Height="35"
@@ -97,6 +100,7 @@
                                      FontSize="18"
                                      PasswordChanged="PasswordBox_OnPasswordChanged"
                                      materialDesign:HintAssist.Hint="Password"
+                                     KeyDown="PasswordBox_OnKeyDown"
                                      materialDesign:HintAssist.IsFloating="True" />
 
                         <materialDesign:PackIcon VerticalAlignment="Bottom"
