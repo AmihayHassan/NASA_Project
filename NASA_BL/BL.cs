@@ -36,20 +36,20 @@ namespace NASA_BL
         //TODO change SubDic to imagesAndDescription
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence, bool debug = false)
         {
-            return await dal.GetSearchResult(querySearch);
-            //var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            //return await dal.GetSearchResult(querySearch);
+            var imagesAndDescription = await dal.GetSearchResult(querySearch);
 
-            //var res = new Dictionary<string, string>();
-            //Parallel.ForEach(imagesAndDescription.Keys, async image =>
-            //{
-            //    ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
-            //    if (tag.result == null) return;
-            //    if (tag.result.tags.Any((x) => x.confidence >= confidence && x.tag.en == "planet"))
-            //    {
-            //        res.Add(image, imagesAndDescription[image]);
-            //    }
-            //});
-            //return res;
+            var res = new Dictionary<string, string>();
+            Parallel.ForEach(imagesAndDescription.Keys, async image =>
+            {
+                ImaggaTag tag = await dal.GetImageTagsFromImagga(image);
+                if (tag.result == null) return;
+                if (tag.result.tags.Any((x) => x.confidence >= confidence && x.tag.en == "planet"))
+                {
+                    res.Add(image, imagesAndDescription[image]);
+                }
+            });
+            return res;
         }
 
         public List<Planet> GetSolarSystem()
