@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NASA_BE
 {
-    public class User: IRecord
+    public class User
     {
         [Key]
         public int Id { get; set; }

@@ -20,7 +20,7 @@ namespace NASA_PL.ViewModels
 {
     public class FireBaseImagesViewModel : INotifyPropertyChanged
     {
-        private readonly FireBaseImagesModel _model;
+        private FireBaseImagesModel _model;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Dictionary<string, string> _resultsDictionary;
@@ -46,33 +46,38 @@ namespace NASA_PL.ViewModels
         }
 
         public IAsyncRelayCommand UpdateCommand { get; set; }
-
+        
         public FireBaseImagesViewModel()
         {
-            _model = new FireBaseImagesModel();
-            ResultsDictionary = null;
-
+            Task.Run(InitViewModel);
 
             UpdateCommand = new AsyncRelayCommand(async () =>
             {
                 ShowList = Visibility.Collapsed;
-                ResultsDictionary = new Dictionary<string, string>();
+                //ResultsDictionary = new Dictionary<string, string>();
                 ResultsDictionary = await Task.Run(() => GetImagesFromFirebase());
                 ShowList = Visibility.Visible;
             });
         }
+
+        private async Task InitViewModel()
+        {
+            _model = new FireBaseImagesModel();
+            ResultsDictionary = await Task.Run(() => GetImagesFromFirebase());
+        }
+
         public async Task<Dictionary<string, string>> GetImagesFromFirebase()
         {
-            var result =  _model.GetImagesFromFirebase();
+            var result = _model.GetImagesFromFirebase();
 
             var imagesDict = new Dictionary<string, string>();
-            
+
             // if no images were found or no image matched the required confidence
             if (result.Count == 0)
             {
                 imagesDict.Add(
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/NASA_Wormball_logo.svg/768px-NASA_Wormball_logo.svg.png",
-                    "");
+                    "default image");
 
             }
             else

@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using NASA_BE.Annotations;
 using NASA_PL.Models;
 using NASA_PL.Views;
@@ -50,6 +51,7 @@ namespace NASA_PL.ViewModels
 
         public ICommand UpdateQueryStringCommand { get; set; }
         public ICommand UpdateConfidenceCommand { get; set; }
+        public IAsyncRelayCommand UploadImageToFireBaseCommand { get; set; }
         public IAsyncRelayCommand SearchCommand { get; set; }
 
         public SearchViewModel()
@@ -66,6 +68,12 @@ namespace NASA_PL.ViewModels
             {
                 _confidence = Convert.ToInt32(slider.Value);
             });
+
+            UploadImageToFireBaseCommand = new AsyncRelayCommand<string>(async (imageUrl) =>
+            {
+                await _searchModel.SaveImageToFirebase(imageUrl, ResultsDictionary.FirstOrDefault(item => item.Key == imageUrl).Value);
+            });
+
 
             SearchCommand = new AsyncRelayCommand(async () =>
             {

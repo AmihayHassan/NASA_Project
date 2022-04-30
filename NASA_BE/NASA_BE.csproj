@@ -84,7 +84,6 @@
     <Compile Include="APOD.cs" />
     <Compile Include="FirebaseImage.cs" />
     <Compile Include="ImaggaTag.cs" />
-    <Compile Include="IRecord.cs" />
     <Compile Include="NearEarthObject.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\Annotations.cs" />

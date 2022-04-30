@@ -18,12 +18,6 @@ namespace NASA_PL.Models
             bl = new BL();
         }
 
-        // create function that send to dal imageURL and save it to firebase
-        public async Task SaveImageToFirebase(string imageURL, string imageDescription)
-        {
-            await bl.SaveImageToFirebase(imageURL, imageDescription);
-        }
-
         //create function that get all images in firebase and return them
         public List<FirebaseImage> GetImagesFromFirebase()
         {

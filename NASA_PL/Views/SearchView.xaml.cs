@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
+using NASA_PL.Models;
 using NASA_PL.ViewModels;
 
 
@@ -28,11 +29,28 @@ namespace NASA_PL.Views
     /// </summary>
     public partial class SearchView : Page
     {
+        private SearchModel _searchModel;
+        private SearchViewModel _searchViewModel;
+
         public SearchView()
         {
             InitializeComponent();
-            var searchViewModel = new SearchViewModel();
-            DataContext = searchViewModel;
+            _searchModel = new SearchModel();
+            _searchViewModel = new SearchViewModel();
+            DataContext = _searchViewModel;
         }
+
+        //private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (SearchListBox.SelectedItem is null)
+        //    {
+        //        MessageBox.Show("you must select an item", "error");
+        //    }
+        //    else
+        //    {
+        //        var kvp = (KeyValuePair<string, string>)SearchListBox.SelectedItem;
+        //        Task.Run(async () => await _searchModel.SaveImageToFirebase(kvp.Key, kvp.Value));
+        //    }
+        //}
     }
 }

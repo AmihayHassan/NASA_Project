@@ -35,7 +35,6 @@ namespace NASA_PL.ViewModels
             PlanetsPage = new PlanetsView();
             SearchPage = new SearchView();
             NEOsPage = new NEOsView();
-            FireBaseImagesPage = new FireBaseImagesView();
 
             _model = new MainWindowModel();
             CloseWindowCommand = new RelayCommand<Window>(window => window?.Close());
@@ -49,11 +48,9 @@ namespace NASA_PL.ViewModels
             , frame => frame.Content is not APODView);
 
             OpenSearchPageCommand = new RelayCommand<Frame>(frame => frame.Content = SearchPage, frame => frame.Content is not SearchView);
-            OpenFireBasePageCommand = new RelayCommand<Frame>(frame => frame.Content = FireBaseImagesPage, frame => frame.Content is not FireBaseImagesView);
-            
+            OpenFireBasePageCommand = new RelayCommand<Frame>(frame => frame.Content = new FireBaseImagesView(), frame => frame.Content is not FireBaseImagesView);
             OpenPlanetsPageCommand = new RelayCommand<Frame>(frame => frame.Content = PlanetsPage, frame => frame.Content is not PlanetsView);
             OpenNeosPageCommand = new RelayCommand<Frame>(frame => frame.Content = NEOsPage, frame => frame.Content is not NEOsView);
-
             OpenInfoWindowCommand = new RelayCommand(() =>
             {
                 var infoWindow = new InfoView();

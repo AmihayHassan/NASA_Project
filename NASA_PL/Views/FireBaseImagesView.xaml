@@ -28,7 +28,6 @@
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
 
-
             <Button x:Name="btUpdate"
                     Margin="20 0"
                     Grid.Row="0"

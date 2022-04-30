@@ -2,13 +2,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:NASA_PL.Views"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:viewModels="clr-namespace:NASA_PL.ViewModels"
       xmlns:converters="clr-namespace:NASA_PL.Converters"
-      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       x:Class="NASA_PL.Views.SearchView"
       mc:Ignorable="d"
       d:DesignHeight="450"
@@ -17,7 +15,6 @@
       Foreground="White">
 
     <Page.Resources>
-        <converters:ProgressBarVisibilityConverter x:Key="ProgressBarVisibilityConverter" />
         <converters:DictToVisibilityConverter x:Key="DictToVisibilityConverter" />
     </Page.Resources>
 
@@ -26,7 +23,6 @@
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
-
 
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0">
@@ -73,11 +69,8 @@
                     Margin="20 0"
                     Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                     Command="{Binding SearchCommand}">
-                <materialDesign:PackIcon Kind="Search"
-                                         Foreground="white" />
+                <materialDesign:PackIcon Kind="Search" />
             </Button>
-
-
 
         </StackPanel>
 
@@ -99,25 +92,31 @@
                 <ListBox Name="SearchListBox"
                          Visibility="{Binding ShowList}"
                          ItemsSource="{Binding ResultsDictionary }">
+
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
+
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Margin"
                                     Value="5" />
                         </Style>
                     </ListBox.ItemContainerStyle>
+
                     <ListBox.ItemTemplate>
+
                         <DataTemplate>
+
                             <materialDesign:Card Name="Card"
                                                  Width="225"
                                                  Height="300"
                                                  UniformCornerRadius="5">
 
                                 <Grid>
+
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1.5*" />
                                         <RowDefinition Height="*" />
@@ -129,6 +128,7 @@
                                            Grid.Row="0"
                                            Margin="0 10 0 0"
                                            ToolTipService.InitialShowDelay="1000">
+
                                         <Image.ToolTip>
                                             <ToolTip Placement="Center">
                                                 <Image Source="{Binding Path=Key}"
@@ -136,19 +136,37 @@
                                                        MaxWidth="500" />
                                             </ToolTip>
                                         </Image.ToolTip>
+
                                     </Image>
+
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Grid.Row="0"
+                                            Height="40"
+                                            Width="40"
+                                            Command="{Binding DataContext.UploadImageToFireBaseCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding Key}"
+                                            ToolTip="save image to Firebase"
+                                            Margin="10 -15">
+                                        <materialDesign:PackIcon Kind="ContentSave" />
+                                    </Button>
+
                                     <ScrollViewer Grid.Row="1"
                                                   VerticalScrollBarVisibility="Auto"
                                                   Margin="20">
+
                                         <ScrollViewer.Resources>
                                             <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">5</system:Double>
                                         </ScrollViewer.Resources>
 
-                                        <TextBox TextWrapping="Wrap"
+                                        <TextBox Name="TextBox"
+                                                 TextWrapping="Wrap"
                                                  VerticalAlignment="Center"
                                                  Text="{Binding Path=Value, Mode=OneWay}"
                                                  TextAlignment="Justify"
                                                  IsReadOnly="True">
+
                                             <TextBox.ToolTip>
                                                 <ToolTip Placement="Center">
                                                     <TextBlock Text="{Binding Path=Value, Mode=OneWay}"
@@ -158,17 +176,25 @@
                                                                TextAlignment="Justify" />
                                                 </ToolTip>
                                             </TextBox.ToolTip>
+
                                         </TextBox>
+
                                     </ScrollViewer>
+
                                 </Grid>
+
                             </materialDesign:Card>
+
                         </DataTemplate>
+
                     </ListBox.ItemTemplate>
+
                 </ListBox>
 
             </Grid>
+
         </Grid>
 
-
     </Grid>
+
 </Page>

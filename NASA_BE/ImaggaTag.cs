@@ -33,12 +33,4 @@ namespace NASA_BE
         public Result result { get; set; }
         public Status status { get; set; }
     }
-
-
-
-
-
-
-
-
 }

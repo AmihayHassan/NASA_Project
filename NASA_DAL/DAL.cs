@@ -23,9 +23,7 @@ namespace NASA_DAL
         public Dal()
         {
             NasaDB dbcontext = new NasaDB();
-
             SeedDataBaseIfEmpty(dbcontext).GetAwaiter().GetResult();
-
         }
 
         public async Task SeedDataBaseIfEmpty(NasaDB dbcontext)
@@ -41,7 +39,7 @@ namespace NASA_DAL
                     Aphelion = 69817079,
                     Perihelion = 46001272,
                     Radius = 2439,
-                    Mass = 3.302 * (10 ^ 23),
+                    Mass = 3.302 * Math.Pow(10, 23),
                     AverageSurfaceTemp = 166.85, //celzius
                     OrbitalPeriod = 87.9691, //זמן הקפה ימים
                     AverageSpeed = 47.36, //km second
@@ -58,7 +56,7 @@ namespace NASA_DAL
                     Aphelion = 108941849,
                     Perihelion = 107476002,
                     Radius = 6052,
-                    Mass = 4.8685 * (10 ^ 24),
+                    Mass = 4.8685 * Math.Pow(10, 24),
                     AverageSurfaceTemp = 463.8, //celzius
                     OrbitalPeriod = 224.70069, //זמן הקפה ימים
                     AverageSpeed = 35.020, //km second
@@ -75,7 +73,7 @@ namespace NASA_DAL
                     Aphelion = 152097701,
                     Perihelion = 147098074,
                     Radius = 6378.137,
-                    Mass = 5.9742 * (10 ^ 24),
+                    Mass = 5.9742 * Math.Pow(10, 24),
                     AverageSurfaceTemp = 14, //celzius
                     OrbitalPeriod = 365.256366, //זמן הקפה ימים
                     AverageSpeed = 29.783, //km second
@@ -92,7 +90,7 @@ namespace NASA_DAL
                     Aphelion = 249228730,
                     Perihelion = 206644545,
                     Radius = 3396.2,
-                    Mass = 6.4191 * (10 ^ 23),
+                    Mass = 6.4191 * Math.Pow(10, 23),
                     AverageSurfaceTemp = -63.15, //celzius
                     OrbitalPeriod = 686.971, //זמן הקפה ימים
                     AverageSpeed = 24.077, //km second
@@ -109,7 +107,7 @@ namespace NASA_DAL
                     Aphelion = 816081455,
                     Perihelion = 740742598,
                     Radius = 71492,
-                    Mass = 1.899 * (10 ^ 27),
+                    Mass = 1.899 * Math.Pow(10, 27),
                     AverageSurfaceTemp = -121, //celzius
                     OrbitalPeriod = 4332.589, //זמן הקפה ימים
                     AverageSpeed = 13.0697, //km second
@@ -126,7 +124,7 @@ namespace NASA_DAL
                     Aphelion = 1503983449,
                     Perihelion = 1349467375,
                     Radius = 60268,
-                    Mass = 5.6846 * (10 ^ 26),
+                    Mass = 5.6846 * Math.Pow(10, 26),
                     AverageSurfaceTemp = -130, //celzius
                     OrbitalPeriod = 10832.327, //זמן הקפה ימים
                     AverageSpeed = 9.639, //km second
@@ -143,7 +141,7 @@ namespace NASA_DAL
                     Aphelion = 3006389405,
                     Perihelion = 2735555035,
                     Radius = 25559,
-                    Mass = 8.686 * (10 ^ 25),
+                    Mass = 8.686 * Math.Pow(10, 25),
                     AverageSurfaceTemp = -220, //celzius
                     OrbitalPeriod = 30799.095, //זמן הקפה ימים
                     AverageSpeed = 6.795, //km second
@@ -160,7 +158,7 @@ namespace NASA_DAL
                     Aphelion = 4536874325,
                     Perihelion = 4459631496,
                     Radius = 24786,
-                    Mass = 1.024 * (10 ^ 26),
+                    Mass = 1.024 * Math.Pow(10, 26),
                     AverageSurfaceTemp = -212, //celzius
                     OrbitalPeriod = 60190, //זמן הקפה ימים
                     AverageSpeed = 5.432, //km second
@@ -209,20 +207,10 @@ namespace NASA_DAL
 
             if (dbcontext.SavedImagesFB.ToList().Count == 0)
             {
-                #region add images
-                dbcontext.SavedImagesFB.Add(new FirebaseImage()
-                {
-                    Url = "https://devops.com.vn/wp-content/uploads/2021/02/firebase.png",
-                    Name = "xxx",
-                    savingeTime = DateTime.Now,
-                    Description = "default",
-                    Id = DateTime.Now.Ticks
-
-                });
-
-                #endregion
-                dbcontext.SaveChanges();
-            }            
+                const string url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/NASA_Wormball_logo.svg/768px-NASA_Wormball_logo.svg.png";
+                const string description = "Default Image";
+                await UploadImageToFirebase(url, description);
+            }
         }
 
         public List<Planet> GetSolarSystem()
@@ -310,26 +298,18 @@ namespace NASA_DAL
         {
             var ctx = new NasaDB();
             var usersFromDB = ctx.UsersAndPasswords.ToList();
-            foreach (var userFromDB in usersFromDB)
-            {
-                if (userFromDB.Username == user && userFromDB.Password == password)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return usersFromDB.Any(userFromDB => userFromDB.Username == user && userFromDB.Password == password);
         }
 
 
-        //create function that receive image url, download it and save it to firebase and return its url
+        //create function that receive image url, download it and save it to Firebase and return its url
         public async Task UploadImageToFirebase(string imageUrl, string imageDescription)
         {
             var dbcontext = new NasaDB();
             var imageList = dbcontext.SavedImagesFB.ToList();
-            //check if image already exist in firebase
-            var imageExist = imageList.FirstOrDefault(x => x.Url == imageUrl);
-            if (imageExist != null)
+            //check if image already exist in Firebase
+            var imageExist = imageList.Any(fbi => fbi.OriginalUrl == imageUrl);
+            if (imageExist)
             {
                 return;
             }
@@ -345,8 +325,8 @@ namespace NASA_DAL
                 .Child("Images/" + imageName)
                 .PutAsync(imageStream);
             var downloadUrl = await task;
-            string x = "g";
-            
+            var x = "g";
+
             //add the image to the database
 
             //create new FirebaseImage
@@ -354,35 +334,24 @@ namespace NASA_DAL
             {
                 Url = downloadUrl,
                 Name = imageName,
-                savingeTime = DateTime.Now,
+                OriginalUrl = imageUrl,
                 Description = imageDescription,
                 Id = DateTime.Now.Ticks
             };
-            
+
             UploadImageToDatabase(imageToAdd);
-            var imageList2 = dbcontext.SavedImagesFB.ToList();
-
-            return;
-
         }
 
         // create function that receive Firebaseimage and add it to the database
         public void UploadImageToDatabase(FirebaseImage image)
         {
             var dbcontext = new NasaDB();
-            var imageList = dbcontext.SavedImagesFB.ToList();
-            //check if image already exist in database
-            var imageExist = imageList.FirstOrDefault(x => x.Url == image.Url);
-            if (imageExist != null)
-            {
-                return;
-            }
 
             dbcontext.SavedImagesFB.Add(new FirebaseImage()
             {
                 Url = image.Url,
                 Name = image.Name,
-                savingeTime = DateTime.Now,
+                OriginalUrl = image.OriginalUrl,
                 Description = image.Description,
                 Id = DateTime.Now.Ticks
 
