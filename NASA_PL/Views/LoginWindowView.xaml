@@ -84,6 +84,7 @@
                                  FontSize="18"
                                  materialDesign:HintAssist.Hint="Username"
                                  materialDesign:HintAssist.IsFloating="True"
+                                 materialDesign:HintAssist.Foreground="White"
                                  Text="{Binding Username}" />
                         
                         <materialDesign:PackIcon VerticalAlignment="Bottom"
@@ -102,7 +103,8 @@
                                      PasswordChanged="PasswordBox_OnPasswordChanged"
                                      materialDesign:HintAssist.Hint="Password"
                                      KeyDown="PasswordBox_OnKeyDown"
-                                     materialDesign:HintAssist.IsFloating="True" />
+                                     materialDesign:HintAssist.IsFloating="True"
+                                     materialDesign:HintAssist.Foreground="White"/>
 
                         <materialDesign:PackIcon VerticalAlignment="Bottom"
                                                  Kind="FormTextboxPassword"

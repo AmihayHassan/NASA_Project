@@ -36,6 +36,7 @@
                      FontSize="25"
                      KeyDown="QueryStringText_OnKeyDown"
                      materialDesign:HintAssist.IsFloating="True"
+                     materialDesign:HintAssist.Foreground="White"
                      Margin="20 0">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="TextChanged">

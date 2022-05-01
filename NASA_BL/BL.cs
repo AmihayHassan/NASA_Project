@@ -35,6 +35,11 @@ namespace NASA_BL
 
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence)
         {
+            if (string.IsNullOrEmpty(querySearch))
+            {
+                return new Dictionary<string, string>();
+            }
+
             var imagesAndDescription = await _dal.GetSearchResult(querySearch);
             // if the confidence is 0, return all the images
             if (confidence == 0)
@@ -61,7 +66,7 @@ namespace NASA_BL
         {
             return _dal.GetSolarSystem();
         }
-        
+
         public bool CheckUserAndPassword(string user, string password)
         {
             return _dal.CheckUserAndPassword(user, password);
