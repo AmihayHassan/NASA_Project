@@ -364,7 +364,6 @@
     <Resource Include="Media\Planets\Mercury.png" />
     <Resource Include="Media\Planets\Neptune.png" />
     <Resource Include="Media\Planets\Saturn.png" />
-    <Resource Include="Media\Planets\Sun.png" />
     <Resource Include="Media\Planets\Uranus.png" />
     <Resource Include="Media\Planets\Venus.png" />
   </ItemGroup>
