@@ -198,21 +198,12 @@ namespace NASA_DAL
                 #endregion
                 dbcontext.SaveChanges();
             }
-
-            if (dbcontext.SavedImagesFB.ToList().Count == 0)
-            {
-                const string url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/NASA_Wormball_logo.svg/768px-NASA_Wormball_logo.svg.png";
-                const string description = "Default Image";
-                await Task.Run(async () => await UploadImageToFirebase(url, description));
-            }
         }
 
         public List<Planet> GetSolarSystem()
         {
-            using (var ctx = new NasaDB())
-            {
-                return ctx.Planets.ToList();
-            }
+            using var ctx = new NasaDB();
+            return ctx.Planets.ToList();
         }
 
         public async Task<T> GetFromApi<T>(string url)
@@ -239,21 +230,23 @@ namespace NASA_DAL
         #region Imagga
         public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
         {
-            string apiKey = "acc_1d83319fb42c913";
-            string apiSecret = "0eac00d57006acce575e22fe58ab27cf";
+            const string apiKey = "acc_1d83319fb42c913";
+            const string apiSecret = "0eac00d57006acce575e22fe58ab27cf";
 
-            string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
+            var basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
 
-            var client = new RestClient("https://api.imagga.com/v2/tags");
-            client.Timeout = -1;
+            var client = new RestClient("https://api.imagga.com/v2/tags")
+            {
+                Timeout = -1
+            };
 
             var request = new RestRequest(Method.GET);
             request.AddParameter("image_url", imageUrl);
-            request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
+            request.AddHeader("Authorization", $"Basic {basicAuthValue}");
 
-            IRestResponse response = client.Execute(request);
+            var response = client.Execute(request);
 
-            ImaggaTag imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
+            var imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
 
             return imageTags;
         }
@@ -319,7 +312,6 @@ namespace NASA_DAL
                 .Child("Images/" + imageName)
                 .PutAsync(imageStream);
             var downloadUrl = await task;
-            var x = "g";
 
             //add the image to the database
 
@@ -348,7 +340,6 @@ namespace NASA_DAL
                 OriginalUrl = image.OriginalUrl,
                 Description = image.Description,
                 Id = DateTime.Now.Ticks
-
             });
             dbcontext.SaveChanges();
         }
@@ -360,9 +351,7 @@ namespace NASA_DAL
             {
                 return ctx.SavedImagesFB.ToList();
             }
-
         }
-
     }
 }
 

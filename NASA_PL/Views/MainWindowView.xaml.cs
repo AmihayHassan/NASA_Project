@@ -55,6 +55,13 @@ namespace NASA_PL.Views
 
         private void Drag_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
+            // if the window is maximized, restore it to allow dragging
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+
+
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();

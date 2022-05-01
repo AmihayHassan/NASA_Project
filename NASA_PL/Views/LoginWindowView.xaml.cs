@@ -39,6 +39,12 @@ namespace NASA_PL.Views
 
         private void LoginWindowView_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
+            // if the window is maximized, restore it to allow dragging
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+
             // enable the mouse to move the window
             if (e.ChangedButton == MouseButton.Left)
             {

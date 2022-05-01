@@ -1,5 +1,4 @@
-﻿
-<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,22 +22,19 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*" />
-            <RowDefinition Height="8*" />
-        </Grid.RowDefinitions>
 
-            <Button x:Name="btUpdate"
-                    Margin="20 0"
-                    Grid.Row="0"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                    Command="{Binding UpdateCommand}">
-                <materialDesign:PackIcon Kind="Update"
-                                         Foreground="white" />
-            </Button>
+        <Button x:Name="btUpdate"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="20"
+                ToolTip="Refresh images"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                Command="{Binding UpdateCommand}">
+            <materialDesign:PackIcon Kind="Update"
+                                     Foreground="white" />
+        </Button>
 
-        <Grid Margin="10"
-              Grid.Row="1">
+        <Grid Margin="10">
 
             <Grid>
 

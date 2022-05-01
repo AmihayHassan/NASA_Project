@@ -37,6 +37,11 @@ namespace NASA_BL
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence)
         {
             var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            // if the confidence is 0, return all the images
+            if (confidence == 0)
+            {
+                return imagesAndDescription;
+            }
 
             var res = new Dictionary<string, string>();
 
