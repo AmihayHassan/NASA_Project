@@ -35,49 +35,49 @@
 
             <syncfusion:CarouselItem Name="MercuryCarouselItem">
                 <Viewbox Width="80">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mercury.png?alt=media" />
+                    <Image Source="/Media/Planets/Mercury.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="VenusCarouselItem">
                 <Viewbox Width="150">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Venus.png?alt=media" />
+                    <Image Source="/Media/Planets/Venus.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="EarthCarouselItem">
                 <Viewbox Width="150">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Earth.png?alt=media" />
+                    <Image Source="/Media/Planets/Earth.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="MarsCarouselItem">
                 <Viewbox Width="100">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Mars.png?alt=media" />
+                    <Image Source="/Media/Planets/Mars.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="JupiterCarouselItem">
                 <Viewbox Width="300">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Jupiter.png?alt=media" />
+                    <Image Source="/Media/Planets/Jupiter.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="SaturnCarouselItem">
                 <Viewbox Width="500">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Saturn.png?alt=media" />
+                    <Image Source="/Media/Planets/Saturn.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="UranusCarouselItem">
                 <Viewbox Width="200">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Uranus.png?alt=media" />
+                    <Image Source="/Media/Planets/Uranus.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 
             <syncfusion:CarouselItem Name="NeptuneCarouselItem">
                 <Viewbox Width="180">
-                    <Image Source="https://firebasestorage.googleapis.com/v0/b/nasa-wpf-ronke-amiha-2022.appspot.com/o/Neptune.png?alt=media" />
+                    <Image Source="/Media/Planets/Neptune.png" />
                 </Viewbox>
             </syncfusion:CarouselItem>
 

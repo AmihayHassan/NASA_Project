@@ -357,7 +357,17 @@
   <ItemGroup>
     <Resource Include="Media\StarIcon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\Planets\Earth.png" />
+    <Resource Include="Media\Planets\Jupiter.png" />
+    <Resource Include="Media\Planets\Mars.png" />
+    <Resource Include="Media\Planets\Mercury.png" />
+    <Resource Include="Media\Planets\Neptune.png" />
+    <Resource Include="Media\Planets\Saturn.png" />
+    <Resource Include="Media\Planets\Sun.png" />
+    <Resource Include="Media\Planets\Uranus.png" />
+    <Resource Include="Media\Planets\Venus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
