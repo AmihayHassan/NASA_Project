@@ -36,6 +36,15 @@ namespace NASA_PL.Views
                 _viewModel.LoginCommand.Execute(this);
             }
         }
+
+        private void LoginWindowView_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // enable the mouse to move the window
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
     }
 }
 

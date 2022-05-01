@@ -7,13 +7,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using NASA_PL.Models;
 
 
 namespace NASA_PL.ViewModels
 {
     public class PlanetsViewModel : INotifyPropertyChanged
     {
-        private readonly Models.PlanetsModel _model;
+        private readonly PlanetsModel _model;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand OpenPlanetCardCommand { get; private set; }
@@ -22,7 +23,7 @@ namespace NASA_PL.ViewModels
 
         public PlanetsViewModel()
         {
-            _model = new Models.PlanetsModel();
+            _model = new PlanetsModel();
             OpenPlanetCardCommand = new RelayCommand<Carousel>(OpenPlanetCard, o => true);
             MovePlanetRightCommand = new RelayCommand<Carousel>(MovePlanetRight, o => true);
             MovePlanetLeftCommand = new RelayCommand<Carousel>(MovePlanetLeft, o => true);

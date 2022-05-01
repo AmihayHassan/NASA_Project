@@ -20,6 +20,7 @@
         Height="450"
         Width="370"
         Foreground="White"
+        MouseDown="LoginWindowView_OnMouseDown"
         Name="LoginWindow">
 
     <materialDesign:Card UniformCornerRadius="15"

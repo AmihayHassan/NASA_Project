@@ -41,12 +41,7 @@ namespace NASA_PL.ViewModels
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
             MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
 
-            OpenApodPageCommand = new RelayCommand<Frame>(frame =>
-            {
-                frame.Content = new APODView();
-            }
-            , frame => frame.Content is not APODView);
-
+            OpenApodPageCommand = new RelayCommand<Frame>(frame => frame.Content = new APODView(), frame => frame.Content is not APODView);
             OpenSearchPageCommand = new RelayCommand<Frame>(frame => frame.Content = SearchPage, frame => frame.Content is not SearchView);
             OpenFireBasePageCommand = new RelayCommand<Frame>(frame => frame.Content = new FireBaseImagesView(), frame => frame.Content is not FireBaseImagesView);
             OpenPlanetsPageCommand = new RelayCommand<Frame>(frame => frame.Content = PlanetsPage, frame => frame.Content is not PlanetsView);
