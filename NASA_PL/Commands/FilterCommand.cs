@@ -4,14 +4,13 @@ using System.Windows.Input;
 
 namespace NASA_PL.Commands
 {
-
-    class FilterCommand : ICommand
+    public class FilterCommand : ICommand
     {
-        NEOsViewModel neosVM;
+        private readonly NEOsViewModel _neosVm;
 
         public FilterCommand(NEOsViewModel viewModel)
         {
-            neosVM = viewModel;
+            _neosVm = viewModel;
         }
 
         event EventHandler ICommand.CanExecuteChanged
@@ -27,14 +26,14 @@ namespace NASA_PL.Commands
 
         public void Execute(object parameter)
         {
-            bool val = bool.Parse(parameter.ToString());
+            var val = bool.Parse(parameter.ToString());
             if (val)
             {
-                neosVM.HazardOnly(true);
+                _neosVm.HazardOnly(true);
             }
             else
             {
-                neosVM.HazardOnly();
+                _neosVm.HazardOnly();
             }
         }
     }

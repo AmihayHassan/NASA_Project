@@ -5,19 +5,19 @@ using System.Collections.Generic;
 namespace NASA_PL.Models
 {
 
-    class FireBaseImagesModel
+    public class FireBaseImagesModel
     {
-        BL bl;
+        private readonly BL _bl;
 
         public FireBaseImagesModel()
         {
-            bl = new BL();
+            _bl = new BL();
         }
 
         //create function that get all images in firebase and return them
         public List<FirebaseImage> GetImagesFromFirebase()
         {
-            return bl.GetImagesFromFirebase();
+            return _bl.GetImagesFromFirebase();
         }
     }
 }

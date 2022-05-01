@@ -6,15 +6,16 @@ namespace NASA_PL.Models
 {
     public class APODModel
     {
-        BL bl;
+        private readonly BL _bl;
+        
         public APODModel()
         {
-            bl = new BL();
+            _bl = new BL();
         }
 
         public async Task<APOD> GetImageOfTheDay()
         {
-            return await bl.GetAPOD();
+            return await _bl.GetApod();
         }
     }
 

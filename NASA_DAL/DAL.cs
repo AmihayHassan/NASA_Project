@@ -179,8 +179,8 @@ namespace NASA_DAL
                 dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 2,
-                    Username = "Amihay1544",
-                    Password = "ArabStyle123"
+                    Username = "Amihay1",
+                    Password = "Commander"
                 });
 
                 dbcontext.UsersAndPasswords.Add(new User()
@@ -292,11 +292,11 @@ namespace NASA_DAL
         //create function that receive image url, download it and save it to Firebase and return its url
         public async Task UploadImageToFirebase(string imageUrl, string imageDescription)
         {
-            var dbcontext = new NasaDB();
-            var imageList = dbcontext.SavedImagesFB.ToList();
+            var dbContext = new NasaDB();
+            var imageList = dbContext.SavedImagesFB.ToList();
+
             //check if image already exist in Firebase
-            var imageExist = imageList.Any(fbi => fbi.OriginalUrl == imageUrl);
-            if (imageExist)
+            if (imageList.Any(fbi => fbi.OriginalUrl == imageUrl))
             {
                 return;
             }
@@ -307,13 +307,11 @@ namespace NASA_DAL
             var image = response.RawBytes;
             //convert image to stream
             var imageStream = new MemoryStream(image);
-            var imageName = Guid.NewGuid().ToString() + ".jpg";
+            var imageName = Guid.NewGuid() + ".jpg";
             var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
                 .Child("Images/" + imageName)
                 .PutAsync(imageStream);
             var downloadUrl = await task;
-
-            //add the image to the database
 
             //create new FirebaseImage
             var imageToAdd = new FirebaseImage()
@@ -331,9 +329,9 @@ namespace NASA_DAL
         // create function that receive Firebaseimage and add it to the database
         public void UploadImageToDatabase(FirebaseImage image)
         {
-            var dbcontext = new NasaDB();
+            var dbContext = new NasaDB();
 
-            dbcontext.SavedImagesFB.Add(new FirebaseImage()
+            dbContext.SavedImagesFB.Add(new FirebaseImage()
             {
                 Url = image.Url,
                 Name = image.Name,
@@ -341,16 +339,14 @@ namespace NASA_DAL
                 Description = image.Description,
                 Id = DateTime.Now.Ticks
             });
-            dbcontext.SaveChanges();
+            dbContext.SaveChanges();
         }
 
 
         public List<FirebaseImage> GetSavedImages()
         {
-            using (var ctx = new NasaDB())
-            {
-                return ctx.SavedImagesFB.ToList();
-            }
+            using var ctx = new NasaDB();
+            return ctx.SavedImagesFB.ToList();
         }
     }
 }

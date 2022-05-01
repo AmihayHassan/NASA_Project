@@ -12,10 +12,9 @@ using System.Windows.Input;
 
 namespace NASA_PL.ViewModels
 {
-    public class PlanetsViewModel : INotifyPropertyChanged
+    public class PlanetsViewModel
     {
         private readonly PlanetsModel _model;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand OpenPlanetCardCommand { get; private set; }
         public ICommand MovePlanetRightCommand { get; private set; }
@@ -39,7 +38,7 @@ namespace NASA_PL.ViewModels
 
         private void MovePlanetRight(Carousel PlanetsCarousel)
         {
-            int current = PlanetsCarousel.SelectedIndex;
+            var current = PlanetsCarousel.SelectedIndex;
             if (current < 7)
             {
                 PlanetsCarousel.SelectedIndex = current + 1;
@@ -52,7 +51,7 @@ namespace NASA_PL.ViewModels
 
         private void MovePlanetLeft(Carousel PlanetsCarousel)
         {
-            int current = PlanetsCarousel.SelectedIndex;
+            var current = PlanetsCarousel.SelectedIndex;
             if (current > 0)
             {
                 PlanetsCarousel.SelectedIndex = current - 1;
@@ -61,13 +60,6 @@ namespace NASA_PL.ViewModels
             {
                 PlanetsCarousel.SelectedIndex = 7;
             }
-        }
-
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

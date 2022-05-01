@@ -9,6 +9,8 @@ namespace NASA_PL.ViewModels
 {
     public class APODViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         private APOD _apod;
         public APOD Apod
         {
@@ -22,8 +24,6 @@ namespace NASA_PL.ViewModels
                 OnPropertyChanged(nameof(Explanation));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public APODViewModel()
         {

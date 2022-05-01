@@ -15,17 +15,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using Microsoft.Office.Interop.Excel;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace NASA_PL.ViewModels
 {
-    [ObservableObject]
     public class NEOsViewModel : INotifyPropertyChanged
     {
         private string _start;
         private string _end;
-        private int _diameter = 0;
+        private int _diameter;
 
-        private bool _hazardous = false;
+        private bool _hazardous;
         public bool Hazardous
         {
             get => _hazardous;
@@ -35,8 +36,6 @@ namespace NASA_PL.ViewModels
                 OnPropertyChanged(nameof(Hazardous));
             }
         }
-
-        public DateTime Yesterday { get; set; }
 
         public ICommand Filter { get; set; }
         public ICommand UpdateStartDateCommand { get; set; }
@@ -55,8 +54,6 @@ namespace NASA_PL.ViewModels
         {
             _model = new NEOsModel();
             Filter = new FilterCommand(this);
-
-            Yesterday = DateTime.Now.AddDays(-1);
 
             UpdateStartDateCommand = new RelayCommand<DatePicker>(picker =>
             {
@@ -133,31 +130,14 @@ namespace NASA_PL.ViewModels
             }
         }
 
-
-
+        
         // define function to export to csv
         private void ExportToExcel(ObservableCollection<NearEarthObject> nearEarthObj)
         {
-            // Create an instance of Excel.Application
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-
-            // Create a new Workbook
-            Microsoft.Office.Interop.Excel.Workbook workbook = null;
-
-            // open the new workbook
-            workbook = excel.Workbooks.Add(Type.Missing);
-
-
-            // change the name of the workbook
-            workbook.Title = $"Neos:{_start}_{_end}";
-
-            // Create a new Worksheet
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
-
-            //worksheet = workbook.Sheets["Sheet1"];
-            worksheet = workbook.ActiveSheet;
-
-            // Set the name of Worksheet
+            var excel = new Microsoft.Office.Interop.Excel.Application();
+            var workbook = excel.Workbooks.Add(Type.Missing);
+            Worksheet worksheet = workbook.ActiveSheet;
+            
             worksheet.Name = "NEOs";
 
             // Fill in the header of the Excel file
@@ -181,25 +161,9 @@ namespace NASA_PL.ViewModels
                 worksheet.Cells[i + 2, 7] = nearEarthObj[i].MissDistance;
             }
 
-            // create a name for the excel file
-            var filename = $"NEOs_result_from_{DateTime.Now.ToString().Replace(" ", "_")}.xlsx";
+            
+            excel.DefaultFilePath = @"C:\";
 
-            // change the path to save the excel file
-            excel.DefaultFilePath = @"C:\Users\amiha\Downloads";
-            // change the name of the excel file
-            //excel.Caption = filename;
-
-            //excel.Save(filename);
-
-            excel.Caption = filename;
-
-            //// Save the file
-            //workbook.Save();
-
-            //// Close the workbook
-            //workbook.Close(true, Type.Missing, Type.Missing);
-
-            // Quit the Excel application
             excel.Quit();
 
             // release the COM objects (very important!)
@@ -215,7 +179,7 @@ namespace NASA_PL.ViewModels
 
         public void HazardOnly(bool hazardous = false)
         {
-            if (_model.neoList == null)
+            if (_model.NeoList == null)
             {
                 return;
             }
@@ -223,9 +187,9 @@ namespace NASA_PL.ViewModels
             if (NearEarthObj is not null)
             {
                 NearEarthObj = new ObservableCollection<NearEarthObject>(hazardous ?
-                        _model.neoList.Where(neo => neo.Hazardous).ToList()
+                        _model.NeoList.Where(neo => neo.Hazardous).ToList()
                         :
-                        _model.neoList.ToList());
+                        _model.NeoList.ToList());
             }
         }
 

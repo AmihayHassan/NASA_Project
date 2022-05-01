@@ -9,12 +9,11 @@ using System.Windows.Input;
 namespace NASA_PL.ViewModels
 {
     [INotifyPropertyChanged]
-    public partial class MainWindowViewModel
+    public class MainWindowViewModel
     {
         public PlanetsView PlanetsPage;
         public SearchView SearchPage;
         public NEOsView NEOsPage;
-        public FireBaseImagesView FireBaseImagesPage;
 
         public ICommand CloseWindowCommand { get; private set; }
         public ICommand RestoreWindowCommand { get; private set; }
@@ -39,7 +38,7 @@ namespace NASA_PL.ViewModels
             _model = new MainWindowModel();
             CloseWindowCommand = new RelayCommand<Window>(window => window?.Close());
             RestoreWindowCommand = new RelayCommand<Window>(RestoreWindow);
-            MinimizeWindowCommand = new RelayCommand<Window>(MinimizeWindow);
+            MinimizeWindowCommand = new RelayCommand<Window>(window => window.WindowState = WindowState.Minimized);
 
             OpenApodPageCommand = new RelayCommand<Frame>(frame => frame.Content = new APODView(), frame => frame.Content is not APODView);
             OpenSearchPageCommand = new RelayCommand<Frame>(frame => frame.Content = SearchPage, frame => frame.Content is not SearchView);
@@ -51,11 +50,6 @@ namespace NASA_PL.ViewModels
                 var infoWindow = new InfoView();
                 infoWindow.ShowDialog();
             });
-        }
-
-        private void MinimizeWindow(Window window)
-        {
-            window.WindowState = WindowState.Minimized;
         }
 
         private void RestoreWindow(Window window)

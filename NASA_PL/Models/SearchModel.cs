@@ -7,23 +7,21 @@ namespace NASA_PL.Models
 
     class SearchModel
     {
-        BL bl;
+        private readonly BL _bl;
 
         public SearchModel()
         {
-            bl = new BL();
+            _bl = new BL();
         }
 
-
-        // create function that send to dal imageURL and save it to Firebase
-        public async Task SaveImageToFirebase(string imageURL, string imageDescription)
+        public async Task SaveImageToFirebase(string imageUrl, string imageDescription)
         {
-            await bl.SaveImageToFirebase(imageURL, imageDescription);
+            await _bl.SaveImageToFirebase(imageUrl, imageDescription);
         }
 
         public async Task<Dictionary<string, string>> GetSearchResult(string search, int confidence)
         {
-            return await bl.GetSearchResult(search, confidence);
+            return await _bl.GetSearchResult(search, confidence);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace NASA_PL.Converters
             {
                 return Visibility.Visible;
             }
-
             return Visibility.Collapsed;
         }
 

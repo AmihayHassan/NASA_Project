@@ -21,6 +21,11 @@ namespace NASA_PL.ViewModels
         private string _queryString;
         private int _confidence;
 
+        public ICommand UpdateQueryStringCommand { get; set; }
+        public ICommand UpdateConfidenceCommand { get; set; }
+        public IAsyncRelayCommand UploadImageToFireBaseCommand { get; set; }
+        public IAsyncRelayCommand SearchCommand { get; set; }
+
         private Dictionary<string, string> _resultsDictionary;
         public Dictionary<string, string> ResultsDictionary
         {
@@ -43,31 +48,19 @@ namespace NASA_PL.ViewModels
             }
         }
 
-        public ICommand UpdateQueryStringCommand { get; set; }
-        public ICommand UpdateConfidenceCommand { get; set; }
-        public IAsyncRelayCommand UploadImageToFireBaseCommand { get; set; }
-        public IAsyncRelayCommand SearchCommand { get; set; }
-
         public SearchViewModel()
         {
             _searchModel = new SearchModel();
             ResultsDictionary = null;
 
-            UpdateQueryStringCommand = new RelayCommand<TextBox>(box =>
-            {
-                _queryString = box.Text;
-            });
+            UpdateQueryStringCommand = new RelayCommand<TextBox>(box => _queryString = box.Text);
 
-            UpdateConfidenceCommand = new RelayCommand<Slider>(slider =>
-            {
-                _confidence = Convert.ToInt32(slider.Value);
-            });
+            UpdateConfidenceCommand = new RelayCommand<Slider>(slider => _confidence = Convert.ToInt32(slider.Value));
 
             UploadImageToFireBaseCommand = new AsyncRelayCommand<string>(async (imageUrl) =>
             {
                 await _searchModel.SaveImageToFirebase(imageUrl, ResultsDictionary.FirstOrDefault(item => item.Key == imageUrl).Value);
             });
-
 
             SearchCommand = new AsyncRelayCommand(async () =>
             {

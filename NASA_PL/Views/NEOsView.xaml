@@ -40,6 +40,7 @@
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
                  MaxWidth="400"
+                 ToolTip="Diameter in km"
                  PreviewTextInput="TxtDiameter_OnPreviewTextInput"
                  materialDesign:HintAssist.Hint="Min diameter">
             <b:Interaction.Triggers>
@@ -61,6 +62,7 @@
                           Command="{Binding Filter}"
                           CommandParameter="{Binding ElementName=is_potentially_hazardous_asteroid ,Path=IsChecked}"
                           Style="{StaticResource MaterialDesignSwitchLightToggleButton}"
+                          ToolTip="is the Near Earth Object potentially hazardous?"
                           IsChecked="{Binding Hazardous}"
                           HorizontalAlignment="Center">
                 <b:Interaction.Triggers>

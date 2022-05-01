@@ -6,15 +6,15 @@ namespace NASA_PL.Models
 {
     public class PlanetsModel
     {
-        BL bl;
+        private readonly BL _bl;
         public PlanetsModel()
         {
-            bl = new BL();
+            _bl = new BL();
         }
 
         public List<Planet> GetSolarSystem()
         {
-            return bl.GetSolarSystem();
+            return _bl.GetSolarSystem();
         }
     }
 }

@@ -8,16 +8,16 @@ namespace NASA_BL
 {
     public class BL
     {
-        private Dal dal = new Dal();
+        private readonly Dal _dal = new();
 
-        public async Task<APOD> GetAPOD()
+        public async Task<APOD> GetApod()
         {
-            return await dal.GetApodFromNasaApi();
+            return await _dal.GetApodFromNasaApi();
         }
 
         public async Task<List<NearEarthObject>> GetNearEarthObject(string start, string end)
         {
-            NearEarthObjects nearEarthObject = await dal.GetNearEarthObject(start, end);
+            var nearEarthObject = await _dal.GetNearEarthObject(start, end);
             var result = from s in nearEarthObject.near_earth_objects.Values
                          from q in s
                          select new NearEarthObject()
@@ -33,10 +33,9 @@ namespace NASA_BL
             return result.ToList();
         }
 
-        //TODO change SubDic to imagesAndDescription
         public async Task<Dictionary<string, string>> GetSearchResult(string querySearch, int confidence)
         {
-            var imagesAndDescription = await dal.GetSearchResult(querySearch);
+            var imagesAndDescription = await _dal.GetSearchResult(querySearch);
             // if the confidence is 0, return all the images
             if (confidence == 0)
             {
@@ -47,9 +46,9 @@ namespace NASA_BL
 
             Parallel.ForEach(imagesAndDescription.Keys, async image =>
             {
-                var tag = await dal.GetImageTagsFromImagga(image);
+                var tag = await _dal.GetImageTagsFromImagga(image);
                 if (tag.result == null) return;
-                if (tag.result.tags.Any((x) => x.confidence >= confidence && x.tag.en == "planet"))
+                if (tag.result.tags.Any(resTag => resTag.confidence >= confidence && resTag.tag.en.ToLower() == "planet"))
                 {
                     res.Add(image, imagesAndDescription[image]);
                 }
@@ -60,23 +59,24 @@ namespace NASA_BL
 
         public List<Planet> GetSolarSystem()
         {
-            return dal.GetSolarSystem();
+            return _dal.GetSolarSystem();
         }
+        
         public bool CheckUserAndPassword(string user, string password)
         {
-            return dal.CheckUserAndPassword(user, password);
+            return _dal.CheckUserAndPassword(user, password);
         }
 
         // create function that send to dal imageURL and save it to firebase
         public async Task SaveImageToFirebase(string imageURL, string imageDescription)
         {
-            await dal.UploadImageToFirebase(imageURL, imageDescription);
+            await _dal.UploadImageToFirebase(imageURL, imageDescription);
         }
 
         //create function that get all images in firebase and return them
         public List<FirebaseImage> GetImagesFromFirebase()
         {
-            return dal.GetSavedImages();
+            return _dal.GetSavedImages();
         }
 
     }

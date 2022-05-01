@@ -8,26 +8,24 @@ using System.Threading.Tasks;
 
 namespace NASA_PL.Models
 {
-    public class NEOsModel : ObservableObject
+    public class NEOsModel
     {
+        private readonly BL _bl;
 
-        BL bl;
-
-        [ObservableProperty]
-        public ObservableCollection<NearEarthObject> neoList;
+        public ObservableCollection<NearEarthObject> NeoList;
 
         public NEOsModel()
         {
-            bl = new BL();
-            neoList = new ObservableCollection<NearEarthObject>();
+            _bl = new BL();
+            NeoList = new ObservableCollection<NearEarthObject>();
         }
 
         public async Task<ObservableCollection<NearEarthObject>> GetNearEarthObject(string start, string end, double diameter)
         {
-            neoList = new ObservableCollection<NearEarthObject>(from s in await bl.GetNearEarthObject(start, end)
+            NeoList = new ObservableCollection<NearEarthObject>(from s in await _bl.GetNearEarthObject(start, end)
                                                                 where s.Diameter > diameter
                                                                 select s);
-            return neoList;
+            return NeoList;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UserControl = System.Windows.Controls.UserControl;
+﻿using System.Windows.Data;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace NASA_PL.UserControls
 {
@@ -12,16 +13,16 @@ namespace NASA_PL.UserControls
             InitializeComponent();
         }
 
-        public System.Windows.Data.Binding AverageDistanceFromTheSun { get; set; }
-        public System.Windows.Data.Binding Aphelion { get; set; }
-        public System.Windows.Data.Binding Perihelion { get; set; }
-        public System.Windows.Data.Binding Radius { get; set; }
-        public System.Windows.Data.Binding Mass { get; set; }
-        public System.Windows.Data.Binding AverageSurfaceTemp { get; set; }
-        public System.Windows.Data.Binding OrbitalPeriod { get; set; }
-        public System.Windows.Data.Binding AverageSpeed { get; set; }
-        public System.Windows.Data.Binding RotationPeriod { get; set; }
-        public System.Windows.Data.Binding MoonNumber { get; set; }
-        public System.Windows.Data.Binding ImageURL { get; set; }
+        public Binding AverageDistanceFromTheSun { get; set; }
+        public Binding Aphelion { get; set; }
+        public Binding Perihelion { get; set; }
+        public Binding Radius { get; set; }
+        public Binding Mass { get; set; }
+        public Binding AverageSurfaceTemp { get; set; }
+        public Binding OrbitalPeriod { get; set; }
+        public Binding AverageSpeed { get; set; }
+        public Binding RotationPeriod { get; set; }
+        public Binding MoonNumber { get; set; }
+        public Binding ImageURL { get; set; }
     }
 }

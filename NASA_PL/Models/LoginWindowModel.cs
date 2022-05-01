@@ -2,20 +2,19 @@
 
 namespace NASA_PL.Models
 {
-    class LoginWindowModel
+    public class LoginWindowModel
     {
-        BL bl;
+        private readonly BL _bl;
 
         public LoginWindowModel()
         {
-            bl = new BL();
+            _bl = new BL();
         }
 
         public bool CheckUserAndPassword(string user, string password)
         {
-            return bl.CheckUserAndPassword(user, password);
+            return _bl.CheckUserAndPassword(user, password);
         }
-
     }
 
 }

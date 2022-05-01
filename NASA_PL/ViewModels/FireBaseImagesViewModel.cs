@@ -12,6 +12,9 @@ namespace NASA_PL.ViewModels
     public class FireBaseImagesViewModel : INotifyPropertyChanged
     {
         private FireBaseImagesModel _model;
+        
+        public IAsyncRelayCommand UpdateCommand { get; set; }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Dictionary<string, string> _resultsDictionary;
@@ -35,9 +38,7 @@ namespace NASA_PL.ViewModels
                 OnPropertyChanged(nameof(ShowList));
             }
         }
-
-        public IAsyncRelayCommand UpdateCommand { get; set; }
-
+        
         public FireBaseImagesViewModel()
         {
             Task.Run(InitViewModel);
@@ -45,8 +46,7 @@ namespace NASA_PL.ViewModels
             UpdateCommand = new AsyncRelayCommand(async () =>
             {
                 ShowList = Visibility.Collapsed;
-                //ResultsDictionary = new Dictionary<string, string>();
-                ResultsDictionary = await Task.Run(() => GetImagesFromFirebase());
+                ResultsDictionary = await Task.Run(GetImagesFromFirebase);
                 ShowList = Visibility.Visible;
             });
         }
@@ -54,10 +54,10 @@ namespace NASA_PL.ViewModels
         private async Task InitViewModel()
         {
             _model = new FireBaseImagesModel();
-            ResultsDictionary = await Task.Run(() => GetImagesFromFirebase());
+            ResultsDictionary = await Task.Run(GetImagesFromFirebase);
         }
 
-        public async Task<Dictionary<string, string>> GetImagesFromFirebase()
+        public Dictionary<string, string> GetImagesFromFirebase()
         {
             var result = _model.GetImagesFromFirebase();
 
