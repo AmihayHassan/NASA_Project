@@ -12,6 +12,8 @@ namespace NASA_PL.Views
         public PlanetCardView(Planet planet)
         {
             DataContext = planet;
+            // do not allow full screen
+            ResizeMode = ResizeMode.NoResize;
             InitializeComponent();
         }
 

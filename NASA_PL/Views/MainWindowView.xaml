@@ -246,7 +246,7 @@
 
                 </Button>
             </DockPanel>
-            
+
 
             <Button Name="APODSidePanel"
                     Style="{StaticResource SidePanelButton}"
@@ -388,7 +388,7 @@
                 </StackPanel>
 
             </Button>
-            
+
 
         </StackPanel>
 
