@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace NASA_PL.Models
 {
 
-    class SearchModel
+    public class SearchModel
     {
         private readonly BL _bl;
 

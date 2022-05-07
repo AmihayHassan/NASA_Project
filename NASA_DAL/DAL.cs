@@ -12,12 +12,17 @@ namespace NASA_DAL
 {
     public class Dal
     {
-        const string NasaApiKey = "7cJzNeeVHfpkbfQoRP1107Dfmo2kOFd5jktUCVc1";
+        // Note:
+        // the links in this file might be broken,
+        // since this Firebase storage will be deleted after the project is finished
+
+        private const string NasaApiKey = ""; // <= Enter your API key here
+                                              // to generate one, go to https://api.nasa.gov/ and search for "Generate API Key"
 
         public Dal()
         {
-            NasaDB dbcontext = new NasaDB();
-            SeedDataBaseIfEmpty(dbcontext).GetAwaiter().GetResult();
+            NasaDB dbContext = new NasaDB();
+            SeedDataBaseIfEmpty(dbContext).GetAwaiter().GetResult();
         }
 
         public async Task SeedDataBaseIfEmpty(NasaDB dbcontext)
@@ -172,15 +177,15 @@ namespace NASA_DAL
                 dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 1,
-                    Username = "Ronke21",
+                    Username = "User1",
                     Password = "Password1"
                 });
 
                 dbcontext.UsersAndPasswords.Add(new User()
                 {
                     Id = 2,
-                    Username = "Amihay1",
-                    Password = "Commander"
+                    Username = "User2",
+                    Password = "RelayCommander"
                 });
 
                 dbcontext.UsersAndPasswords.Add(new User()
@@ -196,7 +201,7 @@ namespace NASA_DAL
                     Password = "123"
                 });
                 #endregion
-                dbcontext.SaveChanges();
+                await dbcontext.SaveChangesAsync();
             }
         }
 
@@ -215,7 +220,7 @@ namespace NASA_DAL
                 var response = await client.ExecuteAsync<T>(request);
                 return JsonConvert.DeserializeObject<T>(response.Content);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return JsonConvert.DeserializeObject<T>(string.Empty);
             }
@@ -223,17 +228,19 @@ namespace NASA_DAL
 
         public async Task<APOD> GetApodFromNasaApi()
         {
-            var url = $"https://api.nasa.gov/planetary/apod?api_key={NasaApiKey}";
+            const string url = $"https://api.nasa.gov/planetary/apod?api_key={NasaApiKey}";
             return await GetFromApi<APOD>(url);
         }
 
         #region Imagga
         public async Task<ImaggaTag> GetImageTagsFromImagga(string imageUrl)
         {
-            const string apiKey = "acc_1d83319fb42c913";
-            const string apiSecret = "0eac00d57006acce575e22fe58ab27cf";
+            const string apiKey = ""; // <= Enter your API key here
+            const string apiSecret = ""; // <= Enter your API secret here
+                                         // To generate these keys, go to https://docs.imagga.com/?csharp#getting-started-request
+                                         // after you have created an account. the API key and secret will be displayed in the code example.
 
-            var basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
+            var basicAuthValue = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{apiKey}:{apiSecret}"));
 
             var client = new RestClient("https://api.imagga.com/v2/tags")
             {
@@ -244,7 +251,7 @@ namespace NASA_DAL
             request.AddParameter("image_url", imageUrl);
             request.AddHeader("Authorization", $"Basic {basicAuthValue}");
 
-            var response = client.Execute(request);
+            var response = client.Execute(request); // using the async method caused an error due to synchronization issues
 
             var imageTags = JsonConvert.DeserializeObject<ImaggaTag>(response.Content);
 
@@ -274,18 +281,17 @@ namespace NASA_DAL
         #region near earth object
         public async Task<NearEarthObjects> GetNearEarthObject(string startDate, string endDate)
         {
-            string link =
+            var link =
                 $"https://api.nasa.gov/neo/rest/v1/feed?start_date={startDate}&end_date={endDate}&api_key={NasaApiKey}";
-            var r = await GetFromApi<NearEarthObjects>(link);
-            return r;
+            return await GetFromApi<NearEarthObjects>(link);
         }
         #endregion
 
         public bool CheckUserAndPassword(string user, string password)
         {
             var ctx = new NasaDB();
-            var usersFromDB = ctx.UsersAndPasswords.ToList();
-            return usersFromDB.Any(userFromDB => userFromDB.Username == user && userFromDB.Password == password);
+            var usersFromDb = ctx.UsersAndPasswords.ToList();
+            return usersFromDb.Any(userFromDb => userFromDb.Username == user && userFromDb.Password == password);
         }
 
 
@@ -308,7 +314,7 @@ namespace NASA_DAL
             //convert image to stream
             var imageStream = new MemoryStream(image);
             var imageName = Guid.NewGuid() + ".jpg";
-            var task = new FirebaseStorage("nasa-wpf-ronke-amiha-2022.appspot.com")
+            var task = new FirebaseStorage("") // <= Enter your Firebase storage bucket name here
                 .Child("Images/" + imageName)
                 .PutAsync(imageStream);
             var downloadUrl = await task;
@@ -326,7 +332,6 @@ namespace NASA_DAL
             UploadImageToDatabase(imageToAdd);
         }
 
-        // create function that receive Firebaseimage and add it to the database
         public void UploadImageToDatabase(FirebaseImage image)
         {
             var dbContext = new NasaDB();
@@ -341,7 +346,6 @@ namespace NASA_DAL
             });
             dbContext.SaveChanges();
         }
-
 
         public List<FirebaseImage> GetSavedImages()
         {

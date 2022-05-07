@@ -10,7 +10,6 @@ namespace NASA_PL.Views
     /// </summary>
     public partial class BigImageView : Window
     {
-        public BitmapImage url { get; set; }
         public BigImageView(string imageUrl)
         {
             InitializeComponent();

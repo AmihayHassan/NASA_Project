@@ -8,7 +8,6 @@ using System.Windows.Input;
 
 namespace NASA_PL.ViewModels
 {
-    [INotifyPropertyChanged]
     public class MainWindowViewModel
     {
         public PlanetsView PlanetsPage;

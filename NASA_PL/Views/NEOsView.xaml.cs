@@ -22,7 +22,7 @@ namespace NASA_PL.Views
             DataContext = _viewModel;
         }
 
-
+        // this function needs optimization and logic validation
         private void Date_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (startDate.SelectedDate > endDate.SelectedDate)
@@ -60,6 +60,7 @@ namespace NASA_PL.Views
             }
         }
 
+        // allow only numbers in the TextBox
         private void TxtDiameter_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

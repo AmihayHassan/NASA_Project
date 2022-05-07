@@ -130,8 +130,8 @@ namespace NASA_PL.ViewModels
             }
         }
 
-        
-        // define function to export to csv
+
+        // This function is working but needs some improvements
         private void ExportToExcel(ObservableCollection<NearEarthObject> nearEarthObj)
         {
             var excel = new Microsoft.Office.Interop.Excel.Application();

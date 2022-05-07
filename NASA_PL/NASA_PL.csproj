@@ -367,9 +367,6 @@
     <Resource Include="Media\Planets\Uranus.png" />
     <Resource Include="Media\Planets\Venus.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Media\APOD.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
